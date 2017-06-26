@@ -22,12 +22,14 @@ export default class TopBar extends PureComponent {
 	static propTypes = {
 		title: PropTypes.string.isRequired,
 		showBackBtn: PropTypes.bool,
-		showMoreBtn: PropTypes.bool
+		showMoreBtn: PropTypes.bool,
+		moreFunc: PropTypes.func
 	};
 
 	static defaultProps = {
 		showBackBtn: true,
-		showMoreBtn: true
+		showMoreBtn: true,
+		moreFunc: null
 	};
 	
 	constructor(props) {
@@ -52,19 +54,21 @@ export default class TopBar extends PureComponent {
 				</Text>
 				{
 					// 左边的返回按钮
+				}
+				<TouchableOpacity
+					style={styles.backContainer}
+					activeOpacity={0.8}
+					onPress={showBackBtn ? this._onBack : null}
+				>
+				{
 					showBackBtn && (
-						<TouchableOpacity
-							style={styles.backContainer}
-							activeOpacity={0.8}
-							onPress={this._onBack}
-						>
-							<Image
-								style={styles.backImg}
-								source={require('../imgs/back.png')}
-							/>
-						</TouchableOpacity>
+						<Image
+							style={styles.backImg}
+							source={require('../imgs/back.png')}
+						/>
 					)
 				}
+				</TouchableOpacity>
 				{
 					// 右边的菜单按钮
 					showMoreBtn && (
@@ -91,6 +95,8 @@ export default class TopBar extends PureComponent {
 
 	onMore() {
 		// 更多按钮事件
+		const { moreFunc } = this.props;
+		moreFunc && moreFunc();
 	}
 }
 

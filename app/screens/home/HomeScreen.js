@@ -12,6 +12,7 @@ import {
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
 import FinanceData from './FinanceData';
+import LoginScreen from '../login/LoginScreen';
 
 /**
  * 首页面板
@@ -29,13 +30,15 @@ export default class HomeScreen extends PureComponent {
 			siJiVal: 72,
 			siJiTotal: 80
 		};
+
+		this._showLoginScreen = this.showLoginScreen.bind(this);
 	}
 
 	render() {
 		const { cheLiangVal, cheLiangTotal, heTongVal, heTongTotal, siJiVal, siJiTotal } = this.state;
 		return (
 			<View style={styles.container}>
-				<TopBar title={'智慧车队'} showBackBtn={false} showMoreBtn={false} />
+				<TopBar title={'智慧车队'} showBackBtn={false} showMoreBtn={true} moreFunc={this._showLoginScreen} />
 				<ScrollView
 					style={styles.container}
 				>
@@ -100,6 +103,12 @@ export default class HomeScreen extends PureComponent {
 				</Text>
 			</View>
 		);
+	}
+
+	showLoginScreen() {
+		global.nav.push({
+			Component: LoginScreen
+		});
 	}
 }
 

@@ -46,6 +46,7 @@ export default class CircularProgress extends PureComponent {
 		return (
 			<View style={styles.container}>
 				<AnimatedCircularProgress
+					rotation={0}
 					size={ utils.toDips(SIZE) }
 					width={ utils.toDips(WIDTH) }
 					fill={ value }
@@ -78,6 +79,20 @@ export default class CircularProgress extends PureComponent {
 				}
 				</AnimatedCircularProgress>
 				{
+					// 小圆球
+				}
+				<View
+					style={{
+						position: 'absolute',
+						top: -utils.toDips(8),
+						left: utils.toDips(SIZE) / 2 - utils.toDips(8),
+						backgroundColor: color,
+						width: utils.toDips(16),
+						height: utils.toDips(16),
+						borderRadius: utils.toDips(8)
+					}}
+				/>
+				{
 					// 名称和数值
 				}
 				<View
@@ -92,6 +107,15 @@ export default class CircularProgress extends PureComponent {
 							color: '#1d1d1d'
 						}}
 					>
+						{ name }
+						<Text
+							style={{
+								color: '#a1b5c5',
+								fontSize: utils.getFontSize(15)
+							}}
+						>
+							{ nameVal }
+						</Text>
 					</Text>
 				</View>
 			</View>
