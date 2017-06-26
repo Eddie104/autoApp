@@ -12,6 +12,7 @@ import {
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
 import FinanceData from './FinanceData';
+import WorkData from './WorkData';
 import LoginScreen from '../login/LoginScreen';
 
 /**
@@ -77,6 +78,10 @@ export default class HomeScreen extends PureComponent {
 						// 财务数据
 					}
 					<FinanceData />
+					{
+						// 工作看板
+					}
+					<WorkData />
 				</ScrollView>
 			</View>
 		);
