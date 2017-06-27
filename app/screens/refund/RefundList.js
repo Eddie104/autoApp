@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import * as utils from '../../utils';
+import RefundDetailScreen from './RefundDetailScreen';
 
 /**
  * 所有的退款审核数据
@@ -184,10 +185,10 @@ export default class RefundList extends PureComponent {
 	}
 
 	onRefundPress(refundData) {
-		// global.nav.push({
-		// 	Component: CarDetailScreen,
-		// 	carData
-		// });
+		global.nav.push({
+			Component: RefundDetailScreen,
+			refundData
+		});
 	}
 }
 

@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"flex",
+				"flexWrap\tflexWrap"
+			],
+			[
+				"to",
+				"toDips"
+			],
+			[
+				"sty",
+				"styles"
+			],
+			[
+				"render",
+				"renderItem"
+			],
+			[
+				"name",
+				"nameVal"
+			],
+			[
 				"text",
 				"Text"
 			],
@@ -56,10 +76,6 @@
 				"MapScreen"
 			],
 			[
-				"sty",
-				"styles"
-			],
-			[
 				"alite",
 				"alignItemsCenter\talignItems center"
 			],
@@ -80,20 +96,12 @@
 				"_onPasswordChanged"
 			],
 			[
-				"render",
-				"renderAccountTextInput"
-			],
-			[
 				"al",
 				"alignItemsCenter\talignItems center"
 			],
 			[
 				"icon",
 				"iconImg"
-			],
-			[
-				"flex",
-				"flexDirectionRow\tflexDirection row"
 			],
 			[
 				"prop",
@@ -192,10 +200,37 @@
 	"buffers":
 	[
 		{
+			"file": "app/screens/home/FinanceData.js",
+			"settings":
+			{
+				"buffer_size": 1729,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/screens/home/WorkData.js",
+			"settings":
+			{
+				"buffer_size": 1939,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "app/screens/home/CircularProgress.js",
 			"settings":
 			{
-				"buffer_size": 1859,
+				"buffer_size": 2552,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/screens/home/HomeScreen.js",
+			"settings":
+			{
+				"buffer_size": 2829,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -208,8 +243,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 104.0,
-		"last_filter": "instal",
+		"height": 35.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -217,7 +252,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 416.0
+		"width": 528.0
 	},
 	"console":
 	{
@@ -237,19 +272,15 @@
 	},
 	"expanded_folders":
 	[
-		"/D/hongjie/AutoApp",
-		"/D/hongjie/AutoApp/app",
-		"/D/hongjie/AutoApp/app/components",
-		"/D/hongjie/AutoApp/app/screens",
-		"/D/hongjie/AutoApp/app/screens/app",
-		"/D/hongjie/AutoApp/app/screens/home",
-		"/D/hongjie/AutoApp/app/screens/index",
-		"/D/hongjie/AutoApp/app/screens/login",
-		"/D/hongjie/AutoApp/app/screens/map",
-		"/D/hongjie/AutoApp/app/screens/setting"
+		"/E/hongjie/AutoApp",
+		"/E/hongjie/AutoApp/app",
+		"/E/hongjie/AutoApp/app/screens",
+		"/E/hongjie/AutoApp/app/screens/home"
 	],
 	"file_history":
 	[
+		"/E/hongjie/AutoApp/app/screens/home/CircularProgress.js",
+		"/E/hongjie/AutoApp/app/utils.js",
 		"/D/hongjie/AutoApp/app/screens/home/HomeScreen.js",
 		"/D/hongjie/AutoApp/app/screens/home/FinanceData.js",
 		"/D/apowo/Easy/app/app/cartoon/CategorySelector.js",
@@ -375,9 +406,7 @@
 		"/F/adultphotosets/scaleImg.py",
 		"/C/Users/hongjie/Desktop/jvm1.config",
 		"/F/adultphotosets/downloadImg.py",
-		"/G/adultphotosets/ck101Comic.py",
-		"/G/adultphotosets/helper.py",
-		"/G/adultphotosets/scaleImg.py"
+		"/G/adultphotosets/ck101Comic.py"
 	],
 	"find":
 	{
@@ -399,6 +428,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"年检到期",
+			"sh",
+			"nianJianDaoQi",
+			"toDips",
+			"styles",
+			"container",
+			"toDips",
+			"Text",
+			"width",
+			"itemImg",
+			"itemimg",
+			"container",
+			"itemContainer",
+			"FinanceData",
+			"gongzu",
+			"租金",
+			"￥4156",
+			"circularProgressContainer",
+			"cir",
+			"CircularProgress",
+			"container",
+			"screenWidth",
+			"toDips",
+			"SIZE",
+			"styles",
+			"CircularProgress",
 			"styles",
 			"container",
 			"name",
@@ -500,33 +555,7 @@
 			"TopBar",
 			"login",
 			"AutoApp",
-			"checkIntro",
-			"SceneConfig",
-			"handleAppStateChange",
-			"onBack",
-			"NativeModules",
-			"pathway",
-			"buildTypes",
-			"reason",
-			"urceSets.ma",
-			"easySigned",
-			"signingConfigs",
-			"transparent",
-			"currentScreen",
-			"prevScreen",
-			"getCurrentRouteName",
-			"transparent",
-			"onBack",
-			"backand",
-			"goBack",
-			"navigate",
-			"HomeScreen",
-			"MainScreen",
-			"MainScene",
-			"MainScreen",
-			"MainApplication",
-			"getPackages",
-			"createAdditionalReactPackages"
+			"checkIntro"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -546,35 +575,125 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/screens/home/CircularProgress.js",
+					"file": "app/screens/home/FinanceData.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1859,
+						"buffer_size": 1729,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1729,
-								1729
+								1585,
+								1554
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/screens/home/WorkData.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1939,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1171,
+								1171
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/screens/home/CircularProgress.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2552,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1395.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/screens/home/HomeScreen.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2829,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1743,
+								1743
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 824.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -628,6 +747,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"utils",
+				"app\\utils.js"
+			],
 			[
 				"app",
 				"app.js"
