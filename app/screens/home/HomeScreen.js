@@ -6,7 +6,8 @@ import {
 	View,
 	Image,
 	Text,
-	ScrollView
+	ScrollView,
+	TouchableOpacity
 } from 'react-native';
 
 import * as utils from '../../utils';
@@ -14,6 +15,7 @@ import TopBar from '../../components/TopBar';
 import FinanceData from './FinanceData';
 import WorkData from './WorkData';
 import LoginScreen from '../login/LoginScreen';
+import CarScreen from '../car/CarScreen';
 
 /**
  * 首页面板
@@ -33,6 +35,7 @@ export default class HomeScreen extends PureComponent {
 		};
 
 		this._showLoginScreen = this.showLoginScreen.bind(this);
+		this._showCarScreen = this.showCarScreen.bind(this);
 	}
 
 	render() {
@@ -55,7 +58,7 @@ export default class HomeScreen extends PureComponent {
 					>
 						{
 							// 车辆
-							this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal)
+							this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal, this._showCarScreen)
 						}
 						{
 							// 可爱的分割线
@@ -63,7 +66,7 @@ export default class HomeScreen extends PureComponent {
 						<View style={styles.line} />
 						{
 							// 合同
-							this.renderTopItem(require('../../imgs/hetong.png'), '合同', heTongVal, heTongTotal)
+							this.renderTopItem(require('../../imgs/hetong.png'), '合同', heTongVal, heTongTotal, () => {})
 						}
 						{
 							// 可爱的分割线
@@ -71,7 +74,7 @@ export default class HomeScreen extends PureComponent {
 						<View style={styles.line} />
 						{
 							// 司机/客户
-							this.renderTopItem(require('../../imgs/siji.png'), '司机/客户', siJiVal, siJiTotal)
+							this.renderTopItem(require('../../imgs/siji.png'), '司机/客户', siJiVal, siJiTotal, () => {})
 						}
 					</View>
 					{
@@ -87,32 +90,31 @@ export default class HomeScreen extends PureComponent {
 		);
 	}
 
-	renderTopItem(imgSource, name, val, total) {
+	renderTopItem(imgSource, name, val, total, onPress) {
 		return(
-			<View
+			<TouchableOpacity
+				activeOpacity={0.8}
+				onPress={onPress}
 				style={styles.topItemContainer}
 			>
-				<Image
-					style={styles.topItemImg}
-					source={imgSource}
-				/>
-				<Text
-					style={styles.itemName}
-				>
-					{ name }
-				</Text>
-				<Text
-					style={styles.itemValue}
-				>
+				<Image style={styles.topItemImg} source={imgSource} />
+				<Text style={styles.itemName}>{ name }</Text>
+				<Text style={styles.itemValue}>
 					{ val } / { total }
 				</Text>
-			</View>
+			</TouchableOpacity>
 		);
 	}
 
 	showLoginScreen() {
 		global.nav.push({
 			Component: LoginScreen
+		});
+	}
+
+	showCarScreen() {
+		global.nav.push({
+			Component: CarScreen
 		});
 	}
 }
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
 		fontSize: utils.getFontSize(22)
 	},
 	itemValue: {
-		marginTop: utils.toDips(13),
+		// marginTop: utils.toDips(9),
 		color: '#82868e',
 		fontSize: utils.getFontSize(19)
 	},

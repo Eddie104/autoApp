@@ -100,7 +100,7 @@ export default class CircularProgress extends PureComponent {
 				<View
 					style={{
 						flexDirection: 'row',
-						marginTop: utils.toDips(30),
+						marginTop: utils.toDips(26),
 						alignItems: 'center'
 					}}
 				>

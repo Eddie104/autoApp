@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import * as utils from '../../utils';
+import SubTitle from '../../components/SubTitle';
 
 /**
  * 工作看板
@@ -22,32 +23,7 @@ export default class WorkData extends PureComponent {
 	render() {
 		return (
 			<View style={styles.container}>
-				<View
-					style={{
-						flexDirection: 'row',
-						alignItems: 'center',
-						marginTop: utils.toDips(30),
-						marginLeft: utils.toDips(10)
-					}}
-				>
-					{
-						// 小竖条
-					}
-					<View style={{
-						backgroundColor: '#63c53c',
-						width: utils.toDips(6),
-						height: utils.toDips(30)
-					}} />
-					<Text
-						style={{
-							color: '#364153',
-							fontSize: utils.getFontSize(21),
-							marginLeft: utils.toDips(20)
-						}}
-					>
-						工作看板
-					</Text>
-				</View>
+				<SubTitle color={'#63c53c'} title={'工作看板'} />
 				<View
 					style={{
 						flexDirection: 'row',
