@@ -57,7 +57,8 @@ export default class LoginScreen extends PureComponent {
 					<Text
 						style={{
 							color: '#9b9b9b',
-							fontSize: utils.getFontSize(23)
+							fontSize: utils.getFontSize(23),
+							backgroundColor: 'transparent'
 						}}
 						onPress={this._onForgetPassword}
 					>
@@ -84,7 +85,8 @@ export default class LoginScreen extends PureComponent {
 					<Text
 						style={{
 							color: 'white',
-							fontSize: utils.getFontSize(28)
+							fontSize: utils.getFontSize(28),
+							backgroundColor: 'transparent'
 						}}
 					>
 						立即登录

@@ -138,10 +138,11 @@ const styles = StyleSheet.create({
 	itemName: {
 		marginTop: utils.toDips(28),
 		color: '#364153',
-		fontSize: utils.getFontSize(22)
+		fontSize: utils.getFontSize(22),
+		backgroundColor: 'transparent'
 	},
 	itemValue: {
-		// marginTop: utils.toDips(9),
+		backgroundColor: 'transparent',
 		color: '#82868e',
 		fontSize: utils.getFontSize(19)
 	},

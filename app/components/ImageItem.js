@@ -13,7 +13,7 @@ import ColorPropType from 'ColorPropType';
 import * as utils from '../utils';
 
 /**
- * 背景是圆形纯色的，带了一张图片的小item
+ * 背景是圆形纯色的，带了一张图片，下面还有一排文字的item,
  */
 export default class ImageItem extends PureComponent {
 
@@ -39,6 +39,7 @@ export default class ImageItem extends PureComponent {
 		size: PropTypes.number,
 		itemName: PropTypes.string,
 		onPress: PropTypes.func,
+		// 整个item的宽度
 		width: PropTypes.number
 	};
 
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
 	itemName: {
 		color: '#364153',
 		fontSize: utils.getFontSize(22),
-		marginTop: utils.toDips(15)
+		marginTop: utils.toDips(15),
+		backgroundColor: 'transparent'
 	}
 });

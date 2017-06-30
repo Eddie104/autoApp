@@ -31,13 +31,13 @@ export default class WorkData extends PureComponent {
 					}}
 				>
 					{
-						this.renderItem(require('../../imgs/nianJianDaoQi.png'), '年检到期')
+						this.renderItem(require('../../imgs/nianJianDaoQi.png'), '年检到期', 36)
 					}
 					{
-						this.renderItem(require('../../imgs/heTongDaoQi.png'), '合同到期')
+						this.renderItem(require('../../imgs/heTongDaoQi.png'), '合同到期', 2)
 					}
 					{
-						this.renderItem(require('../../imgs/shangYeXian.png'), '商业险')
+						this.renderItem(require('../../imgs/shangYeXian.png'), '商业险', 123)
 					}
 					{
 						this.renderItem(require('../../imgs/cheLiangTuoBao.png'), '车辆脱保')
@@ -47,11 +47,33 @@ export default class WorkData extends PureComponent {
 		);
 	}
 
-	renderItem(imgSource, name) {
+	renderItem(imgSource, name, badge) {
+		badge = isNaN(badge) ? 0 : parseInt(badge);
 		return(
 			<View style={styles.itemContainer}>
 				<Image style={styles.itemImg} source={imgSource}/>
 				<Text style={styles.itemName}>{ name }</Text>
+				{
+					badge > 0 && (
+						<View
+							style={{
+								position: 'absolute',
+								left: utils.toDips(128),
+								top: utils.toDips(-1),
+								backgroundColor: '#f52c44',
+								borderRadius: utils.toDips(12),
+								alignItems: 'center',
+								justifyContent: 'center',
+								paddingLeft: utils.toDips(10),
+								paddingRight: utils.toDips(10)
+							}}
+						>
+							<Text style={{color: 'white', fontSize: utils.getFontSize(10)}}>
+								{ badge }
+							</Text>
+						</View>
+					)
+				}
 			</View>
 		);
 	}
@@ -76,6 +98,7 @@ const styles = StyleSheet.create({
 	itemName: {
 		color: '#364153',
 		fontSize: utils.getFontSize(19),
-		marginTop: utils.toDips(20)
+		marginTop: utils.toDips(20),
+		backgroundColor: 'transparent'
 	}
 });

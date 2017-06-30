@@ -5,23 +5,54 @@
  * react-native-scrollable-tab-view 地址： https://github.com/skv-headless/react-native-scrollable-tab-view
  * react-native-tab-navigator 地址：https://github.com/happypancake/react-native-tab-navigator
  * react-native-circular-progress 地址：https://github.com/bgryszko/react-native-circular-progress
+ * react-native-toast 地址：https://github.com/remobile/react-native-toast
+ * react-native-baidu-map  地址：https://github.com/lovebing/react-native-baidu-map
+ * react-native-smart-splash-screen 地址：
  */
 
 import React, { Component } from 'react';
 import {
 	StyleSheet,
 	View,
-	Text
+	Text,
+	BackHandler
 } from 'react-native';
 
+import SplashScreen from 'react-native-smart-splash-screen';
 import { Navigator } from 'react-native-deprecated-custom-components';
-
+import * as utils  from './app/utils';
 import IndexScreen from './app/screens/index/IndexScreen';
 
 export default class App extends Component{
 
 	constructor(props) {
 		super(props);
+		// 上一次按下android返回键的时间
+		this._lastPressBackTime = 0;
+	}
+
+	componentDidMount () {
+		BackHandler.addEventListener('hardwareBackPress', () => {
+			let nav = global.nav;
+			const routers = nav ? nav.getCurrentRoutes() : null;
+			if (routers && routers.length > 1) {
+				nav.pop();
+				return true;
+			}
+			const now = new Date().getTime();
+			if (now - this._lastPressBackTime < 3000) {
+				return false;
+			}
+			this._lastPressBackTime = now;
+			utils.toast("再按一次退出");
+			return true;
+		});
+
+		SplashScreen.close({
+			animationType: SplashScreen.animationType.scale,
+			duration: 850,
+			delay: 500,
+		});
 	}
 
 	render() {

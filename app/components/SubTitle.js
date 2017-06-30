@@ -49,7 +49,8 @@ export default class SubTitle extends PureComponent {
 					style={{
 						color: '#364153',
 						fontSize: utils.getFontSize(21),
-						marginLeft: utils.toDips(20)
+						marginLeft: utils.toDips(20),
+						backgroundColor: 'transparent'
 					}}
 				>
 					{ title }

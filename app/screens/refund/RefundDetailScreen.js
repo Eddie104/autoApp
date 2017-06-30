@@ -5,11 +5,15 @@ import {
 	StyleSheet,
 	View,
 	Image,
-	Text
+	Text,
+	Modal,
+	TouchableOpacity
 } from 'react-native';
 
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
+import MyScrollableTabView from '../../components/MyScrollableTabView';
+import RefundDetail from './RefundDetail';
 
 export default class RefundDetailScreen extends PureComponent {
 
@@ -19,10 +23,19 @@ export default class RefundDetailScreen extends PureComponent {
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			modalVisible: false
+		};
+
+		this._showModal = this.showModal.bind(this);
+		this._closeModal = this.closeModal.bind(this);
+		this._onModalOK = this.onModalOK.bind(this);
 	}
 
 	render() {
 		const { refundData } = this.props;
+		const { modalVisible } = this.state;
 		return (
 			<View style={styles.container}>
 				<TopBar title={'退款审核'} showMoreBtn={false} />
@@ -34,7 +47,7 @@ export default class RefundDetailScreen extends PureComponent {
 						// 头像
 					}
 					<Image style={styles.userHead} source={require('../../imgs/user_head.png')}/>
-					<View style={{marginLeft: utils.toDips(28), borderColor: 'red',  borderWidth: 1,}}>
+					<View style={{marginLeft: utils.toDips(28)}}>
 						<View style={{flexDirection: 'row'}}>
 							{
 								// 名字和钱
@@ -54,8 +67,95 @@ export default class RefundDetailScreen extends PureComponent {
 						<Text style={styles.date}>2016-10-02 05:23</Text>
 					</View>
 				</View>
+				<MyScrollableTabView style={{ marginTop: utils.toDips(20) }}>
+					<RefundDetail tabLabel='详细信息' showModal={this._showModal} />
+					<RefundDetail tabLabel='合同信息' />
+					<RefundDetail tabLabel='司机信息' />
+				</MyScrollableTabView>
+
+				{
+					// 通过退款的确认窗口
+				}
+				<Modal
+					// 可选值：slide、fade、none
+					animationType={'fade'}
+					transparent={true}
+					visible={modalVisible}
+					onRequestClose={this._closeModal}
+				>
+					<View style={styles.modalContainer}>
+						<View style={styles.modalInnerContainer}>
+							{
+								// title
+							}
+							<Text style={styles.modalTitle}>
+								退款审核确认
+							</Text>
+							{
+								// 可爱的分割线
+							}
+							<View style={styles.modalLine} />
+							{
+								// 正文
+							}
+							<Text style={styles.modalContent}>
+								您正在审核通过刘冰师傅的退款申请，金额为<Text style={[styles.modalContent, {color: '#ed3535'}]}>￥1200</Text>，退款方式为：银行卡打款，确认通过审核吗？
+							</Text>
+							{
+								// 可爱的分割线
+							}
+							<View style={styles.modalLine} />
+							{
+								// 确定和取消按钮
+							}
+							<View style={styles.modalBtnContainer}>
+								<TouchableOpacity
+									activeOpacity={0.8}
+									onPress={this._closeModal}
+									style={styles.modalBtn}
+								>
+									<Text style={styles.modalBtnText}>
+										取消
+									</Text>
+								</TouchableOpacity>
+								{
+									// 竖着的分割线
+								}
+								<View style={{width: 1, backgroundColor: '#c7c7c7'}} />
+								<TouchableOpacity
+									activeOpacity={0.8}
+									onPress={this._onModalOK}
+									style={styles.modalBtn}
+								>
+									<Text style={[styles.modalBtnText, {color: '#4ac73a'}]}>
+										确定
+									</Text>
+								</TouchableOpacity>
+							</View>
+						</View>
+					</View>
+				</Modal>
 			</View>
 		);
+	}
+
+	showModal() {
+		this.setState({
+			modalVisible: true
+		});
+	}
+
+	closeModal() {
+		this.setState({
+			modalVisible: false
+		});
+	}
+
+	/**
+	 * 弹窗中的确定事件
+	 */
+	onModalOK() {
+		this.closeModal();
 	}
 }
 
@@ -81,12 +181,14 @@ const styles = StyleSheet.create({
 	},
 	name: {
 		fontSize: utils.getFontSize(23),
-		color: '#1a1a1a'
+		color: '#1a1a1a',
+		backgroundColor: 'transparent'
 	},
 	cny: {
 		fontSize: utils.getFontSize(18),
 		color: '#eb2a33',
-		marginTop: utils.toDips(15)
+		marginTop: utils.toDips(15),
+		backgroundColor: 'transparent'
 	},
 	phoneContainer: {
 		width: utils.toDips(400),
@@ -94,15 +196,67 @@ const styles = StyleSheet.create({
 	},
 	phone: {
 		fontSize: utils.getFontSize(23),
-		color: '#4e4e4e'
+		color: '#4e4e4e',
+		backgroundColor: 'transparent'
 	},
 	cnyType: {
 		fontSize: utils.getFontSize(20),
-		color: '#7d7d7d'
+		color: '#7d7d7d',
+		backgroundColor: 'transparent'
 	},
 	date: {
 		color: '#a5a5a5',
 		fontSize: utils.getFontSize(18),
-		marginTop: utils.toDips(14)
+		marginTop: utils.toDips(14),
+		backgroundColor: 'transparent'
+	},
+	modalContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'rgba(0, 0, 0, 0.5)'
+	},
+	modalInnerContainer: {
+		width: utils.screenWidth() - utils.toDips(76 * 2),
+		borderRadius: 10,
+		alignItems: 'center',
+		backgroundColor: 'white'
+	},
+	modalTitle: {
+		color: '#080808',
+		fontSize: utils.getFontSize(24),
+		marginTop: utils.toDips(27),
+		backgroundColor: 'transparent'
+	},
+	modalLine: {
+		width: utils.screenWidth() - utils.toDips(76 * 2),
+		height: utils.toDips(1.5),
+		backgroundColor: '#d0d0d0',
+		marginTop: utils.toDips(24)
+	},
+	modalContent: {
+		color: '#747474',
+		fontSize: utils.getFontSize(22),
+		marginTop: utils.toDips(18),
+		marginLeft: utils.toDips(34),
+		marginRight: utils.toDips(34),
+		lineHeight: 30,
+		backgroundColor: 'transparent'
+	},
+	modalBtnContainer: {
+		flexDirection: 'row',
+		width: utils.screenWidth() - utils.toDips(76 * 2),
+		height: utils.toDips(86),
+		justifyContent: 'center'
+	},
+	modalBtn: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		flex: 1
+	},
+	modalBtnText: {
+		color: '#fa5464',
+		fontSize: utils.getFontSize(24),
+		backgroundColor: 'transparent'
 	}
 });

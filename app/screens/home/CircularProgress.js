@@ -107,7 +107,8 @@ export default class CircularProgress extends PureComponent {
 					<Text
 						style={{
 							fontSize: utils.getFontSize(21),
-							color: '#1d1d1d'
+							color: '#1d1d1d',
+							backgroundColor: 'transparent'
 						}}
 					>
 						{ name }
@@ -116,7 +117,8 @@ export default class CircularProgress extends PureComponent {
 						style={{
 							color: '#a1b5c5',
 							fontSize: utils.getFontSize(15),
-							marginLeft: utils.toDips(10)
+							marginLeft: utils.toDips(10),
+							backgroundColor: 'transparent'
 						}}
 					>
 						{ nameVal }

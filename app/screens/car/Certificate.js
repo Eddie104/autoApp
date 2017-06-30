@@ -19,7 +19,7 @@ export default class Certificate extends PureComponent {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={{}}>
+				<Text style={{backgroundColor: 'transparent'}}>
 					证照
 				</Text>
 			</View>
