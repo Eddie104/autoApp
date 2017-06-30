@@ -10,6 +10,14 @@
  * react-native-smart-splash-screen 地址：
  */
 
+	// ios版的百度地图有个坑。会说RCTViewManager.h和RCTConvert+CoreLocation.h找不到
+	// 按下下面的修改，就行了
+	/*
+	//#import "RCTViewManager.h"
+	#import <React/RCTViewManager.h>
+	//#import "RCTConvert+CoreLocation.h"
+	#import <React/RCTConvert+CoreLocation.h>
+	*/
 import React, { Component } from 'react';
 import {
 	StyleSheet,
