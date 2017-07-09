@@ -12,6 +12,7 @@ import com.remobile.toast.RCTToastPackage;
 
 import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
 import org.lovebing.reactnative.baidumap.BaiduMapPackage;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new RCTToastPackage(),
           new RCTSplashScreenPackage(),
-          new BaiduMapPackage(getApplicationContext())
+          new BaiduMapPackage(getApplicationContext()),
+          new RCTCameraPackage()
       );
     }
   };
