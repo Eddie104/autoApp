@@ -8,6 +8,11 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import com.remobile.toast.RCTToastPackage;
+
+import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
+import org.lovebing.reactnative.baidumap.BaiduMapPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +27,10 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(),
+          new RCTToastPackage(),
+          new RCTSplashScreenPackage(),
+          new BaiduMapPackage(getApplicationContext())
       );
     }
   };

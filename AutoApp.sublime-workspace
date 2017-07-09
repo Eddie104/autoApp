@@ -4,6 +4,25 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
+=======
+				"flex",
+				"flexWrap\tflexWrap"
+			],
+			[
+				"to",
+				"toDips"
+			],
+			[
+				"sty",
+				"styles"
+			],
+			[
+				"render",
+				"renderItem"
+			],
+			[
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
 				"name",
 				"nameVal"
 			],
@@ -60,10 +79,6 @@
 				"MapScreen"
 			],
 			[
-				"sty",
-				"styles"
-			],
-			[
 				"alite",
 				"alignItemsCenter\talignItems center"
 			],
@@ -84,20 +99,12 @@
 				"_onPasswordChanged"
 			],
 			[
-				"render",
-				"renderAccountTextInput"
-			],
-			[
 				"al",
 				"alignItemsCenter\talignItems center"
 			],
 			[
 				"icon",
 				"iconImg"
-			],
-			[
-				"flex",
-				"flexDirectionRow\tflexDirection row"
 			],
 			[
 				"prop",
@@ -196,19 +203,51 @@
 	"buffers":
 	[
 		{
+<<<<<<< HEAD
 			"file": "/C/Users/32968/Desktop/人证接口文档下载/Saas_verify_scan/Saas人证验证接口(demo程序+文档)/demo.jsp",
 			"settings":
 			{
 				"buffer_size": 7303,
+=======
+			"file": "app/screens/home/FinanceData.js",
+			"settings":
+			{
+				"buffer_size": 1729,
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
+<<<<<<< HEAD
 			"file": "/C/Users/32968/Desktop/驾照识别接口文档下载/Saas_driver_scan/Saas驾驶证云识别(程序+文档))/html5示例/demodriver.html",
 			"settings":
 			{
 				"buffer_size": 2496,
+=======
+			"file": "app/screens/home/WorkData.js",
+			"settings":
+			{
+				"buffer_size": 1939,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/screens/home/CircularProgress.js",
+			"settings":
+			{
+				"buffer_size": 2552,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/screens/home/HomeScreen.js",
+			"settings":
+			{
+				"buffer_size": 2829,
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -221,8 +260,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 104.0,
-		"last_filter": "instal",
+		"height": 35.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -230,7 +269,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 416.0
+		"width": 528.0
 	},
 	"console":
 	{
@@ -250,6 +289,7 @@
 	},
 	"expanded_folders":
 	[
+<<<<<<< HEAD
 		"/C/hongjie/AutoApp",
 		"/C/hongjie/AutoApp/android",
 		"/C/hongjie/AutoApp/app",
@@ -265,6 +305,17 @@
 		"/C/hongjie/AutoApp/app/screens/home/FinanceData.js",
 		"/C/hongjie/AutoApp/app/screens/home/CircularProgress.js",
 		"/C/hongjie/AutoApp/app.js",
+=======
+		"/E/hongjie/AutoApp",
+		"/E/hongjie/AutoApp/app",
+		"/E/hongjie/AutoApp/app/screens",
+		"/E/hongjie/AutoApp/app/screens/home"
+	],
+	"file_history":
+	[
+		"/E/hongjie/AutoApp/app/screens/home/CircularProgress.js",
+		"/E/hongjie/AutoApp/app/utils.js",
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
 		"/D/hongjie/AutoApp/app/screens/home/HomeScreen.js",
 		"/D/hongjie/AutoApp/app/screens/home/FinanceData.js",
 		"/D/apowo/Easy/app/app/cartoon/CategorySelector.js",
@@ -385,7 +436,16 @@
 		"/D/hongjie/Layout/.gitignore",
 		"/D/hongjie/Layout/Layout.as3proj",
 		"/C/Users/hongjie/Desktop/jvm.config",
+<<<<<<< HEAD
 		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ExportData .xml"
+=======
+		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ExportData .xml",
+		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ImportData.xml",
+		"/F/adultphotosets/scaleImg.py",
+		"/C/Users/hongjie/Desktop/jvm1.config",
+		"/F/adultphotosets/downloadImg.py",
+		"/G/adultphotosets/ck101Comic.py"
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
 	],
 	"find":
 	{
@@ -407,9 +467,38 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+<<<<<<< HEAD
 			"showLoginScreen",
 			"styles",
 			"container",
+=======
+			"年检到期",
+			"sh",
+			"nianJianDaoQi",
+			"toDips",
+			"styles",
+			"container",
+			"toDips",
+			"Text",
+			"width",
+			"itemImg",
+			"itemimg",
+			"container",
+			"itemContainer",
+			"FinanceData",
+			"gongzu",
+			"租金",
+			"￥4156",
+			"circularProgressContainer",
+			"cir",
+			"CircularProgress",
+			"container",
+			"screenWidth",
+			"toDips",
+			"SIZE",
+			"styles",
+			"CircularProgress",
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
 			"styles",
 			"container",
 			"name",
@@ -511,6 +600,7 @@
 			"TopBar",
 			"login",
 			"AutoApp",
+<<<<<<< HEAD
 			"checkIntro",
 			"SceneConfig",
 			"handleAppStateChange",
@@ -535,6 +625,9 @@
 			"MainScreen",
 			"MainScene",
 			"MainScreen"
+=======
+			"checkIntro"
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -559,6 +652,7 @@
 			[
 				{
 					"buffer": 0,
+<<<<<<< HEAD
 					"file": "/C/Users/32968/Desktop/人证接口文档下载/Saas_verify_scan/Saas人证验证接口(demo程序+文档)/demo.jsp",
 					"semi_transient": false,
 					"settings":
@@ -593,6 +687,81 @@
 					"settings":
 					{
 						"buffer_size": 2496,
+=======
+					"file": "app/screens/home/FinanceData.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1729,
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+<<<<<<< HEAD
+								0,
+								0
+=======
+								1585,
+								1554
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
+							]
+						],
+						"settings":
+						{
+<<<<<<< HEAD
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+=======
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/screens/home/WorkData.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1939,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1171,
+								1171
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
+						},
+						"translation.x": 0.0,
+						"translation.y": 1645.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/screens/home/CircularProgress.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2552,
 						"regions":
 						{
 						},
@@ -605,14 +774,45 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1645.0,
+						"translation.y": 1395.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/screens/home/HomeScreen.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2829,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1743,
+								1743
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 824.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -667,8 +867,13 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"topbar",
 				"app\\components\\TopBar.js"
+=======
+				"utils",
+				"app\\utils.js"
+>>>>>>> 76478ef90db07d7b653ef5392ffadb383119ed58
 			],
 			[
 				"app",

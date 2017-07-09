@@ -42,6 +42,9 @@ export default class IndexScreen extends PureComponent {
 					tabBarStyle={{
 						height: utils.toDips(105)
 					}}
+					sceneStyle={{
+						paddingBottom: utils.toDips(105) 
+					}}
 				>
 					<TabNavigator.Item
 						selected={selectedTab === 'home'}
