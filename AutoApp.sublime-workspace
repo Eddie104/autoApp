@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"name",
+				"nameVal"
+			],
+			[
 				"text",
 				"Text"
 			],
@@ -192,10 +196,19 @@
 	"buffers":
 	[
 		{
-			"file": "app/screens/home/CircularProgress.js",
+			"file": "/C/Users/32968/Desktop/人证接口文档下载/Saas_verify_scan/Saas人证验证接口(demo程序+文档)/demo.jsp",
 			"settings":
 			{
-				"buffer_size": 1859,
+				"buffer_size": 7303,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/32968/Desktop/驾照识别接口文档下载/Saas_driver_scan/Saas驾驶证云识别(程序+文档))/html5示例/demodriver.html",
+			"settings":
+			{
+				"buffer_size": 2496,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -237,19 +250,21 @@
 	},
 	"expanded_folders":
 	[
-		"/D/hongjie/AutoApp",
-		"/D/hongjie/AutoApp/app",
-		"/D/hongjie/AutoApp/app/components",
-		"/D/hongjie/AutoApp/app/screens",
-		"/D/hongjie/AutoApp/app/screens/app",
-		"/D/hongjie/AutoApp/app/screens/home",
-		"/D/hongjie/AutoApp/app/screens/index",
-		"/D/hongjie/AutoApp/app/screens/login",
-		"/D/hongjie/AutoApp/app/screens/map",
-		"/D/hongjie/AutoApp/app/screens/setting"
+		"/C/hongjie/AutoApp",
+		"/C/hongjie/AutoApp/android",
+		"/C/hongjie/AutoApp/app",
+		"/C/hongjie/AutoApp/app/screens",
+		"/C/hongjie/AutoApp/app/screens/home"
 	],
 	"file_history":
 	[
+		"/C/hongjie/AutoApp/app/screens/home/HomeScreen.js",
+		"/C/hongjie/AutoApp/app/components/TopBar.js",
+		"/C/hongjie/AutoApp/android/gradle.properties",
+		"/C/hongjie/AutoApp/.gitignore",
+		"/C/hongjie/AutoApp/app/screens/home/FinanceData.js",
+		"/C/hongjie/AutoApp/app/screens/home/CircularProgress.js",
+		"/C/hongjie/AutoApp/app.js",
 		"/D/hongjie/AutoApp/app/screens/home/HomeScreen.js",
 		"/D/hongjie/AutoApp/app/screens/home/FinanceData.js",
 		"/D/apowo/Easy/app/app/cartoon/CategorySelector.js",
@@ -370,18 +385,11 @@
 		"/D/hongjie/Layout/.gitignore",
 		"/D/hongjie/Layout/Layout.as3proj",
 		"/C/Users/hongjie/Desktop/jvm.config",
-		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ExportData .xml",
-		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ImportData.xml",
-		"/F/adultphotosets/scaleImg.py",
-		"/C/Users/hongjie/Desktop/jvm1.config",
-		"/F/adultphotosets/downloadImg.py",
-		"/G/adultphotosets/ck101Comic.py",
-		"/G/adultphotosets/helper.py",
-		"/G/adultphotosets/scaleImg.py"
+		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ExportData .xml"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 64.0
 	},
 	"find_in_files":
 	{
@@ -399,6 +407,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"showLoginScreen",
+			"styles",
+			"container",
 			"styles",
 			"container",
 			"name",
@@ -523,10 +534,7 @@
 			"HomeScreen",
 			"MainScreen",
 			"MainScene",
-			"MainScreen",
-			"MainApplication",
-			"getPackages",
-			"createAdditionalReactPackages"
+			"MainScreen"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -546,32 +554,62 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/screens/home/CircularProgress.js",
+					"file": "/C/Users/32968/Desktop/人证接口文档下载/Saas_verify_scan/Saas人证验证接口(demo程序+文档)/demo.jsp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1859,
+						"buffer_size": 7303,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1729,
-								1729
+								806,
+								816
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Java/Java Server Pages (JSP).sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 519.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/32968/Desktop/驾照识别接口文档下载/Saas_driver_scan/Saas驾驶证云识别(程序+文档))/html5示例/demodriver.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1645.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -629,6 +667,10 @@
 		"selected_items":
 		[
 			[
+				"topbar",
+				"app\\components\\TopBar.js"
+			],
+			[
 				"app",
 				"app.js"
 			],
@@ -669,7 +711,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 204.0,
+	"side_bar_width": 464.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
