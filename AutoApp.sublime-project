@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "C:\\Users\\hongjie\\Desktop\\二代证识别接口文档下载\\Saas_idcard_scan\\Saas身份证云识别(demo程序+文档))\\AndrioDemo\\src\\com\\example\\idcardscandemo"
 		}
 	]
 }

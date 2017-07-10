@@ -4,44 +4,152 @@
 		"selected_items":
 		[
 			[
+				"borderle",
+				"borderTopLeftRadius\tborderTopLeftRadius"
+			],
+			[
+				"ba",
+				"badge"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"scre",
+				"screenUtil"
+			],
+			[
+				"showsho",
+				"showShortBottom"
+			],
+			[
+				"mart",
+				"marginTop\tmarginTop"
+			],
+			[
+				"mar",
+				"marginTop\tmarginTop"
+			],
+			[
+				"sty",
+				"style"
+			],
+			[
+				"fle",
+				"flex\tflex:1"
+			],
+			[
+				"icon",
+				"iconSource"
+			],
+			[
+				"ite",
+				"itenName"
+			],
+			[
+				"icons",
+				"iconSize"
+			],
+			[
+				"alcenter",
+				"alignItemsCenter\talignItems center"
+			],
+			[
+				"margi",
+				"marginRight\tmarginRight"
+			],
+			[
+				"st",
+				"styles"
+			],
+			[
+				"alite",
+				"alignItems"
+			],
+			[
+				"jus",
+				"justifyContentSpaceBetween\tjustifyContent space-between"
+			],
+			[
+				"item",
+				"itemKey"
+			],
+			[
+				"defa",
+				"defaultProps\tdefaultProps"
+			],
+			[
+				"alise",
+				"alignSelfFlexEnd\talignSelf flex-end"
+			],
+			[
+				"fl",
+				"flexDirectionRow\tflexDirection row"
+			],
+			[
+				"alself",
+				"alignSelfFlexEnd\talignSelf flex-end"
+			],
+			[
+				"al",
+				"alignSelfFlexEnd\talignSelf flex-end"
+			],
+			[
+				"ph",
+				"phoneContainer"
+			],
+			[
+				"ref",
+				"refundData"
+			],
+			[
 				"flex",
-				"flexWrap\tflexWrap"
+				"flex\tflex:1"
+			],
+			[
+				"Ima",
+				"ImageItem"
+			],
+			[
+				"alisel",
+				"alignSlefCenter\talignSlef center"
 			],
 			[
 				"to",
 				"toDips"
 			],
 			[
-				"sty",
-				"styles"
-			],
-			[
-				"render",
-				"renderItem"
-			],
-			[
-				"name",
-				"nameVal"
-			],
-			[
-				"text",
-				"Text"
-			],
-			[
-				"fle",
-				"flexDirectionRow\tflexDirection row"
+				"carN",
+				"carNo"
 			],
 			[
 				"border",
 				"borderColor\tborderColor"
 			],
 			[
-				"size",
-				"SIZE"
+				"compe",
+				"componentDidMount\tcomponentDidMount"
 			],
 			[
-				"mar",
-				"marginTop\tmarginTop"
+				"_show",
+				"_showCarScreen"
+			],
+			[
+				"sour",
+				"sourceWidth"
+			],
+			[
+				"sou",
+				"source"
+			],
+			[
+				"text",
+				"Text"
+			],
+			[
+				"size",
+				"SIZE"
 			],
 			[
 				"siji",
@@ -68,16 +176,8 @@
 				"styles"
 			],
 			[
-				"defa",
-				"defaultProps\tdefaultProps"
-			],
-			[
 				"Map",
 				"MapScreen"
-			],
-			[
-				"alite",
-				"alignItemsCenter\talignItems center"
 			],
 			[
 				"alen",
@@ -96,12 +196,8 @@
 				"_onPasswordChanged"
 			],
 			[
-				"al",
-				"alignItemsCenter\talignItems center"
-			],
-			[
-				"icon",
-				"iconImg"
+				"render",
+				"renderAccountTextInput"
 			],
 			[
 				"prop",
@@ -118,10 +214,6 @@
 			[
 				"bac",
 				"backgroundColor\tbackgroundColor"
-			],
-			[
-				"st",
-				"styles"
 			],
 			[
 				"e",
@@ -200,38 +292,64 @@
 	"buffers":
 	[
 		{
-			"file": "app/screens/home/FinanceData.js",
+			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 1729,
+				"buffer_size": 3501,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/screens/home/WorkData.js",
+			"file": "app/screens/index/IndexScreen.js",
 			"settings":
 			{
-				"buffer_size": 1939,
+				"buffer_size": 3196,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/screens/home/CircularProgress.js",
+			"file": "app/screens/login/LoginScreen.js",
 			"settings":
 			{
-				"buffer_size": 2552,
+				"buffer_size": 5481,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/screens/home/HomeScreen.js",
+			"file": "/D/apowo/sanguo/server/branches/bt/Debug/Config/Server/DataConfig.xml",
 			"settings":
 			{
-				"buffer_size": 2829,
-				"encoding": "UTF-8",
+				"buffer_size": 1535,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/apowo/sanguo/server/branches/bt/Debug/Config/Server/PSModel.xml",
+			"settings":
+			{
+				"buffer_size": 331,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/apowo/sanguo/server/branches/bt/Debug/Config/Server/script.txt",
+			"settings":
+			{
+				"buffer_size": 254,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/apowo/sanguo/server/branches/bt/Debug/Config/Server/Service.xml",
+			"settings":
+			{
+				"buffer_size": 1091,
+				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
 		}
@@ -243,8 +361,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 35.0,
-		"last_filter": "",
+		"height": 104.0,
+		"last_filter": "instal",
 		"selected_items":
 		[
 			[
@@ -252,7 +370,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 528.0
+		"width": 416.0
 	},
 	"console":
 	{
@@ -272,19 +390,94 @@
 	},
 	"expanded_folders":
 	[
-		"/E/hongjie/AutoApp",
-		"/E/hongjie/AutoApp/app",
-		"/E/hongjie/AutoApp/app/screens",
-		"/E/hongjie/AutoApp/app/screens/home"
+		"/D/hongjie/AutoApp",
+		"/D/hongjie/AutoApp/app",
+		"/D/hongjie/AutoApp/app/components",
+		"/D/hongjie/AutoApp/app/screens",
+		"/D/hongjie/AutoApp/app/screens/app",
+		"/D/hongjie/AutoApp/app/screens/car",
+		"/D/hongjie/AutoApp/app/screens/home",
+		"/D/hongjie/AutoApp/app/screens/index",
+		"/D/hongjie/AutoApp/app/screens/login",
+		"/D/hongjie/AutoApp/app/screens/map",
+		"/D/hongjie/AutoApp/app/screens/refund"
 	],
 	"file_history":
 	[
-		"/E/hongjie/AutoApp/app/screens/home/CircularProgress.js",
-		"/E/hongjie/AutoApp/app/utils.js",
-		"/D/hongjie/AutoApp/app/screens/home/HomeScreen.js",
-		"/D/hongjie/AutoApp/app/screens/home/FinanceData.js",
-		"/D/apowo/Easy/app/app/cartoon/CategorySelector.js",
+		"/D/hongjie/AutoApp/app/screens/app/Finance.js",
+		"/D/hongjie/AutoApp/app/utils.js",
+		"/D/hongjie/AutoApp/app/components/TopBar.js",
+		"/D/hongjie/NewNewNewDoll/android/src/main/java/com/pili/rnpili/PiliPlayerViewManager.java",
+		"/D/hongjie/NewNewNewDoll/android/src/main/java/com/pili/rnpili/PiliPackage.java",
+		"/D/hongjie/NewNewNewDoll/Player.js",
 		"/D/hongjie/AutoApp/app.js",
+		"/D/hongjie/AutoApp/app/screens/home/HomeScreen.js",
+		"/D/hongjie/AutoApp/app/screens/home/WorkData.js",
+		"/D/hongjie/AutoApp/android/settings.gradle",
+		"/D/hongjie/AutoApp/android/app/build.gradle",
+		"/D/hongjie/AutoApp/android/app/src/main/java/com/autoapp/MainApplication.java",
+		"/D/hongjie/AutoApp/android/app/src/main/java/com/autoapp/MainActivity.java",
+		"/D/hongjie/AutoApp/app/screens/map/MapScreen.js",
+		"/D/hongjie/AutoApp/app/screens/refund/RefundDetailScreen.js",
+		"/D/hongjie/AutoApp/app/screens/app/AppScreen.js",
+		"/D/hongjie/AutoApp/app/screens/app/Property.js",
+		"/D/hongjie/AutoApp/app/screens/refund/RefundScreen.js",
+		"/D/hongjie/AutoApp/android/app/src/main/AndroidManifest.xml",
+		"/D/hongjie/AutoApp/node_modules/react-native-baidu-map/ios/RCTBaiduMap/BaiduMapModule.h",
+		"/D/hongjie/AutoApp/app/screens/index/IndexScreen.js",
+		"/D/hongjie/AutoApp/node_modules/react-native-baidu-map/js/MapView.js",
+		"/D/hongjie/AutoApp/node_modules/react-native-baidu-map/js/MapTypes.js",
+		"/D/hongjie/AutoApp/node_modules/react-native-baidu-map/js/MapModule.js",
+		"/D/hongjie/AutoApp/node_modules/react-native-baidu-map/js/Geolocation.js",
+		"/D/hongjie/AutoApp/app/screenUtil.js",
+		"/D/apowo/SNPole/client/android/app/src/main/AndroidManifest.xml",
+		"/D/hongjie/AutoApp/app/components/ImageItem.js",
+		"/D/apowo/Easy/app/app.js",
+		"/D/hongjie/AutoApp/app/screens/setting/SettingScreen.js",
+		"/D/hongjie/DollMachine/android/app/build.gradle",
+		"/D/hongjie/AutoApp/app/screens/setting/SettingItem.js",
+		"/D/hongjie/AutoApp/node_modules/react-native-circular-progress/src/CircularProgress.js",
+		"/D/hongjie/AutoApp/app/components/IconItem.js",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/Image_react_native.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/Image_resize_contain.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/ListView_react_native.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/MapView_react_native.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/ScrollView_react_native.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/Text_react_native.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/TouchableHighlight_react_native.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/TouchableOpacity_react_native.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/TouchableWithoutFeedback_react_native.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/View_react_native.sublime-snippet",
+		"/D/hongjie/AutoApp/app/screens/refund/RefundList.js",
+		"/D/hongjie/AutoApp/app/screens/refund/RefundDetail.js",
+		"/D/hongjie/AutoApp/app/screens/login/LoginScreen.js",
+		"/D/hongjie/AutoApp/app/screens/home/CircularProgress.js",
+		"/D/hongjie/AutoApp/app/screens/car/License.js",
+		"/D/hongjie/AutoApp/app/screens/car/Certificate.js",
+		"/D/hongjie/AutoApp/app/screens/car/CarScreen.js",
+		"/D/hongjie/AutoApp/app/screens/car/CarDetailScreen.js",
+		"/D/hongjie/AutoApp/app/screens/car/CarDetail.js",
+		"/D/hongjie/AutoApp/app/components/SubTitle.js",
+		"/D/hongjie/AutoApp/app/components/MyScrollableTabView.js",
+		"/D/hongjie/AutoApp/node_modules/react-native-scrollable-tab-view/DefaultTabBar.js",
+		"/D/hongjie/AutoApp/app/screens/car/CarMore.js",
+		"/D/hongjie/DollMachine/.gitignore",
+		"/D/hongjie/AutoApp/app/screens/app/Contract.js",
+		"/D/hongjie/AutoApp/node_modules/react-native-scrollable-tab-view/ScrollableTabBar.js",
+		"/D/apowo/Easy/app/app/components/RefreshableListView.js",
+		"/D/apowo/Easy/app/app/cartoon/CartoonDetailScene.js",
+		"/D/apowo/Easy/app/app/cartoon/CartoonScene.js",
+		"/D/hongjie/AutoApp/app/screens/app/Customer.js",
+		"/D/hongjie/AutoApp/node_modules/react-native/Libraries/Image/resolveAssetSource.js",
+		"/D/hongjie/AutoApp/node_modules/abab/index.js",
+		"/D/hongjie/AutoApp/node_modules/react-native/Libraries/Image/Image.android.js",
+		"/D/hongjie/AutoApp/app/screens/home/FinanceData.js",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/style/borderRadius.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/style/borderTopRightRadius.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/style/borderTopLeftRadius.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/style/borderBottomRightRadius.sublime-snippet",
+		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/style/borderBottomLeftRadius.sublime-snippet",
+		"/D/apowo/Easy/app/app/cartoon/CategorySelector.js",
 		"/D/apowo/Easy/app/app/index/Calender.js",
 		"/D/apowo/Easy/app/app/index/IndexScene.js",
 		"/D/apowo/Easy/app/app/avatar/WardrobeAvatarCol.js",
@@ -308,27 +501,10 @@
 		"/D/apowo/Easy/app/app/chat/chatRoomList/ChatRoomListItem.js",
 		"/D/apowo/Easy/app/app/chat/ChatScene.js",
 		"/D/apowo/Easy/app/app/calender/CalenderScene.js",
-		"/D/hongjie/AutoApp/app/screens/index/IndexScreen.js",
-		"/D/hongjie/AutoApp/app/components/TopBar.js",
-		"/D/hongjie/AutoApp/app/screens/login/LoginScreen.js",
-		"/D/hongjie/AutoApp/app/screens/map/MapScreen.js",
-		"/D/hongjie/AutoApp/app/screens/app/AppScreen.js",
-		"/D/hongjie/AutoApp/app/screens/setting/SettingScreen.js",
 		"/D/hongjie/AutoApp/node_modules/react-native-tab-navigator/TabBar.js",
 		"/D/hongjie/AutoApp/package.json",
 		"/D/apowo/Easy/app/app/login/LoginScene.js",
-		"/D/hongjie/AutoApp/app/utils.js",
 		"/D/hongjie/AutoApp/node_modules/react-native-tab-navigator/TabNavigatorItem.js",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/Image_react_native.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/Image_resize_contain.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/ListView_react_native.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/MapView_react_native.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/ScrollView_react_native.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/Text_react_native.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/TouchableHighlight_react_native.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/TouchableOpacity_react_native.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/TouchableWithoutFeedback_react_native.sublime-snippet",
-		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/components/native/View_react_native.sublime-snippet",
 		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/es6/componentDidMount_react_native_es6.sublime-snippet",
 		"/C/Users/hongjie/AppData/Roaming/Sublime Text 3/Packages/react-native-snippets/snippets/style/alignItemsCenter.sublime-snippet",
 		"/D/apowo/Easy/app/app/utils.js",
@@ -337,9 +513,7 @@
 		"/D/apowo/Easy/app/package.json",
 		"/D/apowo/Easy/app/app/main/MainScene.js",
 		"/D/apowo/Easy/app/app/components/SceneContainer.js",
-		"/D/apowo/Easy/app/app.js",
 		"/D/apowo/Easy/app/index.android.js",
-		"/D/hongjie/DollMachine/android/app/build.gradle",
 		"/D/apowo/Easy/app/android/build.gradle",
 		"/D/apowo/Easy/app/android/gradle.properties",
 		"/D/apowo/Easy/app/android/gradlew",
@@ -357,56 +531,7 @@
 		"/D/hongjie/DollMachine/android/app/src/main/java/com/dollmachine/MainApplication.java",
 		"/D/hongjie/DollMachine/android/settings.gradle",
 		"/D/hongjie/DollMachine/app/scene/main/MainScene.js",
-		"/D/hongjie/DollMachine/package.json",
-		"/D/apowo/Easy/app/app/storage.js",
-		"/D/hongjie/DollMachine/app/storage.js",
-		"/D/apowo/Easy/app/android/app/src/main/java/com/easy/MainActivity.java",
-		"/D/hongjie/DollMachine/android/app/src/main/res/values/styles.xml",
-		"/D/hongjie/DollMachine/app/utils.js",
-		"/D/hongjie/DollMachine/app/deviceInfo.js",
-		"/D/hongjie/DollMachine/android/app/src/main/AndroidManifest.xml",
-		"/D/apowo/Easy/app/app/net.js",
-		"/D/hongjie/DollMachine/app/net.js",
-		"/D/apowo/Easy/app/android/app/build.gradle",
-		"/D/apowo/Easy/app/android/app/proguard-rules.pro",
-		"/D/hongjie/DollMachine/index.android.js",
-		"/D/apowo/Easy/app/index.ios.js",
-		"/D/hongjie/DollMachine/index.ios.js",
-		"/D/apowo/Easy/app/app/api.js",
-		"/D/apowo/Easy/app/app/config.js",
-		"/D/hongjie/DollMachine/app/config.js",
-		"/D/hongjie/rnTest/package.json",
-		"/D/apowo/Easy/app/app/em.js",
-		"/D/apowo/Easy/app/app/DFA.js",
-		"/D/apowo/Easy/app/app/cache.js",
-		"/D/apowo/Easy/app/app/qiniu.js",
-		"/D/apowo/Easy/app/app/talkingData.js",
-		"/D/apowo/Easy/app/app/update.js",
-		"/D/apowo/Root/RootAdmin/config/index.js",
-		"/F/adultphotosets/animezilla18h.py",
-		"/F/adultphotosets/main.py",
-		"/D/hongjie/MachineLearning/numpy1.py",
-		"/F/adultphotosets/hhssee.py",
-		"/F/adultphotosets/helper.py",
-		"/F/adultphotosets/cartoon.py",
-		"/G/ttt/tt/Test/src/ScaleLine.as",
-		"/G/ttt/tt/Test/src/ScaleRect.as",
-		"/G/ttt/tt/Test/src/MainScene.as",
-		"/E/codeLib/as3/Libra/src/org/libra/utils/ui/KeyPoll.as",
-		"/D/hongjie/Cat/client/bin-release/web/170609180134/index.html",
-		"/G/ttt/tt/Test/src/Warehouse.as",
-		"/D/hongjie/Cat/cat/assets/Cat/package.xml",
-		"/D/hongjie/Layout/obj/LayoutConfig.old",
-		"/D/hongjie/Layout/obj/LayoutConfig.xml",
-		"/D/hongjie/Layout/.gitignore",
-		"/D/hongjie/Layout/Layout.as3proj",
-		"/C/Users/hongjie/Desktop/jvm.config",
-		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ExportData .xml",
-		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ImportData.xml",
-		"/F/adultphotosets/scaleImg.py",
-		"/C/Users/hongjie/Desktop/jvm1.config",
-		"/F/adultphotosets/downloadImg.py",
-		"/G/adultphotosets/ck101Comic.py"
+		"/D/hongjie/DollMachine/package.json"
 	],
 	"find":
 	{
@@ -417,6 +542,9 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"D:\\hongjie\\AutoApp\\app",
+			"D:\\hongjie\\AutoApp\\app\\screens\\car",
+			"D:\\hongjie\\AutoApp\\app",
 			"D:\\apowo\\Easy\\app\\app",
 			"C:\\Users\\hongjie\\AppData\\Roaming\\Sublime Text 3\\Packages\\react-native-snippets\\snippets",
 			"D:\\hongjie\\DollMachine\\android\\app",
@@ -428,134 +556,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"年检到期",
-			"sh",
-			"nianJianDaoQi",
-			"toDips",
+			"getCurrentRoutes",
+			"BackHandler",
+			"onBack",
+			"UIPixelRatio",
+			"Events.P",
+			"setStarted",
+			"isLiveStreaming",
+			"onError",
+			"requireNativeComponent",
+			"CameraPreviewFrameView",
+			"mOnPreparedListener",
+			"transparent",
+			"tiod",
 			"styles",
 			"container",
-			"toDips",
-			"Text",
-			"width",
-			"itemImg",
-			"itemimg",
-			"container",
-			"itemContainer",
-			"FinanceData",
-			"gongzu",
-			"租金",
-			"￥4156",
-			"circularProgressContainer",
-			"cir",
-			"CircularProgress",
-			"container",
-			"screenWidth",
-			"toDips",
-			"SIZE",
+			"badge",
+			"longitude",
+			"latitude",
+			"screenUtil",
+			"_lastPressBackTime",
+			"initialPosition",
+			"const",
+			"ACCESS_FINE_LOCATION",
+			"ESS_FINE_LOCATIO",
+			"INTERNET",
+			"SYSTEM_ALERT_WINDOW",
+			"warn",
+			"defaultPixel",
+			"trafficEnabled",
+			"<meta-data",
+			"meta-data ",
+			"top",
+			"UIPixelRatio",
+			"size",
+			"pixelRatio",
+			"PixelRatio",
+			"Dimensions",
+			"utils",
+			"fontSize",
+			"scaleSize",
+			"transparent",
 			"styles",
-			"CircularProgress",
-			"styles",
 			"container",
+			"utils",
+			"screenUtil",
+			"UIPixelRatio",
+			"_lastPressBackTime",
+			"toast",
+			"onBack",
+			"_onBack",
+			"BackAndroid",
+			"gningConf",
+			"signingConfigs",
+			"backContainer",
+			"View",
+			"TouchableOpacity",
+			"userContainer",
+			"exitContainer",
+			"transparent",
+			"exitContainer",
+			"guanyu",
+			"onPress",
+			"TouchableOpacity",
+			"SettingItem",
 			"name",
+			"itenName",
+			"oic",
 			"number",
-			"styles",
+			"source",
+			"IconItem",
+			"TopBar",
+			"transparent",
+			"utils",
+			"style",
+			"itemName",
+			"nameContainer",
+			"7d7d7d",
+			"phoneLabel",
 			"container",
-			";\n",
-			"7591af",
-			"color",
-			"ColorPropType",
-			"color: ",
-			"Text",
+			"transparent",
+			"head",
+			"transparent",
+			"userContainer",
+			"scrollView",
+			"modalTitle",
+			"btnText",
+			"itemKey",
+			"itemName",
+			"<Text",
+			"CarScreen",
+			"closeModal",
 			"transparent",
 			"style",
 			"container",
-			"flexDirection",
-			"styles",
+			"modalBtnContainer",
+			"modelBtn",
+			"PropTypes",
+			"modalBtnContainer",
 			"container",
-			"transparent",
-			"shoy",
-			"transparent",
-			"line",
-			"styles",
-			"container",
-			"styles",
-			"cosnt",
-			"transparent",
-			"364153",
-			"imgSource",
-			"../",
-			"styles",
-			"container",
-			"scrollView",
-			"transparent",
-			"f6f6f6",
-			"string",
-			"isRequired",
-			"HomeScreen",
-			"HomeScene",
-			"home",
-			"HomeScene",
-			"MapScreen",
-			"HomeScene",
-			"IndexScreen",
-			"this.state.",
-			"selected",
-			"onHome",
-			"_onHome",
-			"Layout",
-			"<Image",
-			"renderSelectedIcon",
-			"tabStyle",
-			"renderSelectedIcon",
-			"title",
-			"titleStyle",
-			"selectedTab",
-			"onLogin",
-			"_onLogin",
-			"transparent",
-			"styles",
-			"container",
-			"onForgetPassword",
-			"onSwitchShowPassword",
-			"onForgetPassword",
-			"_onForgetPassword",
-			"wangj",
-			"renderClearAccountButton",
-			"renderSwitchShowPasswordButton",
-			"renderClearAccountButton",
-			"showPassword",
-			"PureComponent",
-			"isAccountInpyut",
-			"password",
-			"account",
-			"onPasswordChanged",
-			"onAccountChanged",
-			"Account",
-			"textInput",
-			"TextInput",
-			"tiod",
-			"inputContainer",
-			"transparent",
-			"'\n",
-			"inputSubContainer",
-			"container",
-			"PureComponen",
-			"accountContainer",
 			"toDips",
-			"screenWidth",
-			"utils",
+			"modalContent",
+			"Text",
+			"modalContent",
+			"modalLine",
+			"modalContent",
+			"modalTitle",
+			", ",
 			"transparent",
-			"styles",
-			"container",
+			"modalLine",
 			"transparent",
-			"title",
-			"moreImg",
-			"backContainer",
+			"modalInnerContainer",
+			"modalContainer",
+			"innerContainer",
+			"_closeModal",
+			"modalVisible",
+			"true",
+			"null",
+			"showModal",
+			"_showModal",
 			"transparent",
-			"TopBar",
-			"login",
-			"AutoApp",
-			"checkIntro"
+			"modalBackgroundStyle",
+			"innerContainerTransparentStyle",
+			"modalBackgroundStyle",
+			"activeButtonStyle",
+			"innerContainerTransparentStyle",
+			"modalBackgroundStyle",
+			"transparent",
+			"btnText"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -563,6 +691,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"carDataArr",
 			"isAccountInput",
 			"\t"
 		],
@@ -575,34 +704,33 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/screens/home/FinanceData.js",
+					"file": "app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1729,
+						"buffer_size": 3501,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1585,
-								1554
+								3127,
+								3127
 							]
 						],
 						"settings":
 						{
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 834.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -610,39 +738,11 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/screens/home/WorkData.js",
+					"file": "app/screens/index/IndexScreen.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1939,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1171,
-								1171
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 720.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/screens/home/CircularProgress.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2552,
+						"buffer_size": 3196,
 						"regions":
 						{
 						},
@@ -655,42 +755,156 @@
 						],
 						"settings":
 						{
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1395.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "app/screens/home/HomeScreen.js",
-					"semi_transient": false,
+					"buffer": 2,
+					"file": "app/screens/login/LoginScreen.js",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 2829,
+						"buffer_size": 5481,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1743,
-								1743
+								3221,
+								3244
 							]
 						],
 						"settings":
 						{
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 824.0,
+						"translation.y": 2970.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/D/apowo/sanguo/server/branches/bt/Debug/Config/Server/DataConfig.xml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1535,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/D/apowo/sanguo/server/branches/bt/Debug/Config/Server/PSModel.xml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 331,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/D/apowo/sanguo/server/branches/bt/Debug/Config/Server/script.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 254,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/D/apowo/sanguo/server/branches/bt/Debug/Config/Server/Service.xml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1091,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								426,
+								426
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -748,12 +962,76 @@
 		"selected_items":
 		[
 			[
+				"app",
+				"app.js"
+			],
+			[
+				"topba",
+				"app\\components\\TopBar.js"
+			],
+			[
 				"utils",
 				"app\\utils.js"
 			],
 			[
-				"app",
-				"app.js"
+				"mapsce",
+				"app\\screens\\map\\MapScreen.js"
+			],
+			[
+				"mapscr",
+				"app\\screens\\map\\MapScreen.js"
+			],
+			[
+				"baiduma",
+				"node_modules\\react-native-baidu-map\\ios\\RCTBaiduMap\\BaiduMapModule.h"
+			],
+			[
+				"baidumap",
+				"node_modules\\react-native-baidu-map\\ios\\RCTBaiduMap\\BaiduMapModule.h"
+			],
+			[
+				"indexsc",
+				"app\\screens\\index\\IndexScreen.js"
+			],
+			[
+				"topbar",
+				"app\\components\\TopBar.js"
+			],
+			[
+				"ut",
+				"app\\utils.js"
+			],
+			[
+				"react-native-circular-progress",
+				"node_modules\\react-native-circular-progress\\src\\CircularProgress.js"
+			],
+			[
+				"settingsc",
+				"app\\screens\\setting\\SettingScreen.js"
+			],
+			[
+				"defaulttabbar",
+				"node_modules\\react-native-scrollable-tab-view\\DefaultTabBar.js"
+			],
+			[
+				"myscrollabletabview",
+				"app\\components\\MyScrollableTabView.js"
+			],
+			[
+				"loginsc",
+				"app\\screens\\login\\LoginScreen.js"
+			],
+			[
+				"index",
+				"node_modules\\abab\\index.js"
+			],
+			[
+				"resolveassetsource",
+				"node_modules\\react-native\\Libraries\\Image\\resolveAssetSource.js"
+			],
+			[
+				"image.js",
+				"node_modules\\react-native\\Libraries\\Image\\Image.android.js"
 			],
 			[
 				"tabnavigator",
@@ -792,7 +1070,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 204.0,
+	"side_bar_width": 274.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
