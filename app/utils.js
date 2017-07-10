@@ -268,3 +268,12 @@ export function deepcopy(source) {
 export function isUndefined(val) {
 	return typeof val === "undefined";
 }
+
+export function obj2Str(obj) {
+	if (typeof(obj) === "string") return obj;
+	let str = '';
+	for (let key in obj) {
+		str += `key=>${key},val=${obj[key]}\n`;
+	}
+	return str;
+}
