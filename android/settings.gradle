@@ -10,3 +10,6 @@ project(':react-native-baidu-map').projectDir = new File(settingsDir, '../node_m
 
 include ':react-native-smart-splashscreen'
 project(':react-native-smart-splashscreen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-smart-splash-screen/android')
+
+include ':react-native-camera'
+project(':react-native-camera').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-camera/android')

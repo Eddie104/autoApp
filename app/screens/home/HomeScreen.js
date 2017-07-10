@@ -16,6 +16,7 @@ import FinanceData from './FinanceData';
 import WorkData from './WorkData';
 import LoginScreen from '../login/LoginScreen';
 import CarScreen from '../car/CarScreen';
+import ScannerScreen from '../scanner/ScannerScreen';
 
 /**
  * 首页面板
@@ -66,7 +67,11 @@ export default class HomeScreen extends PureComponent {
 						<View style={styles.line} />
 						{
 							// 合同
-							this.renderTopItem(require('../../imgs/hetong.png'), '合同', heTongVal, heTongTotal, () => {})
+							this.renderTopItem(require('../../imgs/hetong.png'), '合同', heTongVal, heTongTotal, () => {
+								global.nav.push({
+									Component: ScannerScreen
+								});
+							})
 						}
 						{
 							// 可爱的分割线
