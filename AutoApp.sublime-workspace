@@ -4,16 +4,28 @@
 		"selected_items":
 		[
 			[
+				"ju",
+				"justifyContentSpaceBetween\tjustifyContent space-between"
+			],
+			[
+				"sty",
+				"styles"
+			],
+			[
+				"fle",
+				"flex\tflex:1"
+			],
+			[
+				"prop",
+				"props"
+			],
+			[
 				"flex",
 				"flexWrap\tflexWrap"
 			],
 			[
 				"to",
 				"toDips"
-			],
-			[
-				"sty",
-				"styles"
 			],
 			[
 				"render",
@@ -26,10 +38,6 @@
 			[
 				"text",
 				"Text"
-			],
-			[
-				"fle",
-				"flexDirectionRow\tflexDirection row"
 			],
 			[
 				"border",
@@ -58,10 +66,6 @@
 			[
 				"che",
 				"cheLiangTotal"
-			],
-			[
-				"ju",
-				"justifyContentCenter\tjustifyContent center"
 			],
 			[
 				"syt",
@@ -102,10 +106,6 @@
 			[
 				"icon",
 				"iconImg"
-			],
-			[
-				"prop",
-				"propTypes\tpropTypes"
 			],
 			[
 				"posi",
@@ -200,37 +200,28 @@
 	"buffers":
 	[
 		{
-			"file": "app/screens/home/FinanceData.js",
+			"file": "app/screens/refund/RefundDetailScreen.js",
 			"settings":
 			{
-				"buffer_size": 1729,
+				"buffer_size": 2280,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/screens/home/WorkData.js",
+			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 1939,
+				"buffer_size": 812,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/screens/home/CircularProgress.js",
+			"file": "app/screens/refund/RefundList.js",
 			"settings":
 			{
-				"buffer_size": 2552,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/screens/home/HomeScreen.js",
-			"settings":
-			{
-				"buffer_size": 2829,
+				"buffer_size": 5748,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -272,14 +263,19 @@
 	},
 	"expanded_folders":
 	[
-		"/E/hongjie/AutoApp",
 		"/E/hongjie/AutoApp/app",
+		"/E/hongjie/AutoApp/app/components",
 		"/E/hongjie/AutoApp/app/screens",
-		"/E/hongjie/AutoApp/app/screens/home"
+		"/E/hongjie/AutoApp/app/screens/refund"
 	],
 	"file_history":
 	[
+		"/E/hongjie/AutoApp/app/screens/refund/RefundScreen.js",
+		"/E/hongjie/AutoApp/app/screens/home/FinanceData.js",
+		"/E/hongjie/AutoApp/app/screens/home/WorkData.js",
+		"/E/hongjie/AutoApp/app/screens/refund/RefundList.js",
 		"/E/hongjie/AutoApp/app/screens/home/CircularProgress.js",
+		"/E/hongjie/AutoApp/app/screens/home/HomeScreen.js",
 		"/E/hongjie/AutoApp/app/utils.js",
 		"/D/hongjie/AutoApp/app/screens/home/HomeScreen.js",
 		"/D/hongjie/AutoApp/app/screens/home/FinanceData.js",
@@ -401,12 +397,7 @@
 		"/D/hongjie/Layout/.gitignore",
 		"/D/hongjie/Layout/Layout.as3proj",
 		"/C/Users/hongjie/Desktop/jvm.config",
-		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ExportData .xml",
-		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ImportData.xml",
-		"/F/adultphotosets/scaleImg.py",
-		"/C/Users/hongjie/Desktop/jvm1.config",
-		"/F/adultphotosets/downloadImg.py",
-		"/G/adultphotosets/ck101Comic.py"
+		"/C/Users/hongjie/Desktop/Flash布局开发需求文档/ExportData .xml"
 	],
 	"find":
 	{
@@ -428,6 +419,43 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"date",
+			"topUserContainer",
+			"phoneContainer",
+			"nameContainer",
+			"cny",
+			"name",
+			"4e4e4e",
+			"tiod",
+			"\t\t,",
+			"nameContainer",
+			"styles",
+			"container",
+			"shoujihao",
+			"styles",
+			"container",
+			"topUserContainer",
+			"name",
+			"style",
+			"styles",
+			"container",
+			"styles",
+			"container",
+			"styles",
+			"container",
+			"cnyType",
+			"PropTypes",
+			"refundData",
+			"CarDetailScreen",
+			"onRefundPress",
+			"RefundDetailScreen",
+			"Image",
+			"userHead",
+			"to",
+			"transparent",
+			"topUserContainer",
+			"dingb",
+			"Component",
 			"年检到期",
 			"sh",
 			"nianJianDaoQi",
@@ -518,44 +546,7 @@
 			"onForgetPassword",
 			"onSwitchShowPassword",
 			"onForgetPassword",
-			"_onForgetPassword",
-			"wangj",
-			"renderClearAccountButton",
-			"renderSwitchShowPasswordButton",
-			"renderClearAccountButton",
-			"showPassword",
-			"PureComponent",
-			"isAccountInpyut",
-			"password",
-			"account",
-			"onPasswordChanged",
-			"onAccountChanged",
-			"Account",
-			"textInput",
-			"TextInput",
-			"tiod",
-			"inputContainer",
-			"transparent",
-			"'\n",
-			"inputSubContainer",
-			"container",
-			"PureComponen",
-			"accountContainer",
-			"toDips",
-			"screenWidth",
-			"utils",
-			"transparent",
-			"styles",
-			"container",
-			"transparent",
-			"title",
-			"moreImg",
-			"backContainer",
-			"transparent",
-			"TopBar",
-			"login",
-			"AutoApp",
-			"checkIntro"
+			"_onForgetPassword"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -580,57 +571,57 @@
 			[
 				{
 					"buffer": 0,
-					"file": "app/screens/home/FinanceData.js",
+					"file": "app/screens/refund/RefundDetailScreen.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1729,
+						"buffer_size": 2280,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1585,
-								1554
+								2040,
+								2040
 							]
 						],
 						"settings":
 						{
 							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 989.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/screens/home/WorkData.js",
+					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1939,
+						"buffer_size": 812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1171,
-								1171
+								792,
+								792
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 315.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -638,19 +629,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/screens/home/CircularProgress.js",
+					"file": "app/screens/refund/RefundList.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2552,
+						"buffer_size": 5748,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								3513,
+								3513
 							]
 						],
 						"settings":
@@ -660,40 +651,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1395.0,
+						"translation.y": 2295.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/screens/home/HomeScreen.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2829,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1743,
-								1743
-							]
-						],
-						"settings":
-						{
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 824.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -747,6 +708,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"refu",
+				"app\\screens\\refund\\RefundList.js"
+			],
+			[
+				"refunsce",
+				"app\\screens\\refund\\RefundScreen.js"
+			],
 			[
 				"utils",
 				"app\\utils.js"
