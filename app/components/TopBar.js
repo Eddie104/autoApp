@@ -15,7 +15,7 @@ import {
 
 import * as utils from '../utils';
 
-const TOP_BAR_HEIGHT = utils.isIOS() ? 124 : 84;
+const TOP_BAR_HEIGHT = 124;// utils.isIOS() ? 124 : 84;
 
 export default class TopBar extends PureComponent {
 
@@ -47,9 +47,7 @@ export default class TopBar extends PureComponent {
 				{
 					// 中间的title
 				}
-				<Text
-					style={styles.title}
-				>
+				<Text style={styles.title}>
 					{ title }
 				</Text>
 				{
@@ -116,24 +114,26 @@ const styles = StyleSheet.create({
 		width: utils.toDips(27),
 		height: utils.toDips(48),
 		position: 'absolute',
-		right: 0,
+		right: 10,
 		bottom: utils.toDips(22)
 	},
 	moreContainer: {
 		width: utils.toDips(76),
-		height: utils.toDips(TOP_BAR_HEIGHT),
-		justifyContent: 'center'
+		height: utils.toDips(TOP_BAR_HEIGHT)
 	},
 	moreImg: {
 		width: utils.toDips(43),
-		height: utils.toDips(9)
+		height: utils.toDips(9),
+		position: 'absolute',
+		bottom: utils.toDips(42)
 	},
 	title: {
 		position: 'absolute',
-		top: utils.toDips(20),
+		bottom: utils.toDips(20),
 		width: utils.screenWidth(),
 		textAlign: 'center',
 		color: 'white',
-		fontSize: utils.getFontSize(30)
+		fontSize: utils.getFontSize(30),
+		backgroundColor: 'transparent'
 	}
 });

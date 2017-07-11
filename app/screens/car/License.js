@@ -19,7 +19,7 @@ export default class License extends PureComponent {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={{}}>
+				<Text style={{backgroundColor: 'transparent'}}>
 					牌照
 				</Text>
 			</View>

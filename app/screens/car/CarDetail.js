@@ -105,14 +105,16 @@ const styles = StyleSheet.create({
 	key: {
 		color: '#364153',
 		fontSize: utils.getFontSize(23),
-		marginLeft: utils.toDips(35)
+		marginLeft: utils.toDips(35),
+		backgroundColor: 'transparent'
 	},
 	valContainer: {
 		width: utils.toDips(278)
 	},
 	val: {
 		color: '#929497',
-		fontSize: utils.getFontSize(23)
+		fontSize: utils.getFontSize(23),
+		backgroundColor: 'transparent'
 	},
 	line: {
 		width: utils.toDips(684),

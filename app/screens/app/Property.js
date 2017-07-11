@@ -9,6 +9,7 @@ import {
 import * as utils from '../../utils';
 import SubTitle from '../../components/SubTitle';
 import ImageItem from '../../components/ImageItem';
+import CarScreen from '../car/CarScreen';
 
 /**
  * 资产管理
@@ -47,6 +48,11 @@ export default class Property extends PureComponent {
 						color={'#feb02a'}
 						size={utils.toDips(84)}
 						itemName={'车辆'}
+						onPress={() => {
+							global.nav.push({
+								Component: CarScreen
+							});
+						}}
 					/>
 					<ImageItem
 						source={require('../../imgs/item_zhiBiao.png')}

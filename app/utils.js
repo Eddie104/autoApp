@@ -5,10 +5,36 @@ import {
 	PixelRatio
 } from 'react-native';
 
+import { showShortCenter, showShortBottom } from '@remobile/react-native-toast';
+
 const { height, width } = require('Dimensions').get('window');
 
 // ui设计图的宽度是750
 const UIPixelRatio = width / 750;
+
+/*
+ 设备的像素密度，例如：
+ PixelRatio.get() === 1          mdpi Android 设备 (160 dpi)
+ PixelRatio.get() === 1.5        hdpi Android 设备 (240 dpi)
+ PixelRatio.get() === 2          iPhone 4, 4S,iPhone 5, 5c, 5s,iPhone 6,xhdpi Android 设备 (320 dpi)
+ PixelRatio.get() === 3          iPhone 6 plus , xxhdpi Android 设备 (480 dpi)
+ PixelRatio.get() === 3.5        Nexus 6       */
+
+// iphone6的像素密度
+const defaultPixel = 2;
+// px转换成dp
+const w2 = 750 / defaultPixel;
+const h2 = 1334 / defaultPixel;
+// 获取缩放比例
+const scale = Math.min(height / h2, width / w2);
+
+export function toast(content, position) {
+	if(position === 'center') {
+		showShortCenter(content);
+	} else {
+		showShortBottom(content);
+	}
+}
 
 /**
  * 判断当前系统是不是iOS
@@ -63,7 +89,10 @@ export function getPixelRatio() {
  */
 export function getFontSize(px) {
 	// return toDips(px) * PixelRatio.get() / 3;
-	return toDips(px) + (isIOS() ? 2 : 0);
+	return toDips(px) + (isIOS() ? 2 : 4);
+	
+	// px = Math.round((px * scale + 0.5) * PixelRatio.get() / PixelRatio.getFontScale());
+	// return px / defaultPixel;
 }
 
 // export function getTextMarginTop(fontSize) {
@@ -238,4 +267,13 @@ export function deepcopy(source) {
 
 export function isUndefined(val) {
 	return typeof val === "undefined";
+}
+
+export function obj2Str(obj) {
+	if (typeof(obj) === "string") return obj;
+	let str = '';
+	for (let key in obj) {
+		str += `key=>${key},val=${obj[key]}\n`;
+	}
+	return str;
 }

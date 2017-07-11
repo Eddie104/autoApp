@@ -216,17 +216,20 @@ const styles = StyleSheet.create({
 	},
 	name: {
 		fontSize: utils.getFontSize(24),
-		color: '#1a1a1a'
+		color: '#1a1a1a',
+		backgroundColor: 'transparent'
 	},
 	cny: {
 		color: '#eb2a33',
 		fontSize: utils.getFontSize(19),
-		marginTop: utils.toDips(16)
+		marginTop: utils.toDips(16),
+		backgroundColor: 'transparent'
 	},
 	date: {
 		color: '#a5a5a5',
 		fontSize: utils.getFontSize(14),
-		marginTop: utils.toDips(18)
+		marginTop: utils.toDips(18),
+		backgroundColor: 'transparent'
 	},
 	phoneContainer: {
 		width: utils.toDips(400),
@@ -235,20 +238,24 @@ const styles = StyleSheet.create({
 	},
 	phone: {
 		color: '#4e4e4e',
-		fontSize: utils.getFontSize(17)
+		fontSize: utils.getFontSize(17),
+		backgroundColor: 'transparent'
 	},
 	cnyType: {
 		color: '#7d7d7d',
 		fontSize: utils.getFontSize(20),
-		marginTop: utils.toDips(19)
+		marginTop: utils.toDips(19),
+		backgroundColor: 'transparent'
 	},
 	verify: {
 		fontSize: utils.getFontSize(24),
-		color: '#fe8973'
+		color: '#fe8973',
+		backgroundColor: 'transparent'
 	},
 	pass: {
 		fontSize: utils.getFontSize(24),
-		color: '#81d567'
+		color: '#81d567',
+		backgroundColor: 'transparent'
 	},
 	arrow: {
 		width: utils.toDips(18),

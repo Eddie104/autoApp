@@ -78,6 +78,7 @@ export default class Finance extends PureComponent {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'white'
+		backgroundColor: 'white',
+		marginTop: utils.toDips(20)
 	}
 });

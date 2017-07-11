@@ -109,23 +109,27 @@ const styles = StyleSheet.create({
 	},
 	carName: {
 		color: '#1a1a1a',
-		fontSize: utils.getFontSize(24)
+		fontSize: utils.getFontSize(24),
+		backgroundColor: 'transparent'
 	},
 	carColor: {
 		color: '#7d7d7d',
 		fontSize: utils.getFontSize(21),
-		marginTop: utils.toDips(18)
+		marginTop: utils.toDips(18),
+		backgroundColor: 'transparent'
 	},
 	noContainer: {
 		width: utils.toDips(460)
 	},
 	carNo: {
 		color: '#4e4e4e',
-		fontSize: utils.getFontSize(21)
+		fontSize: utils.getFontSize(21),
+		backgroundColor: 'transparent'
 	},
 	carID: {
 		color: '#7d7d7d',
 		fontSize: utils.getFontSize(17),
-		marginTop: utils.toDips(18)
+		marginTop: utils.toDips(18),
+		backgroundColor: 'transparent'
 	}
 });
