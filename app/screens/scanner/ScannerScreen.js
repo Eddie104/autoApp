@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -17,6 +17,13 @@ const OcrModule = require('NativeModules').OcrModule;
  * 扫描证件的场景
  */
 export default class ScannerScreen extends PureComponent {
+
+	static propTypes = {
+		// 识别身份证 idcard.scan
+		// 识别驾照 driver.scan
+		// 识别行驶证 driving.scan
+		action: PropTypes.string.isRequired
+	};
 	
 	constructor(props) {
 		super(props);
@@ -47,7 +54,8 @@ export default class ScannerScreen extends PureComponent {
 			.then((data) => {
 				
 				utils.toast(data.path);
-				OcrModule.tryToSend('add9ab6a-10ff-4ae9-932a-ec685a57e80d', 'WIBreoZyRcfOjPPxxSLXKFwrDKfHQZ', data.path, (result) => {
+				const { action } = this.props;
+				OcrModule.tryToSend('add9ab6a-10ff-4ae9-932a-ec685a57e80d', 'WIBreoZyRcfOjPPxxSLXKFwrDKfHQZ', action, data.path, (result) => {
 					utils.toast(result.data);
 				});
 				

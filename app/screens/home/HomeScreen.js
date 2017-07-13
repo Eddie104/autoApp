@@ -59,7 +59,13 @@ export default class HomeScreen extends PureComponent {
 					>
 						{
 							// 车辆
-							this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal, this._showCarScreen)
+							// this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal, this._showCarScreen)
+							this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal, () => {
+								global.nav.push({
+									Component: ScannerScreen,
+									action: 'idcard.scan'
+								});
+							})
 						}
 						{
 							// 可爱的分割线
@@ -69,7 +75,8 @@ export default class HomeScreen extends PureComponent {
 							// 合同
 							this.renderTopItem(require('../../imgs/hetong.png'), '合同', heTongVal, heTongTotal, () => {
 								global.nav.push({
-									Component: ScannerScreen
+									Component: ScannerScreen,
+									action: 'driver.scan'
 								});
 							})
 						}
@@ -79,7 +86,12 @@ export default class HomeScreen extends PureComponent {
 						<View style={styles.line} />
 						{
 							// 司机/客户
-							this.renderTopItem(require('../../imgs/siji.png'), '司机/客户', siJiVal, siJiTotal, () => {})
+							this.renderTopItem(require('../../imgs/siji.png'), '司机/客户', siJiVal, siJiTotal, () => {
+								global.nav.push({
+									Component: ScannerScreen,
+									action: 'driving.scan'
+								});
+							})
 						}
 					</View>
 					{

@@ -51,7 +51,7 @@ public class OcrModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void tryToSend(final String yunMaiUserName, final String yunMaiPassword, String imgPath, final Callback cb){
+    public void tryToSend(final String yunMaiUserName, final String yunMaiPassword, final String action, String imgPath, final Callback cb){
         imgPath = FileUtil.getRealFilePath(this.getCurrentActivity(), Uri.parse(imgPath));
         final byte[] jpegData =  FileUtil.getByteFromPath(imgPath);
         if(jpegData != null && jpegData.length > 0){
@@ -62,7 +62,7 @@ public class OcrModule extends ReactContextBaseJavaModule {
 //                        mHandler.sendMessage(mHandler.obtainMessage(3, getResources().getString(R.string.photo_too_lage)));
 //                        return;
 //                    }
-                    String result = send(yunMaiUserName, yunMaiPassword, jpegData);
+                    String result = send(yunMaiUserName, yunMaiPassword, action, jpegData);
                     WritableMap response = Arguments.createMap();
                     response.putString("data", result);
                     cb.invoke(response);
@@ -75,8 +75,8 @@ public class OcrModule extends ReactContextBaseJavaModule {
         }
     }
 
-    private String send(String yunMaiUserName, String yunMaiPassword, byte[] file) {
-        String xml = createSendXML(yunMaiUserName, yunMaiPassword);
+    private String send(String yunMaiUserName, String yunMaiPassword, String action, byte[] file) {
+        String xml = createSendXML(yunMaiUserName, yunMaiPassword, action);
         byte[] dest = new byte[xml.getBytes().length + file.length + "<file></file>".getBytes().length];
         int pos = 0;
         System.arraycopy(xml.getBytes(), 0, dest, pos, xml.getBytes().length);
@@ -93,8 +93,7 @@ public class OcrModule extends ReactContextBaseJavaModule {
         }
     }
 
-    private String createSendXML(String yunMaiUserName, String yunMaiPassword){
-        String action = "idcard.scan";
+    private String createSendXML(String yunMaiUserName, String yunMaiPassword, String action) {        
         ArrayList<String[]> arr = new ArrayList<String[]>();
         String key = UUID.randomUUID().toString();
         String time = String.valueOf(System.currentTimeMillis());
@@ -107,6 +106,7 @@ public class OcrModule extends ReactContextBaseJavaModule {
         arr.add(new String[] { "time",time});
         arr.add(new String[] { "verify", verify });
         arr.add(new String[] { "ext", "jpg" });
+        arr.add(new String[] { "json", "1" });
         return createXML(arr, false);
     }
 
