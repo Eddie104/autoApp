@@ -56,7 +56,8 @@ export default class ScannerScreen extends PureComponent {
 				utils.toast(data.path);
 				const { action } = this.props;
 				OcrModule.tryToSend('add9ab6a-10ff-4ae9-932a-ec685a57e80d', 'WIBreoZyRcfOjPPxxSLXKFwrDKfHQZ', action, data.path, (result) => {
-					utils.toast(result.data);
+					// {"status":"OK","data":{"facade":"0","item":{"name":"周鸿杰","cardno":"362301198610041014","sex":"男","folk":"汉","birthday":"1986年10月04日","address":"江西省上饶市信州区胜利路43号3栋3单元601室","issue_authority":[],"valid_period":[],"header_pic":[]}}}
+					utils.toast(utils.isIOS() ? result : result.data);
 				});
 				
 				
