@@ -9,6 +9,9 @@ import {
 import ScannerResultScreen from './ScannerResultScreen';
 import KeyValRow from './KeyValRow';
 
+/**
+ * 身份证识别结果
+ */
 export default class IdcardResultScreen extends ScannerResultScreen {
 
 	static propTypes = {

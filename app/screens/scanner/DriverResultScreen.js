@@ -9,6 +9,9 @@ import {
 import ScannerResultScreen from './ScannerResultScreen';
 import KeyValRow from './KeyValRow';
 
+/**
+ * 驾驶证识别结果
+ */
 export default class DriverResultScreen extends ScannerResultScreen {
 
 	static propTypes = {

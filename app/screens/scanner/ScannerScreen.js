@@ -36,10 +36,12 @@ export default class ScannerScreen extends PureComponent {
 	render() {
 		return (
 			<View style={styles.container}>
-				<TopBar title={ this.getTitle() } showMoreBtn={false} />
+				{
+					// <TopBar title={ this.getTitle() } showMoreBtn={false} />
+				}
 				<Camera
 					ref={(cam) => {
-						this.camera = cam;
+						this._camera = cam;
 					}}
 					style={styles.preview}
 					aspect={Camera.constants.Aspect.fill}
@@ -53,7 +55,7 @@ export default class ScannerScreen extends PureComponent {
 	}
 
 	takePicture() {
-		this.camera.capture()
+		this._camera.capture()
 			.then((data) => {
 				const { action } = this.props;
 				OcrModule.tryToSend('add9ab6a-10ff-4ae9-932a-ec685a57e80d', 'WIBreoZyRcfOjPPxxSLXKFwrDKfHQZ', action, data.path, (result) => {
@@ -62,7 +64,7 @@ export default class ScannerScreen extends PureComponent {
 					if (jsonData.status === 'OK') {
 						if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item});
 						else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data});
-						else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data});
+						else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data.item});
 					} else {
 						// 识别失败
 					}
