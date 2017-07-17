@@ -27,7 +27,8 @@ export default class WorkData extends PureComponent {
 				<View
 					style={{
 						flexDirection: 'row',
-						flexWrap: 'wrap'
+						flexWrap: 'wrap',
+						alignItems: 'flex-start'
 					}}
 				>
 					{
@@ -38,6 +39,9 @@ export default class WorkData extends PureComponent {
 					}
 					{
 						this.renderItem(require('../../imgs/shangYeXian.png'), '商业险', 123)
+					}
+					{
+						this.renderItem(require('../../imgs/cheLiangTuoBao.png'), '车辆脱保')
 					}
 					{
 						this.renderItem(require('../../imgs/cheLiangTuoBao.png'), '车辆脱保')

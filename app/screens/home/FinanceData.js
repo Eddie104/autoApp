@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
 		width: utils.screenWidth(),
 		flexWrap: 'wrap',
 		flexDirection: 'row',
-		alignItems: 'flex-start',
+		alignItems: 'flex-start'
 	}
 });

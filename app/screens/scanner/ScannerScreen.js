@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import Camera from 'react-native-camera';
+import TopBar from '../../components/TopBar';
 import * as net from '../../net';
 import * as utils from '../../utils';
 
@@ -32,6 +33,7 @@ export default class ScannerScreen extends PureComponent {
 	render() {
 		return (
 			<View style={styles.container}>
+				<TopBar title={'车辆资产'} showMoreBtn={false} />
 				<Camera
 					ref={(cam) => {
 						this.camera = cam;
@@ -84,6 +86,14 @@ export default class ScannerScreen extends PureComponent {
 				// 	console.error(err);
 				// });
 			}).catch(err => console.error(err));
+	}
+
+	getTitle() {
+		const { action } = this.props;
+		if (action === 'idcard.scan') return '识别身份证';
+		if (action === 'driver.scan') return '识别驾照';
+		if (action === 'driving.scan') return '识别行驶证';
+		return action;
 	}
 }
 
