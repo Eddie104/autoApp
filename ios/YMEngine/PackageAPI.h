@@ -20,5 +20,5 @@
 @property (nonatomic, copy) NSData *receiveData;
 @property (nonatomic, copy) NSString *result;
 
--(void)AFNuploadPackage:(NSData*)imageData UserName:(NSString *)username Passwrod:(NSString *)psd Success:(SuccessBlock)sucess Fail:(ErrorBlock)fail;
+-(void)AFNuploadPackage:(NSData*)imageData UserName:(NSString *)username Passwrod:(NSString *)psd Action:(NSString *)upAction Success:(SuccessBlock)sucess Fail:(ErrorBlock)fail;
 @end

@@ -27,7 +27,7 @@ RCT_EXPORT_MODULE();
 //}
 //
 
-RCT_EXPORT_METHOD(tryToSend:(NSString *)username password:(NSString *)password imgPath:(NSString *)imgPath Callback:(RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(tryToSend:(NSString *)username password:(NSString *)password action:(NSString *)action imgPath:(NSString *)imgPath Callback:(RCTResponseSenderBlock)callback) {
   // NSString *docs2 = [NSHomeDirectory() stringByAppendingPathComponent:imgPath] ;
   // YM_SaveImage(_bImage,(char*)[docs2 UTF8String]);
   
@@ -35,7 +35,7 @@ RCT_EXPORT_METHOD(tryToSend:(NSString *)username password:(NSString *)password i
   UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
   NSData *imageData=UIImageJPEGRepresentation(img,0.1f);
   self.package = [[PackageAPI alloc]init];
-  [_package AFNuploadPackage:imageData UserName:username Passwrod:password Success:^(NSString *retStr, BOOL isSuccess) {
+  [_package AFNuploadPackage:imageData UserName:username Passwrod:password Action:action Success:^(NSString *retStr, BOOL isSuccess) {
     if (isSuccess) {
       // [weakSelf recongnitionResult:retStr];
       callback(@[retStr]);

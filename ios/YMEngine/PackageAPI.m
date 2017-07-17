@@ -53,7 +53,7 @@
   NSString *uuid = [NSString stringWithString:(NSString*)CFBridgingRelease(uuid_string_ref)];
   
   
-  CFRelease(uuid_string_ref);
+  // CFRelease(uuid_string_ref);
   
   return uuid;
   
@@ -144,9 +144,8 @@
  
  ####################################################################################*/
 
--(void)AFNuploadPackage:(NSData*)imageData UserName:(NSString *)username Passwrod:(NSString *)psd Success:(SuccessBlock)sucess Fail:(ErrorBlock)fail
+-(void)AFNuploadPackage:(NSData*)imageData UserName:(NSString *)username Passwrod:(NSString *)psd Action:(NSString *)upAction Success:(SuccessBlock)sucess Fail:(ErrorBlock)fail
 {
-  NSString *upAction = @"idcard.scan";
   NSString *md5Psd = [self md5:psd];
   NSString *deviceType = [self getPhoneModel];
   NSString *currentTime = [[NSString alloc] initWithString:[self currentTimestamp]];
@@ -161,7 +160,7 @@
   
   NSMutableString *upPackageString = [[NSMutableString alloc] init];
   
-  upPackageString = [[NSMutableString alloc] initWithFormat:@"<action>%@</action><client>%@</client><system>%@</system><password>%@</password><key>%@</key><time>%@</time><verify>%@</verify><ext>%@</ext><type>%@</type><file>%@</file>", upAction, username, deviceType, md5Psd, rand, currentTime, verify, fileExt,@"1", imageStr];
+  upPackageString = [[NSMutableString alloc] initWithFormat:@"<action>%@</action><client>%@</client><system>%@</system><password>%@</password><key>%@</key><time>%@</time><verify>%@</verify><ext>%@</ext><type>%@</type><file>%@</file><json>1</json>", upAction, username, deviceType, md5Psd, rand, currentTime, verify, fileExt,@"1", imageStr];
   
   NSMutableData *postData = (NSMutableData *)[upPackageString dataUsingEncoding:NSUTF8StringEncoding];
   [CCHttpManager httpManagerPostRequestUrl:serverUrl xml:postData Success:^(NSString *str, BOOL isSuccess) {
