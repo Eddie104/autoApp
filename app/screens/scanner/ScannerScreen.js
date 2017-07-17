@@ -11,6 +11,9 @@ import Camera from 'react-native-camera';
 import TopBar from '../../components/TopBar';
 import * as net from '../../net';
 import * as utils from '../../utils';
+import IdcardResultScreen from './IdcardResultScreen';
+import DriverResultScreen from './DriverResultScreen';
+import DrivingResultScreen from './DrivingResultScreen';
 
 const OcrModule = require('NativeModules').OcrModule;
 
@@ -33,7 +36,7 @@ export default class ScannerScreen extends PureComponent {
 	render() {
 		return (
 			<View style={styles.container}>
-				<TopBar title={'车辆资产'} showMoreBtn={false} />
+				<TopBar title={ this.getTitle() } showMoreBtn={false} />
 				<Camera
 					ref={(cam) => {
 						this.camera = cam;
@@ -57,7 +60,9 @@ export default class ScannerScreen extends PureComponent {
 					// {"status":"OK","data":{"facade":"0","item":{"name":"周鸿杰","cardno":"362301198610041014","sex":"男","folk":"汉","birthday":"1986年10月04日","address":"江西省上饶市信州区胜利路43号3栋3单元601室","issue_authority":[],"valid_period":[],"header_pic":[]}}}
 					const jsonData = JSON.parse(utils.isIOS() ? result : result.data);
 					if (jsonData.status === 'OK') {
-
+						if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item});
+						else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data});
+						else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data});
 					} else {
 						// 识别失败
 					}

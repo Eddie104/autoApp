@@ -17,6 +17,7 @@ import WorkData from './WorkData';
 import LoginScreen from '../login/LoginScreen';
 import CarScreen from '../car/CarScreen';
 import ScannerScreen from '../scanner/ScannerScreen';
+import DrivingResultScreen from '../scanner/DrivingResultScreen';
 
 /**
  * 首页面板
@@ -63,6 +64,7 @@ export default class HomeScreen extends PureComponent {
 							this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal, () => {
 								global.nav.push({
 									Component: ScannerScreen,
+									// Component: DrivingResultScreen,
 									action: 'idcard.scan'
 								});
 							})
