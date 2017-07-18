@@ -9,7 +9,6 @@ import {
 
 import Camera from 'react-native-camera';
 import TopBar from '../../components/TopBar';
-import * as net from '../../net';
 import * as utils from '../../utils';
 import IdcardResultScreen from './IdcardResultScreen';
 import DriverResultScreen from './DriverResultScreen';
