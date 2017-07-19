@@ -10,6 +10,7 @@ import {
 import Camera from 'react-native-camera';
 import TopBar from '../../components/TopBar';
 import * as utils from '../../utils';
+import * as config from '../../config'; 
 import IdcardResultScreen from './IdcardResultScreen';
 import DriverResultScreen from './DriverResultScreen';
 import DrivingResultScreen from './DrivingResultScreen';
@@ -57,13 +58,13 @@ export default class ScannerScreen extends PureComponent {
 		this._camera.capture()
 			.then((data) => {
 				const { action } = this.props;
-				OcrModule.tryToSend('add9ab6a-10ff-4ae9-932a-ec685a57e80d', 'WIBreoZyRcfOjPPxxSLXKFwrDKfHQZ', action, data.path, (result) => {
-					// {"status":"OK","data":{"facade":"0","item":{"name":"周鸿杰","cardno":"362301198610041014","sex":"男","folk":"汉","birthday":"1986年10月04日","address":"江西省上饶市信州区胜利路43号3栋3单元601室","issue_authority":[],"valid_period":[],"header_pic":[]}}}
+				OcrModule.tryToSend(config.YUN_MAI_ACCOUNT, config.YUN_MAI_PASSWORD, action, data.path, (result) => {
 					const jsonData = JSON.parse(utils.isIOS() ? result : result.data);
 					if (jsonData.status === 'OK') {
-						if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item});
-						else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data});
-						else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data.item});
+						if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item, imgPath: data.path});
+						else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data, imgPath: data.path});
+						else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data.item, imgPath: data.path});
+						// utils.toast(utils.isIOS() ? result : result.data);
 					} else {
 						// 识别失败
 					}

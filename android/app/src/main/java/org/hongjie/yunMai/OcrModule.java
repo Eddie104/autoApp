@@ -107,6 +107,8 @@ public class OcrModule extends ReactContextBaseJavaModule {
         arr.add(new String[] { "verify", verify });
         arr.add(new String[] { "ext", "jpg" });
         arr.add(new String[] { "json", "1" });
+        // 1:是；0：否；不填默认为否
+        // arr.add(new String[] { "header", "1" });
         return createXML(arr, false);
     }
 

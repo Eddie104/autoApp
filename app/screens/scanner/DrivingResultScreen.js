@@ -42,19 +42,19 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 	}
 
 	renderKeyItemRow() {
-		const { data } = this.props;
+		const { cardno, vehicleType, name, address, useCharacte, model, vin, enginePN, registerDate, issueDate } = this.props.data;
 		return (
 			<View style={styles.container}>
-				<KeyValRow itemKey={'号牌号码:'} itemVal={data.cardno} type={'input'} />
-				<KeyValRow itemKey={'车辆类型:'} itemVal={data.vehicleType} type={'input'} />
-				<KeyValRow itemKey={'所有人:'} itemVal={data.name} type={'input'} />
-				<KeyValRow itemKey={'住址:'} itemVal={data.address} type={'input'} />
-				<KeyValRow itemKey={'使用性质:'} itemVal={data.useCharacte} type={'input'} />
-				<KeyValRow itemKey={'品牌型号:'} itemVal={data.model} type={'input'} />
-				<KeyValRow itemKey={'车辆识别代号:'} itemVal={data.vin} type={'input'} />
-				<KeyValRow itemKey={'发动机号码:'} itemVal={data.enginePN} type={'input'} />
-				<KeyValRow itemKey={'注册日期:'} itemVal={data.registerDate} type={'input'} />
-				<KeyValRow itemKey={'发证日期:'} itemVal={data.issueDate} type={'input'} />
+				<KeyValRow itemKey={'号牌号码:'} itemVal={cardno} type={'input'} />
+				<KeyValRow itemKey={'车辆类型:'} itemVal={vehicleType} type={'input'} />
+				<KeyValRow itemKey={'所有人:'} itemVal={name} type={'input'} />
+				<KeyValRow itemKey={'住址:'} itemVal={address} type={'input'} />
+				<KeyValRow itemKey={'使用性质:'} itemVal={useCharacte} type={'input'} />
+				<KeyValRow itemKey={'品牌型号:'} itemVal={model} type={'input'} />
+				<KeyValRow itemKey={'车辆识别代号:'} itemVal={vin} type={'input'} />
+				<KeyValRow itemKey={'发动机号码:'} itemVal={enginePN} type={'input'} />
+				<KeyValRow itemKey={'注册日期:'} itemVal={registerDate} type={'input'} />
+				<KeyValRow itemKey={'发证日期:'} itemVal={issueDate} type={'input'} />
 			</View>
 		);
 	}

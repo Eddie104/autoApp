@@ -42,19 +42,19 @@ export default class DriverResultScreen extends ScannerResultScreen {
 	}
 
 	renderKeyItemRow() {
-		const { data } = this.props;
+		const { name, cardno, sex, nation, address, birthday, registerDate, issueDate, validPeriod, drivingType } = this.props.data;
 		return (
 			<View style={styles.container}>
-				<KeyValRow itemKey={'名字:'} itemVal={data.name} type={'input'} />
-				<KeyValRow itemKey={'驾驶证号:'} itemVal={data.cardno} type={'input'} />
-				<KeyValRow itemKey={'性别:'} itemVal={data.sex} type={'input'} />
-				<KeyValRow itemKey={'国籍:'} itemVal={data.nation} type={'input'} />
-				<KeyValRow itemKey={'地址:'} itemVal={data.address} type={'input'} />
-				<KeyValRow itemKey={'出生日期:'} itemVal={data.birthday} type={'input'} />
-				<KeyValRow itemKey={'初次领证日期:'} itemVal={data.registerDate} type={'input'} />
-				<KeyValRow itemKey={'有效起始日期:'} itemVal={data.issueDate} type={'input'} />
-				<KeyValRow itemKey={'有效期:'} itemVal={data.validPeriod} type={'input'} />
-				<KeyValRow itemKey={'准驾车型:'} itemVal={data.drivingType} type={'input'} />
+				<KeyValRow itemKey={'名字:'} itemVal={name} type={'input'} />
+				<KeyValRow itemKey={'驾驶证号:'} itemVal={cardno} type={'input'} />
+				<KeyValRow itemKey={'性别:'} itemVal={sex} type={'input'} />
+				<KeyValRow itemKey={'国籍:'} itemVal={nation} type={'input'} />
+				<KeyValRow itemKey={'地址:'} itemVal={address} type={'input'} />
+				<KeyValRow itemKey={'出生日期:'} itemVal={birthday} type={'input'} />
+				<KeyValRow itemKey={'初次领证日期:'} itemVal={registerDate} type={'input'} />
+				<KeyValRow itemKey={'有效起始日期:'} itemVal={issueDate} type={'input'} />
+				<KeyValRow itemKey={'有效期:'} itemVal={validPeriod} type={'input'} />
+				<KeyValRow itemKey={'准驾车型:'} itemVal={drivingType} type={'input'} />
 			</View>
 		);
 	}

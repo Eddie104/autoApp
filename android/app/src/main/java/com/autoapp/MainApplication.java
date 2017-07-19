@@ -11,6 +11,7 @@ import com.facebook.soloader.SoLoader;
 import com.remobile.toast.RCTToastPackage;
 
 import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
+import com.rnfs.RNFSPackage;
 
 import org.hongjie.MyPackage;
 import org.lovebing.reactnative.baidumap.BaiduMapPackage;
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
           new RCTSplashScreenPackage(),
           new BaiduMapPackage(getApplicationContext()),
           new RCTCameraPackage(),
+          new RNFSPackage(),
           new MyPackage()
       );
     }

@@ -143,6 +143,7 @@ dependencies {
     compile project(':react-native-smart-splashscreen')
     compile project(':react-native-baidu-map')
     compile project(':react-native-camera')
+    compile project(':react-native-fs')
 }
 
 // Run this once to be able to run the application with BUCK
