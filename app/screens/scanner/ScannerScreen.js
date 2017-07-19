@@ -59,7 +59,8 @@ export default class ScannerScreen extends PureComponent {
 			.then((data) => {
 				const { action } = this.props;
 				OcrModule.tryToSend(config.YUN_MAI_ACCOUNT, config.YUN_MAI_PASSWORD, action, data.path, (result) => {
-					const jsonData = JSON.parse(utils.isIOS() ? result : result.data);
+					// const jsonData = JSON.parse(utils.isIOS() ? result.data : result.data);
+					const jsonData = JSON.parse(result.data);
 					if (jsonData.status === 'OK') {
 						if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item, imgPath: data.path});
 						else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data, imgPath: data.path});

@@ -8,6 +8,7 @@ import {
 	Text
 } from 'react-native';
 
+import * as utils from '../../utils';
 import ScannerResultScreen from './ScannerResultScreen';
 import KeyValRow from './KeyValRow';
 import RNFS from 'react-native-fs';
@@ -45,7 +46,7 @@ export default class IdcardResultScreen extends ScannerResultScreen {
 
 	componentDidMount() {
 		// substring(7) -> to remove the file://
-		RNFS.readFile(this.props.imgPath.substring(7), "base64").then(imgBase64 => this.setState({
+		RNFS.readFile(utils.isIOS() ? this.props.imgPath : this.props.imgPath.substring(7), "base64").then(imgBase64 => this.setState({
 			imgBase64
 		}));
 	}
