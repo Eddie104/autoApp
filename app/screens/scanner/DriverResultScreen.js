@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {
 	StyleSheet,
 	View
@@ -8,15 +8,12 @@ import {
 
 import ScannerResultScreen from './ScannerResultScreen';
 import KeyValRow from './KeyValRow';
+import * as api from '../../api';
 
 /**
  * 驾驶证识别结果
  */
 export default class DriverResultScreen extends ScannerResultScreen {
-
-	static propTypes = {
-		data: PropTypes.object,
-	};
 
 	static defaultProps = {
 		data: {
@@ -57,6 +54,10 @@ export default class DriverResultScreen extends ScannerResultScreen {
 				<KeyValRow itemKey={'准驾车型:'} itemVal={drivingType} type={'input'} />
 			</View>
 		);
+	}
+
+	getAPI() {
+		return api.driverData();
 	}
 	
 }

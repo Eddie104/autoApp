@@ -18,6 +18,7 @@ import LoginScreen from '../login/LoginScreen';
 import CarScreen from '../car/CarScreen';
 import ScannerScreen from '../scanner/ScannerScreen';
 import DrivingResultScreen from '../scanner/DrivingResultScreen';
+import IdcardResultScreen from '../scanner/IdcardResultScreen';
 
 /**
  * 首页面板
@@ -63,8 +64,8 @@ export default class HomeScreen extends PureComponent {
 							// this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal, this._showCarScreen)
 							this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal, () => {
 								global.nav.push({
-									Component: ScannerScreen,
-									// Component: DrivingResultScreen,
+									// Component: ScannerScreen,
+									Component: IdcardResultScreen,
 									action: 'idcard.scan'
 								});
 							})
