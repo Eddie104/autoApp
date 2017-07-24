@@ -42,6 +42,7 @@ export function post (url, data, successCallback, errorCallback = null) {
 			'Accept': 'application/json',
 			// 'Content-Type': 'application/json'
 			'Content-Type': 'text/plain;charset=UTF-8'
+			// 'Content-Type': 'application/x-www-form-urlencoded'
 			// multipart/form-data;
 			// 'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 			// 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
