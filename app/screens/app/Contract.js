@@ -9,6 +9,7 @@ import {
 import * as utils from '../../utils';
 import SubTitle from '../../components/SubTitle';
 import ImageItem from '../../components/ImageItem';
+import CarScreen from '../car/CarScreen';
 
 /**
  * 合同管理
@@ -46,16 +47,25 @@ export default class Contract extends PureComponent {
 						sourceHeight={utils.toDips(51)}
 						color={'#81d567'}
 						size={utils.toDips(84)}
-						itemName={'征信'}
+						itemName={'合同'}
+						onPress={() => {
+							var modelCode ='contract_lease';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
-					<ImageItem
-						source={require('../../imgs/item_qianYue.png')}
-						sourceWidth={utils.toDips(45)}
-						sourceHeight={utils.toDips(46)}
-						color={'#81d567'}
-						size={utils.toDips(84)}
-						itemName={'签约'}
-					/>
+				
+				{
+//					<ImageItem
+//						source={require('../../imgs/item_qianYue.png')}
+//						sourceWidth={utils.toDips(45)}
+//						sourceHeight={utils.toDips(46)}
+//						color={'#81d567'}
+//						size={utils.toDips(84)}
+//						itemName={'签约'}
+//					/>
+				}
 					<ImageItem
 						source={require('../../imgs/item_jiaoChe.png')}
 						sourceWidth={utils.toDips(58)}
@@ -63,6 +73,12 @@ export default class Contract extends PureComponent {
 						color={'#81d567'}
 						size={utils.toDips(84)}
 						itemName={'交车'}
+						onPress={() => {
+							var modelCode ='contract_car_delivery';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
 					<ImageItem
 						source={require('../../imgs/item_jieSuan.png')}
@@ -71,6 +87,12 @@ export default class Contract extends PureComponent {
 						color={'#81d567'}
 						size={utils.toDips(84)}
 						itemName={'结算'}
+						onPress={() => {
+							var modelCode ='order_balance';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
 				</View>
 			</View>

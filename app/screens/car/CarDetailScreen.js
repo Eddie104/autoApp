@@ -32,9 +32,27 @@ export default class CarDetailScreen extends PureComponent {
 
 	render() {
 		const { carData } = this.props;
+		var rows;
+		
+		if(carData.modelProperties.relationModel){
+			rows = carData.modelProperties.relationModel.map((row, indexKey) => {
+				if(indexKey<2){
+					return <Certificate tabLabel={row.name} row={row} key={row.code}  carData= {carData}/>;
+				}
+				
+				if(indexKey==2&&carData.modelProperties.relationModel.length==3){
+					return <Certificate tabLabel={row.name} row={row} key={row.code}  carData= {carData}/>;
+				}
+				
+				if(indexKey==2&&carData.modelProperties.relationModel.length>3){
+					return <CarMore tabLabel='更多' carData= {carData} key={'more'}  />;
+				}
+	     	});
+     	}
+		
 		return (
 			<View style={styles.container}>
-				<TopBar title={'车辆资产'} showMoreBtn={false} />
+				<TopBar title={carData.modelProperties.name} showMoreBtn={false} />
 				{
 					// 顶部的车辆信息
 				}
@@ -50,10 +68,10 @@ export default class CarDetailScreen extends PureComponent {
 					}
 					<View style={styles.carNameContainer}>
 						<Text style={styles.carName}>
-							{ carData.name }
+							{ carData.position1 }
 						</Text>
 						<Text style={styles.carColor}>
-							{ carData.color }
+							{ carData.position2 }
 						</Text>
 					</View>
 					{
@@ -73,10 +91,8 @@ export default class CarDetailScreen extends PureComponent {
 					</View>
 				</View>
 				<MyScrollableTabView style={{ marginTop: utils.toDips(20) }}>
-					<CarDetail tabLabel='详情' />
-					<License tabLabel='车辆牌照' />
-					<Certificate tabLabel='车辆证照' />
-					<CarMore tabLabel='更多' />
+					<CarDetail tabLabel='详情' carData={this.props} />
+					{rows}								
 				</MyScrollableTabView>
 			</View>
 		);

@@ -15,6 +15,9 @@ import {
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
 import CarDetailScreen from './CarDetailScreen';
+import EntityItemDataDao from '../../dao/EntityItemDataDao';
+import UserDataDao from '../../dao/UserDataDao';
+import ModelDataDao from '../../dao/ModelDataDao';
 
 /**
  * 车辆资产界面
@@ -26,19 +29,20 @@ export default class CarScreen extends PureComponent {
 
 		this.state = {
 			carDataArr: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
-			isRefreshing: false
+			isRefreshing: false,
+			modelCode:null,
+			modelName:'',
+			modelProperties:null,
+			pageIdx:0,
 		};
 		this._carDataArr = [];
-
+		
 		this._renderCarItem = this.renderCarItem.bind(this);
 		this._onRefresh = this.onRefresh.bind(this);
 		this._onListEndReached = this.onListEndReached.bind(this);
 	}
 
 	componentDidMount() {
-		// InteractionManager.runAfterInteractions(() => {
-			
-		// });
 		this.fetchData();
 	}
 
@@ -46,7 +50,7 @@ export default class CarScreen extends PureComponent {
 		const { carDataArr, isRefreshing } = this.state;
 		return (
 			<View style={styles.container}>
-				<TopBar title={'车辆资产'} showMoreBtn={false} />
+				<TopBar title={this.state.modelName} showMoreBtn={false} />
 				<ListView
 					// ref={"scrollView"}
 					pageSize={10}
@@ -60,18 +64,11 @@ export default class CarScreen extends PureComponent {
 						<RefreshControl
 							onRefresh={this._onRefresh}
 							refreshing={isRefreshing}
-							// colors={refreshableColors}
-							// progressBackgroundColor={refreshableProgressBackgroundColor}
-							// size={refreshableSize}
-							// tintColor={refreshableTintColor}
-							// title={refreshableTitle}
-							// titleColor={refreshableTitleColor}
 						/>
 					}
 					canCancelContentTouches={true}
 					scrollEnabled={true}
 					automaticallyAdjustContentInsets={false}
-					// onScroll={this._onScroll}
 					enableEmptySections={true}
 					keyboardDismissMode={'on-drag'}
 				/>
@@ -98,11 +95,11 @@ export default class CarScreen extends PureComponent {
 					// 名字和颜色
 				}
 				<View style={styles.carNameContainer}>
-					<Text style={styles.carName}>
-						{ carData.name }
+					<Text style={styles.carName} numberOfLines={1}>
+						{carData.position1}
 					</Text>
 					<Text style={styles.carColor}>
-						{ carData.color }
+						{ carData.position2 }
 					</Text>
 				</View>
 				{
@@ -113,11 +110,11 @@ export default class CarScreen extends PureComponent {
 					// 牌照和id
 				}
 				<View style={styles.carNoContainer}>
-					<Text style={styles.carNo}>
-						{ carData.no }
+					<Text style={styles.carNo} numberOfLines={1}>
+						{ carData.position3 }
 					</Text>
 					<Text style={styles.carID}>
-						{ carData.id }
+						{carData.position4}
 					</Text>
 				</View>
 				{
@@ -138,39 +135,80 @@ export default class CarScreen extends PureComponent {
 		}, () => {
 			const timer = setTimeout(() => {
 				clearTimeout(timer);
-				// 这是模拟的测试数据
-				// 正式版时以服务器发来的数据为准
-				const carData = [
-					{ name: '卡罗拉12', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213211' },
-					{ name: '卡罗拉3', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213212' },
-					{ name: '卡罗拉1', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213213' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213214' },
-					{ name: '卡罗拉324324', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213215' },
-					{ name: '卡罗拉543', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213216' },
-					{ name: '卡罗拉1', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213217' },
-					{ name: '卡罗拉23', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213218' },
-					{ name: '卡罗432拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI213219' },
-					{ name: '卡罗34拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132110' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132111' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132112' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132113' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132114' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132115' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132116' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132117' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132118' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132119' },
-					{ name: '卡罗拉', color: '白色', no: '沪BWH206', id: 'FEJDSKOJFNEIOFDNEI2132120' }
-				];
-				this._carDataArr = refresh ? carData : this._carDataArr.concat(carData);
-				this.setState({
-					isRefreshing: false,
-					carDataArr: this.state.carDataArr.cloneWithRows(this._carDataArr)
-				});
+				this.getUserInfor(refresh);
 			}, 500);
 		});
 	}
+	
+	getUserInfor(refresh){
+	    UserDataDao.getUser().then((res)=> {
+	    	if(res){
+	    		this.getNetModelData(res.id,refresh);
+	    	}
+        }).catch((error)=> {
+       	
+        });
+    }
+	
+	getNetModelData(userId,refresh){
+		const { modelCode } = this.props;
+		ModelDataDao.getModel(userId,modelCode).then((res)=> {
+	    	if(res){
+	    		this.getNetListData(userId,refresh,modelCode,res);
+	    	}
+        }).catch((error)=> {
+       	
+        });
+	}
+	
+	getNetListData(userId,refresh,code,modelProperties){
+		EntityItemDataDao.getList(userId,code,this.state.pageIdx).then((res)=> {
+	    	if(res){
+	    		this.showListdata(res.list.data,refresh,modelProperties);
+	    	}
+        }).catch((error)=> {
+       	
+        });
+	}
+	
+	showListdata(carData,refresh,modelProperties){
+		if(!carData||carData.length==0){
+			utils.toast("未更新到新的数据！");
+			this.setState({
+				isRefreshing: false,
+				carDataArr: this.state.carDataArr.cloneWithRows(this._carDataArr)
+			});
+			return;
+		}
 
+		const currentData = [];
+		for(var i = 0 ;i <carData.length;i++){
+			var rowData = new Object();
+			rowData.position1 = carData[i][modelProperties.listProperties[0].code];//第一位置
+			rowData.position2 = carData[i][modelProperties.listProperties[1].code];//第二位置
+			
+			if(modelProperties.listProperties[2]){//第三位置需要根据list属性判断是否需求
+				rowData.position3 = carData[i][modelProperties.listProperties[2].code];
+			}
+			if(modelProperties.listProperties[3]){//第四位置需要根据list属性判断是否需求
+				rowData.position4 = carData[i][modelProperties.listProperties[3].code];
+			}
+			rowData.detailData = carData[i];
+			rowData.modelProperties = modelProperties;
+			currentData.push(rowData);			
+		}
+		
+		this._carDataArr = refresh ? currentData : this._carDataArr.concat(currentData);
+		this.setState({
+			isRefreshing: false,
+			carDataArr: this.state.carDataArr.cloneWithRows(this._carDataArr),
+			modelProperties:modelProperties,
+			modelCode:modelProperties.code,
+			modelName:modelProperties.name,
+			pageIdx:this.state.pageIdx+1,
+		});
+	}
+	
 	/**
 	 * 刷新
 	 */
@@ -225,17 +263,18 @@ const styles = StyleSheet.create({
 	},
 	carName: {
 		color: '#1a1a1a',
-		fontSize: utils.getFontSize(24),
+		fontSize: utils.getFontSize(21),
+		width: utils.toDips(400),
 		backgroundColor: 'transparent'
 	},
 	carColor: {
 		color: '#7d7d7d',
-		fontSize: utils.getFontSize(21),
+		fontSize: utils.getFontSize(16),
 		marginTop: utils.toDips(18),
 		backgroundColor: 'transparent'
 	},
 	carNoContainer: {
-		width: utils.toDips(372)
+		width: utils.toDips(100)
 	},
 	carNo: {
 		color: '#4e4e4e',

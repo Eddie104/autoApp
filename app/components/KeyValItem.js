@@ -4,13 +4,16 @@ import React, { PureComponent, PropTypes } from 'react';
 import {
 	StyleSheet,
 	View,
-	Text,
-	ScrollView
+	Image,
+	Text
 } from 'react-native';
+import * as utils from '../utils';
+import ConstantsUtils  from '../util/ConstantsUtils';
 
-import * as utils from '../../utils';
-
-class KeyValItem extends PureComponent {
+/**
+ * 背景是圆形纯色的，带了一张图片的icon
+ */
+export default class KeyValItem extends PureComponent {
 
 	static propTypes = {
 		itemKey: PropTypes.string,
@@ -27,61 +30,37 @@ class KeyValItem extends PureComponent {
 	}
 
 	render() {
-		const { itemKey, itemVal } = this.props;
+		const { itemKey, itemVal,property } = this.props;		
+		var proCom = this.renderPropertyVal(property.type,itemVal);
+				
 		return (
 			<View>
 			<View style={styles.itemContainer}>
 				<Text style={styles.key}>
 					{ itemKey }
-				</Text>
-				{
-					// 搞一个占空间的弹性view
-				}
-				
-				<Text style={styles.val}>
-					{ itemVal }
-				</Text>
+				</Text>				
+				{proCom}
 			</View>
 			<View style={styles.line} />
 			</View>
 		);
 	}
-}
-
-
-/**
- * 车辆详情面板
- */
-export default class CarDetail extends PureComponent {
 	
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		const { carData } = this.props.carData;
+	renderPropertyVal(type, value) {
+		if(type==ConstantsUtils.PROPERTY_TYPE_PHOTO&&value){
+			var sidx = value.lastIndexOf("/");
+			var path = value.slice(0, sidx) + '/s_' + value.slice(sidx+1 + Math.abs(0));
+			//var path = str.substring(0, str.lastIndexOf("/"))+'s_'+str.substring(str.lastIndexOf("/"), str.length-1);
+			//utils.toast(path);
+			return <Image style={styles.itemImg} source={{uri: ConstantsUtils.bizImgaeUrl + path}}/>;
+		}
 		
-		var rows = carData.modelProperties.detailProperties.map((row, indexKey) => {
-			const property = carData.modelProperties.detailProperties[indexKey];
-			var val = carData.detailData[property.code];
-			return <KeyValItem itemKey={property.name} itemVal={val}  key={property.code}/>
-     	});
-		
-		return (
-			<View style={styles.container}>
-				<ScrollView style={styles.container}>
-					{rows}					
-				</ScrollView>
-			</View>
-		);
+		return <Text style={styles.val}> { value } </Text>;
 	}
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: 'white'
-	},
+	
 	itemContainer: {
 		flexDirection: 'row',
 		height: utils.toDips(88),
@@ -95,18 +74,22 @@ const styles = StyleSheet.create({
 		fontSize: utils.getFontSize(22),
 		backgroundColor: 'transparent'
 	},
-	valContainer: {
-		width: utils.toDips(278)
-	},
+	
 	val: {
 		color: '#929497',
 		fontSize: utils.getFontSize(16),
 		backgroundColor: 'transparent'
 	},
+	
 	line: {
 		width: utils.toDips(684),
 		height: utils.toDips(1),
 		backgroundColor: '#e9e9e9',
 		alignSelf: 'center'
-	}
+	},
+	
+	itemImg: {
+		width: utils.toDips(78),
+		height: utils.toDips(78)
+	},
 });

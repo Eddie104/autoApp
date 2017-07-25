@@ -10,6 +10,8 @@ import {
 import * as utils from '../../utils';
 import CircularProgress from './CircularProgress';
 import SubTitle from '../../components/SubTitle';
+import HomeDataDao from '../../dao/HomeDataDao';
+import UserDataDao from '../../dao/UserDataDao'
 
 /**
  * 首页里的财务数据
@@ -18,9 +20,44 @@ export default class FinanceData extends PureComponent {
 	
 	constructor(props) {
 		super(props);
+		this.state = {
+	        financeList:null,
+	    }
+	}
+	
+	componentDidMount() {
+	    this.getUserInfor();
+	}
+	
+	getUserInfor(){
+	    UserDataDao.getUser().then((res)=> {
+	    	if(res){
+	    		this.getHomeData(res.id);
+	    	}else{
+	    	}
+        }).catch((error)=> {
+        });
+    }
+	
+	getHomeData(userId){
+		HomeDataDao.getFinanceData(userId).then((res)=> {			
+	    	if(res){
+	    		this.setState({
+					financeList:res
+				});
+	    	}
+       	}).catch((error)=> {       	
+        });
 	}
 
 	render() {
+		var rows ;
+		if(this.state.financeList){
+			rows = this.state.financeList.list.map((row, indexKey) => {
+	    		return <CircularProgress key={indexKey} color={row.color} value={row.percetage} name={row.title} nameVal={row.number} />;
+	     	});
+     	}
+		
 		return (
 			<View style={styles.container}>
 				<SubTitle color={'#feb02a'} title={'财务数据'} />
@@ -29,11 +66,7 @@ export default class FinanceData extends PureComponent {
 				}
 				<View
 					style={styles.circularProgressContainer}>
-					<CircularProgress color={'#63c53c'} value={95} name={'管理费'} nameVal={'￥1200'} />
-					<CircularProgress color={'#4ecfe2'} value={40} name={'租金'} nameVal={'￥4156'} />
-					<CircularProgress color={'#feb02a'} value={70} name={'保险费'} nameVal={'￥1600'} />
-					<CircularProgress color={'#92a7ff'} value={80} name={'押金'} nameVal={'￥1000'} />
-					<CircularProgress color={'#fe8973'} value={60} name={'定金'} nameVal={'￥10000'} />
+					{rows}
 				</View>
 			</View>
 		);
@@ -51,6 +84,6 @@ const styles = StyleSheet.create({
 		width: utils.screenWidth(),
 		flexWrap: 'wrap',
 		flexDirection: 'row',
-		alignItems: 'flex-start'
+		alignItems: 'flex-start',
 	}
 });
