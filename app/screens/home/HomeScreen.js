@@ -19,9 +19,9 @@ import LoginScreen from '../login/LoginScreen';
 import CarScreen from '../car/CarScreen';
 
 import HomeDataDao from '../../dao/HomeDataDao';
-import UserDataDao from '../../dao/UserDataDao'
+import UserDataDao from '../../dao/UserDataDao';
 
-import IdcardResultScreen from '../scanner/IdcardResultScreen';
+import ScannerScreen from '../scanner/ScannerScreen';
 
 /**
  * 首页面板
@@ -116,6 +116,18 @@ export default class HomeScreen extends PureComponent {
 							// 司机/客户
 							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '司机/客户', siJiVal, siJiTotal, this._showDriverScreen)
 						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '身份证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: ScannerScreen, action: 'idcard.scan'});})
+						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '驾驶证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: ScannerScreen, action: 'driver.scan'});})
+						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '行驶证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: ScannerScreen, action: 'driving.scan'});})
+						}
 					</View>
 					{
 						// 财务数据
@@ -163,12 +175,9 @@ export default class HomeScreen extends PureComponent {
 	}
 
 	showCarScreen() {
-		// const modelCode = 'car';
-		// global.nav.push({
-		// 	Component: CarScreen,modelCode
-		// });
+		const modelCode = 'car';
 		global.nav.push({
-			Component: IdcardResultScreen
+			Component: CarScreen,modelCode
 		});
 	}
 	
