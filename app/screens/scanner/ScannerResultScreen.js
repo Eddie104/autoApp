@@ -91,7 +91,8 @@ export default class ScannerResultScreen extends PureComponent {
 	onOK() {
 		utils.toast(JSON.stringify(this.state));
 		net.post(this.getAPI(), this.state, result => {
-			utils.toast(result);
+			utils.toast(result.status.toString());
+			// utils.toast(utils.obj2Str(result));
 		}, err => {
 			utils.toast(err);
 		});
