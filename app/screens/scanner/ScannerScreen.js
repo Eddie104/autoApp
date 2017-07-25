@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import Camera from 'react-native-camera';
-import TopBar from '../../components/TopBar';
+import Spinner from '../../components/Spinner';
 import * as utils from '../../utils';
 import * as config from '../../config'; 
 import IdcardResultScreen from './IdcardResultScreen';
@@ -31,25 +31,32 @@ export default class ScannerScreen extends PureComponent {
 	
 	constructor(props) {
 		super(props);
+		this.state = {
+			isShowingSpinner: false
+		};
 	}
 
 	render() {
+		const { isShowingSpinner } = this.state;
 		return (
 			<View style={styles.container}>
-				{
-					// <TopBar title={ this.getTitle() } showMoreBtn={false} />
-				}
-				<Camera
-					ref={(cam) => {
-						this._camera = cam;
-					}}
-					style={styles.preview}
-					aspect={Camera.constants.Aspect.fill}
-					captureQuality={Camera.constants.CaptureQuality['720p']}
-					captureTarget={Camera.constants.CaptureTarget.temp}
-				>
-					<Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
-				</Camera>
+			{
+				isShowingSpinner ? (
+					<Spinner />
+				) : (
+					<Camera
+						ref={(cam) => {
+							this._camera = cam;
+						}}
+						style={styles.preview}
+						aspect={Camera.constants.Aspect.fill}
+						captureQuality={Camera.constants.CaptureQuality['720p']}
+						captureTarget={Camera.constants.CaptureTarget.temp}
+					>
+						<Text style={styles.capture} onPress={this.takePicture.bind(this)}>[识别]</Text>
+					</Camera>
+				)
+			}
 			</View>
 		);
 	}
@@ -57,18 +64,26 @@ export default class ScannerScreen extends PureComponent {
 	takePicture() {
 		this._camera.capture()
 			.then((data) => {
-				const { action } = this.props;
-				OcrModule.tryToSend(config.YUN_MAI_ACCOUNT, config.YUN_MAI_PASSWORD, action, data.path, (result) => {
-					// const jsonData = JSON.parse(utils.isIOS() ? result.data : result.data);
-					const jsonData = JSON.parse(result.data);
-					if (jsonData.status === 'OK') {
-						if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item, imgPath: data.path});
-						else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data, imgPath: data.path});
-						else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data.item, imgPath: data.path});
-						// utils.toast(utils.isIOS() ? result : result.data);
-					} else {
-						// 识别失败
-					}
+				this.setState({
+					isShowingSpinner: true
+				}, () => {
+					const { action } = this.props;
+					OcrModule.tryToSend(config.YUN_MAI_ACCOUNT, config.YUN_MAI_PASSWORD, action, data.path, (result) => {
+						this.setState({
+							isShowingSpinner: false
+						});
+						// const jsonData = JSON.parse(utils.isIOS() ? result.data : result.data);
+						const jsonData = JSON.parse(result.data);
+						if (jsonData.status === 'OK') {
+							if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item, imgPath: data.path});
+							else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data, imgPath: data.path});
+							else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data.item, imgPath: data.path});
+							// utils.toast(utils.isIOS() ? result : result.data);
+						} else {
+							// 识别失败
+							utils.toast('识别失败');
+						}
+					});
 				});
 			}).catch(err => console.error(err));
 	}

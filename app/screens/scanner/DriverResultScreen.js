@@ -27,7 +27,8 @@ export default class DriverResultScreen extends ScannerResultScreen {
 			issueDate: '有效起始日期',
 			validPeriod: '有效期',
 			drivingType: '准驾车型'
-		}
+		},
+		imgPath: ''
 	};
 	
 	constructor(props) {

@@ -6,7 +6,8 @@ import {
 	View,
 	TouchableOpacity,
 	Text,
-	Image
+	Image,
+	ScrollView
 } from 'react-native';
 
 import RNFS from 'react-native-fs';
@@ -38,44 +39,51 @@ export default class ScannerResultScreen extends PureComponent {
 	}
 
 	componentDidMount() {
+		const { imgPath } = this.props;
 		// substring(7) -> to remove the file://
-		// RNFS.readFile(utils.isIOS() ? this.props.imgPath : this.props.imgPath.substring(7), "base64").then(imgBase64 => this.setState({
-		// 	imgBase64
-		// }));
+		RNFS.readFile(utils.isIOS() ? imgPath : imgPath.substring(7), "base64").then(imgBase64 => this.setState({
+			imgBase64
+		}));
 	}
 
 	render() {
 		const { imgBase64 } = this.state;
+		const { imgPath } = this.props;
 		return (
 			<View style={styles.container}>
 				<TopBar title={ this.getTitle() } showMoreBtn={false} />
-				{
-					this.renderKeyItemRow()
-				}
-				<Image style={{width: 200, height: 200}} source={{ uri: `data:image/jpeg;base64,${imgBase64}` }} />
-				{
-					// 通过和拒绝两个按钮
-				}
-				<View style={styles.btnContainer}>
-					<TouchableOpacity
-						activeOpacity={0.8}
-						onPress={this._onOK}
-						style={styles.btn}
-					>
-						<Text style={styles.btnText}>
-							确定
-						</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						activeOpacity={0.8}
-						onPress={this._onBack}
-						style={[styles.btn, {marginLeft: utils.toDips(82), backgroundColor: '#e54c65'}]}
-					>
-						<Text style={styles.btnText}>
-							重新识别
-						</Text>
-					</TouchableOpacity>
-				</View>
+				<ScrollView style={{flex: 1}}>
+					{
+						this.renderKeyItemRow()
+					}
+					<Text style={{}}>
+						{ imgPath }
+					</Text>
+					<Image style={{width: utils.toDips(720), height: utils.toDips(1280)}} source={{ uri: `data:image/jpeg;base64,${imgBase64}` }} />
+					{
+						// 通过和拒绝两个按钮
+					}
+					<View style={styles.btnContainer}>
+						<TouchableOpacity
+							activeOpacity={0.8}
+							onPress={this._onOK}
+							style={styles.btn}
+						>
+							<Text style={styles.btnText}>
+								确定
+							</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							activeOpacity={0.8}
+							onPress={this._onBack}
+							style={[styles.btn, {marginLeft: utils.toDips(82), backgroundColor: '#e54c65'}]}
+						>
+							<Text style={styles.btnText}>
+								重新识别
+							</Text>
+						</TouchableOpacity>
+					</View>
+				</ScrollView>
 			</View>
 		);
 	}
@@ -94,7 +102,7 @@ export default class ScannerResultScreen extends PureComponent {
 			// console.warn(result);
 			// utils.toast(result.status.toString());
 			utils.toast(utils.obj2Str(result));
-			console.warn(utils.obj2Str(result));
+			// console.warn(utils.obj2Str(result));
 		}, err => {
 			console.warn(err);
 		});

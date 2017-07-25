@@ -27,7 +27,8 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 			enginePN: '发动机号码',
 			registerDate: '注册日期',
 			issueDate: '发证日期'
-		}
+		},
+		imgPath: ''
 	};
 	
 	constructor(props) {
