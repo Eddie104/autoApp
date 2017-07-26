@@ -47,25 +47,25 @@ export default class HomeScreen extends PureComponent {
 	}
 	
 	componentDidMount() {
-       this.getUserInfor();
-    }
+		this.getUserInfor();
+	}
 	
 	getUserInfor(){
-	    UserDataDao.getUser().then((res)=> {
-	    	if(!res){
-	    		this.showLoginScreen();
-	    	}else{
-	    		this.getMainData(res.id)
-	    	}
-        }).catch((error)=> {
-        });
-    }
+		UserDataDao.getUser().then((res)=> {
+			if(!res){
+				this.showLoginScreen();
+			}else{
+				this.getMainData(res.id)
+			}
+		}).catch((error)=> {
+		});
+	}
 	
 	getMainData(userId){
-		HomeDataDao.getMainData(userId).then((res)=> {			
-	    	if(res){
-	    		var dataList = res.list;
-	    		this.setState({
+		HomeDataDao.getMainData(userId).then((res)=> {
+			if(res){
+				var dataList = res.list;
+				this.setState({
 					cheLiangVal:dataList[0].number1,
 					cheLiangTotal:dataList[0].number2,
 					heTongVal:dataList[1].number1,
@@ -73,9 +73,9 @@ export default class HomeScreen extends PureComponent {
 					siJiVal:dataList[2].number1,
 					siJiTotal:dataList[2].number2,
 				});
-	    	}
-       	}).catch((error)=> {       	
-        });
+			}
+		}).catch((error)=> {
+		});
 	}
 	
 	render() {
