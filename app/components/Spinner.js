@@ -4,7 +4,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import {
 	StyleSheet,
 	View,
-	ActivityIndicator
+	ActivityIndicator,
+	Text
 } from 'react-native';
 
 const ColorPropType = require('ColorPropType');
@@ -16,12 +17,14 @@ export default class Spinner extends PureComponent {
 		size: PropTypes.oneOfType([
 			PropTypes.oneOf([ 'small', 'large' ]),
 			PropTypes.number
-		])
+		]),
+		text: PropTypes.string
 	};
 
 	static defaultProps = {
 		color: '#97e7e8',
-		size: 'large'
+		size: 'large',
+		text: ''
 	};
 
 	constructor(props) {
@@ -29,7 +32,7 @@ export default class Spinner extends PureComponent {
 	}
 
 	render() {
-		let { color, size } = this.props;
+		let { color, size, text } = this.props;
 		return (
 			<View style={styles.container}>
 				<ActivityIndicator
@@ -37,6 +40,13 @@ export default class Spinner extends PureComponent {
 					color={color}
 					size={size}
 				/>
+				{
+					text ? (
+						<Text style={{backgroundColor: 'white', color: 'black'}}>
+							{ text }
+						</Text>
+					) : null
+				}
 			</View>
 		);
 	}

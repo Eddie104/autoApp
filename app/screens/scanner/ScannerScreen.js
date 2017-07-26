@@ -35,71 +35,82 @@ export default class ScannerScreen extends PureComponent {
 		this.state = {
 			isShowingSpinner: false
 		};
+
+		this._onTakePicture = this.takePicture.bind(this);
+		this._onBack = this.onBack.bind(this);
 	}
 
 	render() {
 		const { isShowingSpinner } = this.state;
 		return (
 			<View style={styles.container}>
-			{
-				isShowingSpinner ? (
-					<Spinner />
-				) : (
-					<Camera
-						ref={(cam) => {
-							this._camera = cam;
-						}}
-						style={styles.preview}
-						aspect={Camera.constants.Aspect.fill}
-						captureQuality={Camera.constants.CaptureQuality['720p']}
-						captureTarget={Camera.constants.CaptureTarget.temp}
-					>
-						<View style={{flexDirection: 'row', width: utils.screenWidth(), justifyContent: 'space-around'}}>
-							<TouchableOpacity
-								activeOpacity={0.8}
-								onPress={this.takePicture.bind(this)}
-								style={styles.captureContainer}
-							>
-								<Text style={styles.capture}>[识别]</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								activeOpacity={0.8}
-								onPress={() => {global.nav.pop();}}
-								style={styles.captureContainer}
-							>
-								<Text style={styles.capture}>[返回]</Text>
-							</TouchableOpacity>
-						</View>
-					</Camera>
-				)
-			}
+				<Camera
+					ref={(cam) => {
+						this._camera = cam;
+					}}
+					style={styles.preview}
+					aspect={Camera.constants.Aspect.fill}
+					captureQuality={Camera.constants.CaptureQuality['720p']}
+					captureTarget={Camera.constants.CaptureTarget.temp}
+				>
+					<View style={{flexDirection: 'row', width: utils.screenWidth(), justifyContent: 'space-around'}}>
+						<TouchableOpacity
+							activeOpacity={0.8}
+							onPress={this._onTakePicture}
+							style={styles.captureContainer}
+						>
+							<Text style={styles.capture}>[识别]</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							activeOpacity={0.8}
+							onPress={this._onBack}
+							style={styles.captureContainer}
+						>
+							<Text style={styles.capture}>[返回]</Text>
+						</TouchableOpacity>
+					</View>
+					{
+						isShowingSpinner && <Spinner text={'识别中...'} />
+					}
+				</Camera>
 			</View>
 		);
 	}
 
 	takePicture() {
-		this._camera.capture()
-			.then((data) => {
-				this.setState({
-					isShowingSpinner: true
-				}, () => {
-					const { action } = this.props;
-					OcrModule.tryToSend(config.YUN_MAI_ACCOUNT, config.YUN_MAI_PASSWORD, action, data.path, (result) => {
-						this.setState({
-							isShowingSpinner: false
+		const { isShowingSpinner } = this.state;
+		if (!isShowingSpinner) {
+			this._camera.capture()
+				.then((data) => {
+					this.setState({
+						isShowingSpinner: true
+					}, () => {
+						const { action } = this.props;
+						OcrModule.tryToSend(config.YUN_MAI_ACCOUNT, config.YUN_MAI_PASSWORD, action, data.path, (result) => {
+							this.setState({
+								isShowingSpinner: false
+							}, () => {
+								const jsonData = JSON.parse(result.data);
+								if (jsonData.status === 'OK') {
+									if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item, imgPath: data.path});
+									else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data, imgPath: data.path});
+									else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data.item, imgPath: data.path});
+								} else {
+									// 识别失败
+									utils.toast('识别失败，请重新识别');
+								}
+							});
 						});
-						const jsonData = JSON.parse(result.data);
-						if (jsonData.status === 'OK') {
-							if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item, imgPath: data.path});
-							else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data, imgPath: data.path});
-							else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data.item, imgPath: data.path});
-						} else {
-							// 识别失败
-							utils.toast('识别失败，请重新识别');
-						}
 					});
-				});
-			}).catch(err => console.error(err));
+				}).catch(err => console.error(err));
+		}
+	}
+
+	onBack() {
+		const { isShowingSpinner } = this.state;
+		if (!isShowingSpinner) {
+			global.nav.pop();
+		}
 	}
 
 	getTitle() {
