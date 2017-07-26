@@ -12,6 +12,7 @@ import {
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
 import SettingItem from './SettingItem';
+import AboutPage from './AboutPage';
 import LoginScreen from '../login/LoginScreen';
 import UserDataDao from '../../dao/UserDataDao'
 
@@ -20,6 +21,7 @@ export default class SettingScreen extends PureComponent {
 	constructor(props) {
 		super(props);
 		this._onLogout = this.onLogout.bind(this);
+		this._aboutMe = this.aboutMe.bind(this);
 		this.state = {
 	        user:null,
 	        realName:'',
@@ -88,7 +90,7 @@ export default class SettingScreen extends PureComponent {
 					iconSize={utils.toDips(48)}
 					iconColor={'#21c0c7'}
 					itemName={'关于盔甲'}
-					onPress={() => {}}
+					onPress={this._aboutMe}
 				/>
 				{
 					// 退出按钮
@@ -109,6 +111,12 @@ export default class SettingScreen extends PureComponent {
 	onLogout() {
 		global.nav.resetTo({
 			Component: LoginScreen
+		});
+	}
+	
+	aboutMe() {		
+		global.nav.push({
+			Component: AboutPage
 		});
 	}
 

@@ -37,7 +37,7 @@ export default class LoginScreen extends PureComponent {
 	render() {
 		return (
 			<View style={styles.container}>
-				<TopBar title={'登录'}  showBackBtn={false} />
+				<TopBar title={'登录'}  showBackBtn={false} showMoreBtn={false} />
 				{
 					// 账号输入框
 					this.renderInputContainer(true)
