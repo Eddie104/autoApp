@@ -21,6 +21,7 @@ import CarScreen from '../car/CarScreen';
 import HomeDataDao from '../../dao/HomeDataDao';
 import UserDataDao from '../../dao/UserDataDao';
 
+import ScannerScreen from '../scanner/ScannerScreen';
 
 /**
  * 首页面板
@@ -46,25 +47,25 @@ export default class HomeScreen extends PureComponent {
 	}
 	
 	componentDidMount() {
-       this.getUserInfor();
-    }
+		this.getUserInfor();
+	}
 	
 	getUserInfor(){
-	    UserDataDao.getUser().then((res)=> {
-	    	if(!res){
-	    		this.showLoginScreen();
-	    	}else{
-	    		this.getMainData(res.id)
-	    	}
-        }).catch((error)=> {
-        });
-    }
+		UserDataDao.getUser().then((res)=> {
+			if(!res){
+				this.showLoginScreen();
+			}else{
+				this.getMainData(res.id)
+			}
+		}).catch((error)=> {
+		});
+	}
 	
 	getMainData(userId){
-		HomeDataDao.getMainData(userId).then((res)=> {			
-	    	if(res){
-	    		var dataList = res.list;
-	    		this.setState({
+		HomeDataDao.getMainData(userId).then((res)=> {
+			if(res){
+				var dataList = res.list;
+				this.setState({
 					cheLiangVal:dataList[0].number1,
 					cheLiangTotal:dataList[0].number2,
 					heTongVal:dataList[1].number1,
@@ -72,16 +73,16 @@ export default class HomeScreen extends PureComponent {
 					siJiVal:dataList[2].number1,
 					siJiTotal:dataList[2].number2,
 				});
-	    	}
-       	}).catch((error)=> {       	
-        });
+			}
+		}).catch((error)=> {
+		});
 	}
 	
 	render() {
 		const { cheLiangVal, cheLiangTotal, heTongVal, heTongTotal, siJiVal, siJiTotal } = this.state;
 		return (
 			<View style={styles.container}>
-				<TopBar title={'智慧车队'} showBackBtn={false} showMoreBtn={false} moreFunc={this._showLoginScreen} />
+				<TopBar title={'智慧车队'} showBackBtn={false} showMoreBtn={true} moreFunc={this._showLoginScreen} />
 				<ScrollView
 					style={styles.container}
 				>
@@ -114,6 +115,18 @@ export default class HomeScreen extends PureComponent {
 						{
 							// 司机/客户
 							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '司机/客户', siJiVal, siJiTotal, this._showDriverScreen)
+						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '身份证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: ScannerScreen, action: 'idcard.scan'});})
+						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '驾驶证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: ScannerScreen, action: 'driver.scan'});})
+						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '行驶证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: ScannerScreen, action: 'driving.scan'});})
 						}
 					</View>
 					{
