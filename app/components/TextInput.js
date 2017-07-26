@@ -20,7 +20,8 @@ export default class JTextInput extends PureComponent {
 		placeholder: PropTypes.string,
 		placeholderTextColor: ColorPropType,
 		// enum('done', 'go', 'next', 'search', 'send', 'none', 'previous', 'default', 'emergency-call', 'google', 'join', 'route', 'yahoo') 
-		returnKeyType: PropTypes.string
+		returnKeyType: PropTypes.string,
+		onTextChanged: PropTypes.func
 	};
 
 	static defaultProps = {
@@ -30,7 +31,8 @@ export default class JTextInput extends PureComponent {
 		multiline: false,
 		placeholder: '请输入',
 		placeholderTextColor: '#364153',
-		returnKeyType: 'done'
+		returnKeyType: 'done',
+		onTextChanged: null
 	};
 	
 	constructor(props) {
@@ -67,6 +69,9 @@ export default class JTextInput extends PureComponent {
 	onTextChanged(text) {
 		this.setState({
 			text
+		}, () => {
+			const { onTextChanged } = this.props;
+			onTextChanged && onTextChanged(text);
 		});
 	}
 

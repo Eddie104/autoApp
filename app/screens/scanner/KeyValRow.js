@@ -17,25 +17,40 @@ export default class KeyValRow extends PureComponent {
 		itemVal: PropTypes.string,
 		// enum('text', 'input')
 		type: PropTypes.string,
-		hasLine: PropTypes.bool
+		hasLine: PropTypes.bool,
+     	numberOfLines: PropTypes.number,
+     	onTextChanged: PropTypes.func
 	};
 
 	static defaultProps = {
 		itemKey: '键',
 		itemVal: '值',
 		type: 'text',
-		hasLine: true
+		hasLine: true,
+		numberOfLines: 1,
+		onTextChanged: null
 	};
 	
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			itemVal: props.itemVal
+		};
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextProps.itemVal !== this.state.itemVal;
 	}
 
 	render() {
-		const { itemKey, hasLine } = this.props;
+		const { itemKey, hasLine, numberOfLines } = this.props;
 		return (
 			<View>
-				<View style={styles.keyValItemContainer}>
+				{
+					// 一行的时候，高度是93，没多一行，高度增加20，因为字体大小是20px
+				}
+				<View style={[styles.keyValItemContainer, {height: utils.toDips(93 + 20 * (numberOfLines - 1))}]}>
 					<Text style={styles.itemKey}>
 						{ itemKey }
 					</Text>
@@ -55,19 +70,24 @@ export default class KeyValRow extends PureComponent {
 	}
 
 	renderKey() {
-		const { itemVal, type } = this.props;
+		const { type, numberOfLines, onTextChanged } = this.props;
+		const { itemVal } = this.state;
 		if (type === 'text') {
 			return (
-				<Text style={styles.itemVal}>
+				<Text style={styles.itemVal} numberOfLines={numberOfLines}>
 					{ itemVal }
 				</Text>
 			);
 		}
 		if (type === 'input') {
+			// 输入框的高度，当只有一行时，就不用设置高度，当大于一行时，高度设为36乘以行数
 			return (
 				<TextInput
-					style={[styles.itemVal, {width: utils.screenWidth() / 2, textAlign: 'right'}]}
+					style={[styles.itemVal, {width: utils.screenWidth() / 2, textAlign: 'right'}, numberOfLines > 1 ? {height: utils.toDips(36 * numberOfLines)} : null]}
+					multiline={numberOfLines > 1}
+					numberOfLines={numberOfLines}
 					text={itemVal}
+					onTextChanged={onTextChanged}
 				/>
 			);
 		}

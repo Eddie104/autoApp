@@ -4,7 +4,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import {
 	StyleSheet,
 	View,
-	Text
+	Text,
+	TouchableOpacity
 } from 'react-native';
 
 import Camera from 'react-native-camera';
@@ -53,7 +54,22 @@ export default class ScannerScreen extends PureComponent {
 						captureQuality={Camera.constants.CaptureQuality['720p']}
 						captureTarget={Camera.constants.CaptureTarget.temp}
 					>
-						<Text style={styles.capture} onPress={this.takePicture.bind(this)}>[识别]</Text>
+						<View style={{flexDirection: 'row', width: utils.screenWidth(), justifyContent: 'space-around'}}>
+							<TouchableOpacity
+								activeOpacity={0.8}
+								onPress={this.takePicture.bind(this)}
+								style={styles.captureContainer}
+							>
+								<Text style={styles.capture}>[识别]</Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								activeOpacity={0.8}
+								onPress={() => {global.nav.pop();}}
+								style={styles.captureContainer}
+							>
+								<Text style={styles.capture}>[返回]</Text>
+							</TouchableOpacity>
+						</View>
 					</Camera>
 				)
 			}
@@ -72,16 +88,14 @@ export default class ScannerScreen extends PureComponent {
 						this.setState({
 							isShowingSpinner: false
 						});
-						// const jsonData = JSON.parse(utils.isIOS() ? result.data : result.data);
 						const jsonData = JSON.parse(result.data);
 						if (jsonData.status === 'OK') {
 							if (action === 'idcard.scan') global.nav.push({Component: IdcardResultScreen, data: jsonData.data.item, imgPath: data.path});
 							else if (action === 'driver.scan') global.nav.push({Component: DriverResultScreen, data: jsonData.data, imgPath: data.path});
 							else if (action === 'driving.scan') global.nav.push({Component: DrivingResultScreen, data: jsonData.data.item, imgPath: data.path});
-							// utils.toast(utils.isIOS() ? result : result.data);
 						} else {
 							// 识别失败
-							utils.toast('识别失败');
+							utils.toast('识别失败，请重新识别');
 						}
 					});
 				});
@@ -107,12 +121,18 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		alignItems: 'center'
 	},
+	captureContainer: {
+		width: utils.toDips(325),
+		height: utils.toDips(90),
+		backgroundColor: '#3e8ed7',
+		borderRadius: utils.toDips(10),
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginBottom: utils.toDips(50)
+	},
 	capture: {
-		flex: 0,
-		backgroundColor: '#fff',
-		borderRadius: 5,
-		color: '#000',
-		padding: 10,
-		margin: 40
+		color: 'white',
+		fontSize: utils.getFontSize(28),
+		backgroundColor: 'transparent'
 	}
 });

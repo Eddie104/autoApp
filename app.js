@@ -18,6 +18,7 @@
 	//#import "RCTConvert+CoreLocation.h"
 	#import <React/RCTConvert+CoreLocation.h>
 	*/
+
 import React, { Component } from 'react';
 import {
 	StyleSheet,

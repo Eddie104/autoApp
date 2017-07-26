@@ -48,7 +48,6 @@ export default class ScannerResultScreen extends PureComponent {
 
 	render() {
 		const { imgBase64 } = this.state;
-		const { imgPath } = this.props;
 		return (
 			<View style={styles.container}>
 				<TopBar title={ this.getTitle() } showMoreBtn={false} />
@@ -56,10 +55,7 @@ export default class ScannerResultScreen extends PureComponent {
 					{
 						this.renderKeyItemRow()
 					}
-					<Text style={{}}>
-						{ imgPath }
-					</Text>
-					<Image style={{width: utils.toDips(720), height: utils.toDips(1280)}} source={{ uri: `data:image/jpeg;base64,${imgBase64}` }} />
+					<Image style={{width: utils.toDips(750), height: utils.toDips(1280 * 750 / 720)}} source={{ uri: `data:image/jpeg;base64,${imgBase64}` }} />
 					{
 						// 通过和拒绝两个按钮
 					}
@@ -97,15 +93,19 @@ export default class ScannerResultScreen extends PureComponent {
 	}
 
 	onOK() {
-		utils.toast(JSON.stringify(this.state));
-		net.post(this.getAPI(), this.state, result => {
-			// console.warn(result);
-			// utils.toast(result.status.toString());
-			utils.toast(utils.obj2Str(result));
-			// console.warn(utils.obj2Str(result));
-		}, err => {
-			console.warn(err);
-		});
+		if (this.checkLegal()) {
+			net.post(this.getAPI(), this.state, result => {
+				// console.warn(result);
+				// 往前两步走
+				global.nav._pop(2);
+			}, err => {
+				console.warn(err);
+			});
+		}
+	}
+
+	checkLegal() {
+		return false;
 	}
 
 	onBack() {
