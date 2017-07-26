@@ -19,7 +19,8 @@ import LoginScreen from '../login/LoginScreen';
 import CarScreen from '../car/CarScreen';
 
 import HomeDataDao from '../../dao/HomeDataDao';
-import UserDataDao from '../../dao/UserDataDao'
+import UserDataDao from '../../dao/UserDataDao';
+
 
 /**
  * 首页面板
