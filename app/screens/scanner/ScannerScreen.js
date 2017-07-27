@@ -69,10 +69,10 @@ export default class ScannerScreen extends PureComponent {
 							<Text style={styles.capture}>[返回]</Text>
 						</TouchableOpacity>
 					</View>
-					{
-						isShowingSpinner && <Spinner backgroundColor={'rgba(0, 0, 0, 0.5)'} textBackgroundColor={'rgba(0, 0, 0, .7)'} text={'识别中...'} />
-					}
 				</Camera>
+				{
+					isShowingSpinner && <Spinner backgroundColor={'rgba(0, 0, 0, 0.5)'} textBackgroundColor={'rgba(0, 0, 0, .7)'} text={'识别中...'} />
+				}
 			</View>
 		);
 	}
