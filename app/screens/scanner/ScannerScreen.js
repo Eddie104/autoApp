@@ -33,7 +33,7 @@ export default class ScannerScreen extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isShowingSpinner: false
+			isShowingSpinner: true
 		};
 
 		this._onTakePicture = this.takePicture.bind(this);
@@ -70,7 +70,7 @@ export default class ScannerScreen extends PureComponent {
 						</TouchableOpacity>
 					</View>
 					{
-						isShowingSpinner && <Spinner text={'识别中...'} />
+						isShowingSpinner && <Spinner backgroundColor={'rgba(0, 0, 0, 0.5)'} textBackgroundColor={'rgba(0, 0, 0, .7)'} text={'识别中...'} />
 					}
 				</Camera>
 			</View>
