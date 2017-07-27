@@ -33,7 +33,7 @@ export default class ScannerScreen extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isShowingSpinner: true
+			isShowingSpinner: false
 		};
 
 		this._onTakePicture = this.takePicture.bind(this);
