@@ -19,8 +19,8 @@ export default class IdcardResultScreen extends ScannerResultScreen {
 	static defaultProps = {
 		data: {
 			name: '名字',
-			cardno: '身份证号',
-			sex: '性别',
+			cardno: '362301198610041014',
+			sex: '男',
 			folk: '民族',
 			birthday: '生日',
 			address: '地址地址地址地址地址地址地址地址地址地址'
