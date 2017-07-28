@@ -34,6 +34,22 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 	constructor(props) {
 		super(props);
 
+		const { name, cardno, vehicleType, address, useCharacte, model, vin, enginePN, registerDate, issueDate } = props.data;
+		this.state = {
+			imgBase64: '',
+			name,
+			cardno,
+			vehicleType,
+			address,
+			useCharacte,
+			model,
+			vin,
+			enginePN,
+			registerDate,
+			issueDate,
+			isShowingSpinner: false
+		};
+
 		this._onNameChanged = this.onNameChanged.bind(this);
 		this._onCardnoChanged = this.onCardnoChanged.bind(this);
 		this._onVehicleTypeChanged = this.onVehicleTypeChanged.bind(this);
@@ -51,7 +67,7 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 	}
 
 	renderKeyItemRow() {
-		const { cardno, vehicleType, name, address, useCharacte, model, vin, enginePN, registerDate, issueDate } = this.props.data;
+		const { cardno, vehicleType, name, address, useCharacte, model, vin, enginePN, registerDate, issueDate } = this.state;
 		return (
 			<View style={styles.container}>
 				<KeyValRow itemKey={'号牌号码:'} itemVal={cardno} type={'input'} onTextChanged={this._onCardnoChanged} />
