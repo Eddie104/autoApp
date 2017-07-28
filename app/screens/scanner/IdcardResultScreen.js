@@ -149,7 +149,7 @@ export default class IdcardResultScreen extends ScannerResultScreen {
 	}
 
 	checkLegal() {
-		const { name, cardno, sex } = this.state;
+		const { name, cardno, sex, valid_period } = this.state;
 		if (typeof(name) === 'string' && (name.length === 0 || name.length > 5)) {
 			utils.toast('请输入正确的姓名！');
 			return false;
@@ -160,6 +160,10 @@ export default class IdcardResultScreen extends ScannerResultScreen {
 		}
 		if (sex !== '男' && sex !== '女') {
 			utils.toast('请输入正确的性别！');
+			return false;
+		}
+		if (!(RegExp(/\d{4}\.\d{2}\.\d{2}\-\d{4}\.\d{2}\.\d{2}/).test(valid_period))) {
+			utils.toast('请输入正确的有效期，有效期格式为YYYY:mm:dd-YYYY:mm:dd！');
 			return false;
 		}
 		return true;
