@@ -130,7 +130,7 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 
 	checkLegal() {
 		const { name, cardno, vin, enginePN, registerDate } = this.state;
-		if (name.length === 0 || name.length > 5) {
+		if (typeof(name) === 'string' && (name.length === 0 || name.length > 5)) {
 			utils.toast('请输入正确的姓名！');
 			return false;
 		}

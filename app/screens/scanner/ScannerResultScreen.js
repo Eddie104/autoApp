@@ -97,7 +97,7 @@ export default class ScannerResultScreen extends PureComponent {
 			net.post(this.getAPI(), this.state, result => {
 				// console.warn(result);
 				// 往前两步走
-				global.nav._pop(2);
+				global.nav.popN(2);
 			}, err => {
 				console.warn(err);
 			});
