@@ -145,7 +145,7 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 	}
 
 	checkLegal() {
-		const { name, cardno, vin, enginePN, registerDate } = this.state;
+		const { name, cardno, vin, enginePN, registerDate, issueDate } = this.state;
 		if (typeof(name) === 'string' && (name.length === 0 || name.length > 5)) {
 			utils.toast('请输入正确的姓名！');
 			return false;
@@ -162,8 +162,12 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 			utils.toast('请输入正确的发动机号码！');
 			return false;
 		}
-		if (registerDate.length === 0) {
+		if (registerDate.length === 0 || !utils.checkDate(registerDate.substr(0, 4), registerDate.substr(4, 2), registerDate.substr(6, 2))) {
 			utils.toast('请输入正确的注册日期！');
+			return false;
+		}
+		if (issueDate.length === 0 || !utils.checkDate(issueDate.substr(0, 4), issueDate.substr(4, 2), issueDate.substr(6, 2))) {
+			utils.toast('请输入正确的发证日期！');
 			return false;
 		}
 		return true;

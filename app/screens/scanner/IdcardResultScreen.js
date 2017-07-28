@@ -166,6 +166,18 @@ export default class IdcardResultScreen extends ScannerResultScreen {
 			utils.toast('请输入正确的有效期，有效期格式为YYYY:mm:dd-YYYY:mm:dd！');
 			return false;
 		}
+		let tmp = valid_period.split('-')
+		let tmp1 = tmp[0].split('.');
+		if (!utils.checkDate(tmp1[0], tmp1[1], tmp1[2])) {
+			utils.toast('请输入正确的有效期起始时间！');
+			return false;
+		}
+		tmp1 = tmp[1].split('.');
+		if (!utils.checkDate(tmp1[0], tmp1[1], tmp1[2])) {
+			utils.toast('请输入正确的有效期结束时间！');
+			return false;
+		}
+
 		return true;
 	}
 

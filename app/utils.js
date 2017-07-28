@@ -133,6 +133,19 @@ export function isCardno(cardno) {
 	return RegExp(/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/).test(cardno);
 }
 
+/**
+ * 检查日期的合法性
+ */
+export function checkDate(year, month, date) {
+	year = parseInt(year);
+	month = parseInt(month);
+	date = parseInt(date);
+	if (year < 1970) {
+		return false;
+	}
+	return true;
+}
+
 const timeStrings = {
 	seconds: "1分钟前",
 	minute: "1分钟前",
