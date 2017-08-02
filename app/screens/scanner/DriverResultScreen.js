@@ -182,7 +182,7 @@ export default class DriverResultScreen extends ScannerResultScreen {
 			utils.toast('请输入正确的有效期！');
 			return false;
 		}
-		let tmp = validPeriod.split('-');
+		tmp = validPeriod.split('-');
 		if (!utils.checkDate(tmp[0], tmp[1], tmp[2])) {
 			utils.toast('请输入正确的有效期！');
 			return false;
