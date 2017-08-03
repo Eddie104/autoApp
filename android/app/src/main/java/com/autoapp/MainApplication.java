@@ -16,6 +16,7 @@ import com.rnfs.RNFSPackage;
 import org.hongjie.MyPackage;
 import org.lovebing.reactnative.baidumap.BaiduMapPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import org.pgsqlite.SQLitePluginPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
           new BaiduMapPackage(getApplicationContext()),
           new RCTCameraPackage(),
           new RNFSPackage(),
+          new SQLitePluginPackage(),
           new MyPackage()
       );
     }

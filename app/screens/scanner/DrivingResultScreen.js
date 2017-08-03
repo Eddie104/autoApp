@@ -34,6 +34,22 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 	constructor(props) {
 		super(props);
 
+		const { name, cardno, vehicleType, address, useCharacte, model, vin, enginePN, registerDate, issueDate } = props.data;
+		this.state = {
+			imgBase64: '',
+			name,
+			cardno,
+			vehicleType,
+			address,
+			useCharacte,
+			model,
+			vin,
+			enginePN,
+			registerDate,
+			issueDate,
+			isShowingSpinner: false
+		};
+
 		this._onNameChanged = this.onNameChanged.bind(this);
 		this._onCardnoChanged = this.onCardnoChanged.bind(this);
 		this._onVehicleTypeChanged = this.onVehicleTypeChanged.bind(this);
@@ -51,7 +67,7 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 	}
 
 	renderKeyItemRow() {
-		const { cardno, vehicleType, name, address, useCharacte, model, vin, enginePN, registerDate, issueDate } = this.props.data;
+		const { cardno, vehicleType, name, address, useCharacte, model, vin, enginePN, registerDate, issueDate } = this.state;
 		return (
 			<View style={styles.container}>
 				<KeyValRow itemKey={'号牌号码:'} itemVal={cardno} type={'input'} onTextChanged={this._onCardnoChanged} />
@@ -129,8 +145,8 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 	}
 
 	checkLegal() {
-		const { name, cardno, vin, enginePN, registerDate } = this.state;
-		if (name.length === 0 || name.length > 5) {
+		const { name, cardno, vin, enginePN, registerDate, issueDate } = this.state;
+		if (typeof(name) === 'string' && (name.length === 0 || name.length > 5)) {
 			utils.toast('请输入正确的姓名！');
 			return false;
 		}
@@ -146,8 +162,12 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 			utils.toast('请输入正确的发动机号码！');
 			return false;
 		}
-		if (registerDate.length === 0) {
+		if (registerDate.length === 0 || !utils.checkDate(registerDate.substr(0, 4), registerDate.substr(4, 2), registerDate.substr(6, 2))) {
 			utils.toast('请输入正确的注册日期！');
+			return false;
+		}
+		if (issueDate.length === 0 || !utils.checkDate(issueDate.substr(0, 4), issueDate.substr(4, 2), issueDate.substr(6, 2))) {
+			utils.toast('请输入正确的发证日期！');
 			return false;
 		}
 		return true;

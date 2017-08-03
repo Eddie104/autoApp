@@ -34,6 +34,22 @@ export default class DriverResultScreen extends ScannerResultScreen {
 	constructor(props) {
 		super(props);
 
+		const { name, cardno, sex, address, nation, birthday, validPeriod, drivingType, registerDate, issueDate } = props.data;
+		this.state = {
+			imgBase64: '',
+			name,
+			cardno,
+			sex,
+			address,
+			nation,
+			birthday,
+			validPeriod,
+			drivingType,
+			registerDate,
+			issueDate,
+			isShowingSpinner: false
+		};
+
 		this._onNameChanged = this.onNameChanged.bind(this);
 		this._onCardnoChanged = this.onCardnoChanged.bind(this);
 		this._onSexChanged = this.onSexChanged.bind(this);
@@ -51,7 +67,7 @@ export default class DriverResultScreen extends ScannerResultScreen {
 	}
 
 	renderKeyItemRow() {
-		const { name, cardno, sex, nation, address, birthday, registerDate, issueDate, validPeriod, drivingType } = this.props.data;
+		const { name, cardno, sex, nation, address, birthday, registerDate, issueDate, validPeriod, drivingType } = this.state;
 		return (
 			<View style={styles.container}>
 				<KeyValRow itemKey={'名字:'} itemVal={name} type={'input'} onTextChanged={this._onNationChanged} />
@@ -130,7 +146,7 @@ export default class DriverResultScreen extends ScannerResultScreen {
 
 	checkLegal() {
 		const { name, cardno, drivingType, issueDate, validPeriod } = this.state;
-		if (name.length === 0 || name.length > 5) {
+		if (typeof(name) === 'string' && (name.length === 0 || name.length > 5)) {
 			utils.toast('请输入正确的姓名！');
 			return false;
 		}
@@ -156,8 +172,18 @@ export default class DriverResultScreen extends ScannerResultScreen {
 			utils.toast('请输入正确的有效起始日期！');
 			return false;
 		}
+		let tmp = issueDate.split('-');
+		if (!utils.checkDate(tmp[0], tmp[1], tmp[2])) {
+			utils.toast('请输入正确的有效起始日期！');
+			return false;
+		}
 
 		if (validPeriod === '') {
+			utils.toast('请输入正确的有效期！');
+			return false;
+		}
+		tmp = validPeriod.split('-');
+		if (!utils.checkDate(tmp[0], tmp[1], tmp[2])) {
 			utils.toast('请输入正确的有效期！');
 			return false;
 		}

@@ -12,6 +12,7 @@ import {
 
 import RNFS from 'react-native-fs';
 import TopBar from '../../components/TopBar';
+import Spinner from '../../components/Spinner';
 import * as utils from '../../utils';
 import * as api from '../../api';
 import * as net from '../../net';
@@ -29,11 +30,6 @@ export default class ScannerResultScreen extends PureComponent {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			imgBase64: 'iVBORw0KGgoAAAANSUhEUgAAAEsAAABLCAQAAACSR7JhAAADtUlEQVR4Ac3YA2Bj6QLH0XPT1Fzbtm29tW3btm3bfLZtv7e2ObZnms7d8Uw098tuetPzrxv8wiISrtVudrG2JXQZ4VOv+qUfmqCGGl1mqLhoA52oZlb0mrjsnhKpgeUNEs91Z0pd1kvihA3ULGVHiQO2narKSHKkEMulm9VgUyE60s1aWoMQUbpZOWE+kaqs4eLEjdIlZTcFZB0ndc1+lhB1lZrIuk5P2aib1NBpZaL+JaOGIt0ls47SKzLC7CqrlGF6RZ09HGoNy1lYl2aRSWL5GuzqWU1KafRdoRp0iOQEiDzgZPnG6DbldcomadViflnl/cL93tOoVbsOLVM2jylvdWjXolWX1hmfZbGR/wjypDjFLSZIRov09BgYmtUqPQPlQrPapecLgTIy0jMgPKtTeob2zWtrGH3xvjUkPCtNg/tm1rjwrMa+mdUkPd3hWbH0jArPGiU9ufCsNNWFZ40wpwn+62/66R2RUtoso1OB34tnLOcy7YB1fUdc9e0q3yru8PGM773vXsuZ5YIZX+5xmHwHGVvlrGPN6ZSiP1smOsMMde40wKv2VmwPPVXNut4sVpUreZiLBHi0qln/VQeI/LTMYXpsJtFiclUN+5HVZazim+Ky+7sAvxWnvjXrJFneVtLWLyPJu9K3cXLWeOlbMTlrIelbMDlrLenrjEQOtIF+fuI9xRp9ZBFp6+b6WT8RrxEpdK64BuvHgDk+vUy+b5hYk6zfyfs051gRoNO1usU12WWRWL73/MMEy9pMi9qIrR4ZpV16Rrvduxazmy1FSvuFXRkqTnE7m2kdb5U8xGjLw/spRr1uTov4uOgQE+0N/DvFrG/Jt7i/FzwxbA9kDanhf2w+t4V97G8lrT7wc08aA2QNUkuTfW/KimT01wdlfK4yEw030VfT0RtZbzjeMprNq8m8tnSTASrTLti64oBNdpmMQm0eEwvfPwRbUBywG5TzjPCsdwk3IeAXjQblLCoXnDVeoAz6SfJNk5TTzytCNZk/POtTSV40NwOFWzw86wNJRpubpXsn60NJFlHeqlYRbslqZm2jnEZ3qcSKgm0kTli3zZVS7y/iivZTweYXJ26Y+RTbV1zh3hYkgyFGSTKPfRVbRqWWVReaxYeSLarYv1Qqsmh1s95S7G+eEWK0f3jYKTbV6bOwepjfhtafsvUsqrQvrGC8YhmnO9cSCk3yuY984F1vesdHYhWJ5FvASlacshUsajFt2mUM9pqzvKGcyNJW0arTKN1GGGzQlH0tXwLDgQTurS8eIQAAAABJRU5ErkJggg==',
-			...props.data
-		};
-
 		this._onOK = this.onOK.bind(this);
 		this._onBack = this.onBack.bind(this);
 	}
@@ -47,7 +43,7 @@ export default class ScannerResultScreen extends PureComponent {
 	}
 
 	render() {
-		const { imgBase64 } = this.state;
+		const { imgBase64, isShowingSpinner } = this.state;
 		return (
 			<View style={styles.container}>
 				<TopBar title={ this.getTitle() } showMoreBtn={false} />
@@ -56,6 +52,9 @@ export default class ScannerResultScreen extends PureComponent {
 						this.renderKeyItemRow()
 					}
 					<Image style={{width: utils.toDips(750), height: utils.toDips(1280 * 750 / 720)}} source={{ uri: `data:image/jpeg;base64,${imgBase64}` }} />
+					{
+						this.renderBackImg()
+					}
 					{
 						// 通过和拒绝两个按钮
 					}
@@ -80,6 +79,9 @@ export default class ScannerResultScreen extends PureComponent {
 						</TouchableOpacity>
 					</View>
 				</ScrollView>
+				{
+					isShowingSpinner && <Spinner backgroundColor={'rgba(0, 0, 0, 0.5)'} textBackgroundColor={'rgba(0, 0, 0, .7)'} text={'保存中...'} />
+				}
 			</View>
 		);
 	}
@@ -92,14 +94,28 @@ export default class ScannerResultScreen extends PureComponent {
 		return null;
 	}
 
+	renderBackImg() {
+		return null;
+	}
+
 	onOK() {
 		if (this.checkLegal()) {
-			net.post(this.getAPI(), this.state, result => {
-				// console.warn(result);
-				// 往前两步走
-				global.nav._pop(2);
-			}, err => {
-				console.warn(err);
+			this.setState({
+				isShowingSpinner: true
+			}, () => {
+				const tmp = { ...this.state };
+				delete tmp.isShowingSpinner;
+				net.post(this.getAPI(), tmp, result => {
+					this.setState({
+						isShowingSpinner: false
+					}, () => {
+						// console.warn(result);
+						// 往前两步走
+						global.nav.popN(2);
+					});
+				}, err => {
+					console.warn(err);
+				});
 			});
 		}
 	}
