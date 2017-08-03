@@ -9,6 +9,7 @@ import {
 
 import * as sqlite from '../../sqlite';
 import * as utils from '../../utils';
+import TopBar from '../../components/TopBar';
 
 /**
  * 门店搜索场景
@@ -22,6 +23,7 @@ export default class StoreSearchScreen extends PureComponent {
 	render() {
 		return (
 			<View style={styles.container}>
+				<TopBar title={'门店列表'} showMoreBtn={false} />
 				<Text style={{marginTop: utils.toDips(100)}} onPress={() => {sqlite.createTable();}}>
 					创建数据库
 				</Text>

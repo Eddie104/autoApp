@@ -10,10 +10,45 @@ const DB_VERSION = '1.0';
 const DB_DISPLAY_NAME = 'AutoSqlite';
 const DB_SIZE = 200000;
 
-// 记录上一次更新数据的时间的表
-const UPDATE_TABLE = 'updateTime';
+// 门店数据表名
+const STORE_TABLE = 'storeTable';
 
 let db = null;
+
+export function createTestData() {
+	return [
+		{
+			name: '丰田改美瑞',
+			owner: '于国富',
+			address: '北京朝阳区东大桥大街8号尚都国际中心'
+		},
+		{
+			name: '花园桥雷克萨斯4S店',
+			owner: '于国富',
+			address: '北京朝阳区东大桥大街8号尚都国际中心'
+		},
+		{
+			name: '神龙京津4S店',
+			owner: '于国富',
+			address: '北京朝阳区东大桥大街8号尚都国际中心'
+		},
+		{
+			name: '寰宇恒通奥迪4S店',
+			owner: '于国富',
+			address: '北京朝阳区东大桥大街8号尚都国际中心'
+		},
+		{
+			name: '元丰正通4S店',
+			owner: '于国富',
+			address: '北京朝阳区东大桥大街8号尚都国际中心'
+		},
+		{
+			name: '首创中伟雪佛兰4S店',
+			owner: '于国富',
+			address: '北京朝阳区东大桥大街8号尚都国际中心'
+		}
+	];
+}
 
 export function open() {
 	return new Promise((resolve, reject) => {
@@ -44,26 +79,19 @@ export function close() {
 
 export function createTable(successCB, errorCB) {
 	open().then(() => {
-		// 创建记录上一次更新数据的时间的表
+		// 创建门店表
 		db.transaction((tx) => {
-			tx.executeSql(`CREATE TABLE IF NOT EXISTS ${UPDATE_TABLE}(id INTEGER PRIMARY KEY NOT NULL, time INTEGER);`).then(() => {
-				console.warn('创建更新时间表成功!');				
+			tx.executeSql(`CREATE TABLE IF NOT EXISTS ${STORE_TABLE}(id INTEGER PRIMARY KEY NOT NULL, name NVARCHAR(20), owner NVARCHAR(10), address NVARCHAR(50));`).then(() => {
+				console.warn('创建门店表成功!');
 			}).catch(err => {
-				console.warn(`创建更新时间表失败 => ${utils.obj2Str(err)}`);
-			});			
-			// // 文章详情表
-			// tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Article_TABLE_NAME}(id INTEGER PRIMARY KEY NOT NULL, summary VARCHAR, pic VARCHAR);`, [], ()=> {
-			// 		// this._successCB('收藏executeSql');
-			// 	}, (err) => {
-			// 		console.log(err)
-			// 		// this._errorCB('收藏executeSql', err);
-			// 	});
-
-			// tx.executeSql(`INSERT INTO ${UPDATE_TABLE} (id,time) VALUES (1,3630);`).then(() => {
-			// 	console.warn('往更新时间表里插入数据成功！')
-			// }).catch(err => {
-			// 	console.warn(`往更新时间表里插入数据失败 => ${utils.obj2Str(err)}！`)
-			// });
+				console.warn(`创建门店表失败 => ${utils.obj2Str(err)}`);
+			});
+			console.warn('创建门店！！！');
+			tx.executeSql(`INSERT INTO ${UPDATE_TABLE} (id,time) VALUES (1,3630);`).then(() => {
+				console.warn('往更新时间表里插入数据成功！')
+			}).catch(err => {
+				console.warn(`往更新时间表里插入数据失败 => ${utils.obj2Str(err)}！`)
+			});
 		}, (err) => {
 			console.warn('创建表失败');
 			errorCB && errorCB();
@@ -77,7 +105,7 @@ export function createTable(successCB, errorCB) {
 export function findUpdateTime() {
 	return new Promise((resolve, reject) => {
 		if (db) {
-			db.executeSql(`SELECT * FROM ${UPDATE_TABLE} LIMIT 1`).then(results => {				
+			db.executeSql(`SELECT * FROM ${UPDATE_TABLE} LIMIT 1`).then(results => {
 				resolve(results[0].rows.item(0));
 			}).catch(err => {
 				reject(err);
