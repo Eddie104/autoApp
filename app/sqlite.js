@@ -50,7 +50,7 @@ export function createTestData() {
 	];
 }
 
-export function open() {
+function open() {
 	return new Promise((resolve, reject) => {
 		if (db) {
 			resolve();
