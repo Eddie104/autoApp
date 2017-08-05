@@ -13,6 +13,7 @@ import {
 import * as sqlite from '../../sqlite';
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
+import StoreList from './StoreList';
 import CategorySelector from './CategorySelector';
 
 /**
@@ -33,6 +34,7 @@ export default class StoreSearchScreen extends PureComponent {
 		this._curCategoryIndex = -1;
 
 		this._onKeyWordChanged = this.onKeyWordChanged.bind(this);
+		this._onSubmitEditing = this.onSubmitEditing.bind(this);
 		this._onAreaCategorySelected = this.onAreaCategorySelected.bind(this);
 		this._onCategory1Selected = this.onCategory1Selected.bind(this);
 		this._onCategory2Selected = this.onCategory1Selected.bind(this);
@@ -59,6 +61,7 @@ export default class StoreSearchScreen extends PureComponent {
 								multiline={false}
 								value={keyWord}
 								onChangeText={this._onKeyWordChanged}
+								onSubmitEditing={this._onSubmitEditing}
 								placeholder={"搜索门店"}
 								placeholderTextColor={'#b9b9b9'}
 								underlineColorAndroid={'transparent'}
@@ -98,6 +101,10 @@ export default class StoreSearchScreen extends PureComponent {
 					}
 				</View>
 				{
+					// 门店列表
+				}
+				<StoreList ref={c => {this._storeList = c;}} />
+				{
 					// 类别选择器
 				}
 				<CategorySelector ref={c => {this._categorySelector = c;}} left={categorySelectorLeft} />
@@ -123,11 +130,17 @@ export default class StoreSearchScreen extends PureComponent {
 		this.setState({
 			keyWord
 		});
+		this._storeList.keyWord = keyWord;
+		this._storeList.fetchData(true);
+	}
+
+	onSubmitEditing(evt) {
+		const { text } = evt.nativeEvent;
 	}
 
 	// 区域类别选择
 	onAreaCategorySelected() {
-		// ['黄浦区', '宝山区', '嘉定区', '徐汇区', '浦东新区', '乱七八槽区']
+		// ['黄浦区', '宝山区', '嘉定区', '徐汇区', '浦东新区']
 		if (this._curCategoryIndex === 1) {
 			this._categorySelector.fold();
 			const t = setTimeout(() => {

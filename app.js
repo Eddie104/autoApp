@@ -30,6 +30,7 @@ import {
 import SplashScreen from 'react-native-smart-splash-screen';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import * as utils  from './app/utils';
+import * as sqlite  from './app/sqlite';
 import IndexScreen from './app/screens/index/IndexScreen';
 
 export default class App extends Component{
@@ -61,6 +62,13 @@ export default class App extends Component{
 			animationType: SplashScreen.animationType.scale,
 			duration: 850,
 			delay: 500,
+		});
+
+		// 更新一下门店的数据
+		sqlite.update().then(() => {
+			// console.warn('更新数据成功!!!')
+		}).catch(err => {
+			// console.warn(`更新数据失败!!! => ${utils.obj2Str(err)}`);
 		});
 	}
 
