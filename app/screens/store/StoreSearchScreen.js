@@ -16,6 +16,12 @@ import TopBar from '../../components/TopBar';
 import StoreList from './StoreList';
 import CategorySelector from './CategorySelector';
 
+const CATEGOTY_DATA_ARR = [
+	['黄浦区', '宝山区', '嘉定区', '徐汇区', '浦东新区', '撒的我', '飞飞', '定区', '蜂窝', '高富帅的', '格瑞德'],
+	['士大夫似的', '过分', '撒到我', 'few发的', '未全额付多少', '个人购房的', '士大夫似的', '过分', '撒到我', 'few发的', '未全额付多少', '个人购房的', '士大夫似的', '过分', '撒到我', 'few发的', '未全额付多少', '个人购房的', '士大夫似的', '过分', '撒到我', 'few发的', '未全额付多少', '个人购房的', '士大夫似的', '过分', '撒到我', 'few发的', '未全额付多少', '个人购房的'],
+	['撒的我123', '飞飞', '定区', '蜂窝', '高富帅的', '格瑞德']
+];
+
 /**
  * 门店搜索场景
  */
@@ -26,22 +32,25 @@ export default class StoreSearchScreen extends PureComponent {
 
 		this.state = {
 			keyWord: '',
+			// 3个类别选择器所选择的值
+			categorySelectorValue: [null, null, null],
 			// 初始的选择器的left，让其在屏幕以外
 			categorySelectorLeft: utils.screenWidth()
 		};
 
 		// 当前选择中的类别的索引值，没有选中，该值为-1
-		this._curCategoryIndex = -1;
+		this._curCategoryIndex = -1;		
 
 		this._onKeyWordChanged = this.onKeyWordChanged.bind(this);
-		this._onSubmitEditing = this.onSubmitEditing.bind(this);
-		this._onAreaCategorySelected = this.onAreaCategorySelected.bind(this);
-		this._onCategory1Selected = this.onCategory1Selected.bind(this);
-		this._onCategory2Selected = this.onCategory1Selected.bind(this);
+		this._onAreaCategoryBtnPressed = this.onAreaCategoryBtnPressed.bind(this);
+		this._onCategory1BtnPressed = this.onCategory1BtnPressed.bind(this);
+		this._onCategory2BtnPressed = this.onCategory2BtnPressed.bind(this);
+
+		this._onCategorySelected = this.onCategorySelected.bind(this);
 	}
 
 	render() {
-		const { keyWord, categorySelectorLeft } = this.state;
+		const { keyWord, categorySelectorValue, categorySelectorLeft } = this.state;
 		return (
 			<View style={styles.container}>
 				<TopBar title={'门店列表'} showMoreBtn={false} />
@@ -61,7 +70,6 @@ export default class StoreSearchScreen extends PureComponent {
 								multiline={false}
 								value={keyWord}
 								onChangeText={this._onKeyWordChanged}
-								onSubmitEditing={this._onSubmitEditing}
 								placeholder={"搜索门店"}
 								placeholderTextColor={'#b9b9b9'}
 								underlineColorAndroid={'transparent'}
@@ -83,21 +91,21 @@ export default class StoreSearchScreen extends PureComponent {
 				}
 				<View style={styles.categoryContainer}>
 					{
-						this.renderCategorySelector('区域', this._onAreaCategorySelected)
+						this.renderCategorySelector(categorySelectorValue[0] || '区域', this._onAreaCategoryBtnPressed)
 					}
 					{
 						// 分割线
 					}
 					<Image style={styles.categoryLine} source={require('../../imgs/shuXian.png')} />
 					{
-						this.renderCategorySelector('分类1', this._onCategory1Selected)
+						this.renderCategorySelector(categorySelectorValue[1] || '分类1', this._onCategory1BtnPressed)
 					}
 					{
 						// 分割线
 					}
 					<Image style={styles.categoryLine} source={require('../../imgs/shuXian.png')} />
 					{
-						this.renderCategorySelector('分类2', this._onCategory2Selected)
+						this.renderCategorySelector(categorySelectorValue[2] || '分类2', this._onCategory2BtnPressed)
 					}
 				</View>
 				{
@@ -107,7 +115,13 @@ export default class StoreSearchScreen extends PureComponent {
 				{
 					// 类别选择器
 				}
-				<CategorySelector ref={c => {this._categorySelector = c;}} left={categorySelectorLeft} />
+				<CategorySelector
+					ref={c => {this._categorySelector = c;}}
+					left={categorySelectorLeft}
+					categorySelectorValue={categorySelectorValue}
+					categoryDataArr={CATEGOTY_DATA_ARR}
+					onSelected={this._onCategorySelected}
+				/>
 			</View>
 		);
 	}
@@ -122,6 +136,7 @@ export default class StoreSearchScreen extends PureComponent {
 				<Text style={styles.category}>
 					{ category }
 				</Text>
+				<Image style={styles.arrow} source={require('../../imgs/arrow_down.png')} />
 			</TouchableOpacity>
 		);
 	}
@@ -134,14 +149,21 @@ export default class StoreSearchScreen extends PureComponent {
 		this._storeList.fetchData(true);
 	}
 
-	onSubmitEditing(evt) {
-		const { text } = evt.nativeEvent;
+	// 区域类别选择
+	onAreaCategoryBtnPressed() {
+		this.showCategorySelector(0);
 	}
 
-	// 区域类别选择
-	onAreaCategorySelected() {
-		// ['黄浦区', '宝山区', '嘉定区', '徐汇区', '浦东新区']
-		if (this._curCategoryIndex === 1) {
+	onCategory1BtnPressed() {
+		this.showCategorySelector(1);
+	}
+
+	onCategory2BtnPressed() {
+		this.showCategorySelector(2);
+	}
+
+	showCategorySelector(index) {
+		if (this._curCategoryIndex === index) {
 			this._categorySelector.fold();
 			const t = setTimeout(() => {
 				clearTimeout(t);
@@ -154,38 +176,29 @@ export default class StoreSearchScreen extends PureComponent {
 			if (this._curCategoryIndex === -1) {
 				this.setState({
 					categorySelectorLeft: 0
-				}, () => {
-					this._categorySelector.unfold();
 				});
 			}
-			this._curCategoryIndex = 1;
+			this._categorySelector.unfold(index);
+			this._curCategoryIndex = index;
 		}
 	}
 
-	onCategory1Selected() {
-		// ['士大夫似的', '过分', '撒到我', 'few发的', '未全额付多少', '个人购房的']
-	}
-
-	onCategory2Selected() {
-		// ['撒的我', '飞飞', '定区', '蜂窝', '高富帅的', '格瑞德']
+	/**
+	 * 类别选择器做出了选择
+	 */
+	onCategorySelected(index, data) {
+		const { categorySelectorValue } = this.state;
+		categorySelectorValue[index] = data;
+		this.setState({
+			categorySelectorValue
+		}, () => {
+			// 关掉类别选择器
+			this.showCategorySelector(this._curCategoryIndex);	
+		});
+		// 再去sql数据
+		// this._storeList.fetchData(true);
 	}
 }
-
-/*
-<Text style={{marginTop: utils.toDips(100)}} onPress={() => {sqlite.createTable();}}>
-					创建数据库
-				</Text>
-				<Text style={{}} onPress={() => {
-					sqlite.findUpdateTime().then((result) => {
-						utils.toast(result.time.toString());
-					});
-				}}>
-					读取数据
-				</Text>
-				<Text style={{}} onPress={() => {sqlite.close();}}>
-					关闭数据库
-				</Text>
-*/
 
 const styles = StyleSheet.create({
 	container: {
@@ -232,5 +245,10 @@ const styles = StyleSheet.create({
 	category: {
 		color: '#565656',
 		fontSize: utils.getFontSize(22)
+	},
+	arrow: {
+		width: utils.toDips(22),
+		height: utils.toDips(13),
+		marginLeft: utils.toDips(13)
 	}
 });
