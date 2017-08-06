@@ -24,6 +24,7 @@ import UserDataDao from '../../dao/UserDataDao';
 import ScannerScreen from '../scanner/ScannerScreen';
 import StoreSearchScreen from '../store/StoreSearchScreen';
 import TestScene from '../test/TestScene';
+import AskForLeaveScreen from '../askForLeave/AskForLeaveScreen';
 
 /**
  * 首页面板
@@ -128,7 +129,7 @@ export default class HomeScreen extends PureComponent {
 						}
 						{
 							// 身份证识别
-							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '行驶证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: ScannerScreen, action: 'driving.scan'});})
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '行驶证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: AskForLeaveScreen, action: 'driving.scan'});})
 						}
 					</View>
 					{
@@ -171,9 +172,9 @@ export default class HomeScreen extends PureComponent {
 	}
 
 	showLoginScreen() {
-		global.nav.resetTo({
-			Component: LoginScreen
-		});
+		// global.nav.resetTo({
+		// 	Component: LoginScreen
+		// });
 	}
 
 	showCarScreen() {
