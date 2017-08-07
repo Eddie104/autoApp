@@ -25,6 +25,7 @@ import ScannerScreen from '../scanner/ScannerScreen';
 import StoreSearchScreen from '../store/StoreSearchScreen';
 import TestScene from '../test/TestScene';
 import AskForLeaveScreen from '../askForLeave/AskForLeaveScreen';
+import PopupMenu from '../../components/PopupMenu';
 
 /**
  * 首页面板
@@ -144,6 +145,7 @@ export default class HomeScreen extends PureComponent {
 					<MessageBox show={true}/>
 					
 				</ScrollView>
+				<PopupMenu ref={c => this._menu = c} funcs={[() => {console.warn('1111');}, () => {console.warn('222');}]} />
 			</View>
 		);
 	}
@@ -175,6 +177,8 @@ export default class HomeScreen extends PureComponent {
 		// global.nav.resetTo({
 		// 	Component: LoginScreen
 		// });
+
+		this._menu.unfold();
 	}
 
 	showCarScreen() {
