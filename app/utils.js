@@ -295,3 +295,11 @@ export function obj2Str(obj) {
 	}
 	return str;
 }
+
+export function number2Str(num, length) {
+	num = num.toString();
+	while (num.length < length) {
+		num = '0' + num;
+	}
+	return num;
+}
