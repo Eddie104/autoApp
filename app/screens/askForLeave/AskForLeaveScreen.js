@@ -8,7 +8,8 @@ import {
 	Image,
 	ScrollView,
 	TouchableOpacity,
-	DatePickerAndroid
+	DatePickerAndroid,
+	TextInput
 } from 'react-native';
 
 import * as utils from '../../utils';
@@ -33,7 +34,9 @@ export default class AskForLeaveScreen extends PureComponent {
 			startDateDate: now.getDate(),
 			endDateYear: now.getFullYear(),
 			endDateMonth: now.getMonth(),
-			endDateDate: now.getDate()
+			endDateDate: now.getDate(),
+			// 请假的事由
+			reason: ''
 		};
 
 		this._onLeaveTypePress = this.onLeaveTypePress.bind(this);
@@ -41,10 +44,11 @@ export default class AskForLeaveScreen extends PureComponent {
 		this._onLeaveDateEndPress = this.onLeaveDateEndPress.bind(this);
 
 		this._onLeaveTypeSelected = this.onLeaveTypeSelected.bind(this);
+		this._onReasonChanged = this.onReasonChanged.bind(this);
 	}
 
 	render() {
-		const { isShowingLeaveTypeModal, curType, startDateYear, startDateMonth, startDateDate, endDateYear, endDateMonth, endDateDate } = this.state;
+		const { isShowingLeaveTypeModal, curType, startDateYear, startDateMonth, startDateDate, endDateYear, endDateMonth, endDateDate, reason } = this.state;
 		return (
 			<View style={styles.container}>
 				<TopBar title={'请假'} showMoreBtn={false} />
@@ -85,10 +89,25 @@ export default class AskForLeaveScreen extends PureComponent {
 						</View>
 					</TouchableOpacity>
 					<View style={styles.line} />
-					<TouchableOpacity activeOpacity={0.8} onPress={this._onLeaveTypePress} style={styles.itemContainer}>
-						<Text style={styles.itemKey}>
+					<TouchableOpacity activeOpacity={0.8} onPress={this._onLeaveTypePress} style={[styles.itemContainer, {height: utils.toDips(200), alignItems: 'flex-start'}]}>
+						<Text style={[styles.itemKey, {marginTop: utils.toDips(25)}]}>
 							请假事由
 						</Text>
+						<TextInput 
+							maxLength={200}
+							autoCapitalize={"none"}
+							style={styles.textInput}
+							// 关闭拼写自动修正
+							autoCorrect={false}
+							keyboardType={"default"}
+							multiline={true}
+							value={reason}
+							onChangeText={this._onReasonChanged}
+							placeholder={"请输入请假事由（必填）"}
+							placeholderTextColor={'#cbcbcb'}
+							underlineColorAndroid={'transparent'}
+							returnKeyType="done"
+						/>
 					</TouchableOpacity>
 				</ScrollView>
 				<LeaveTypeModal visible={isShowingLeaveTypeModal} curType={curType} onSelected={this._onLeaveTypeSelected} />
@@ -154,6 +173,12 @@ export default class AskForLeaveScreen extends PureComponent {
 			isShowingLeaveTypeModal: false
 		});
 	}
+
+	onReasonChanged(reason) {
+		this.setState({
+			reason
+		});
+	}
 }
 
 const styles = StyleSheet.create({
@@ -188,5 +213,15 @@ const styles = StyleSheet.create({
 		width: utils.screenWidth(),
 		height: utils.toDips(1.5),
 		backgroundColor: '#dddfe2'
+	},
+	textInput: {
+		fontSize: utils.getFontSize(22),
+		color: "#364153",
+		height: utils.toDips(200),
+		marginTop: utils.toDips(16),
+		marginLeft: utils.toDips(22),
+		flex: 1,
+		textAlign: 'left',
+		textAlignVertical: 'top'
 	}
 });
