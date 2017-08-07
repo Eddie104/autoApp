@@ -70,6 +70,9 @@ export default class App extends Component{
 		}).catch(err => {
 			// console.warn(`更新数据失败!!! => ${utils.obj2Str(err)}`);
 		});
+
+		// 请假场景中选择的图片
+		global.imagesSelected = [];
 	}
 
 	render() {

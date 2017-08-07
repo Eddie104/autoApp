@@ -15,6 +15,7 @@ import {
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
 import LeaveTypeModal from './LeaveTypeModal';
+import ImageListScene from './ImageListScene';
 
 /**
  * 请假场景
@@ -109,10 +110,31 @@ export default class AskForLeaveScreen extends PureComponent {
 							returnKeyType="done"
 						/>
 					</TouchableOpacity>
+					{
+						// 图片
+					}
+					<Text style={{}} onPress={() => {
+						global.nav.push({
+							Component: ImageListScene
+						});
+					}}>
+						图片
+					</Text>
 				</ScrollView>
 				<LeaveTypeModal visible={isShowingLeaveTypeModal} curType={curType} onSelected={this._onLeaveTypeSelected} />
 			</View>
 		);
+	}
+
+	rednerImage() {
+		// return (
+		// 	<View key={i} style={{width: utils.toDips(144), height: utils.toDips(144), justifyContent: 'center', alignItems: 'center'}}>
+		// 		<Image style={{width: utils.toDips(100), height: utils.toDips(100)}} source={{uri}}/>
+		// 		<TouchableOpacity activeOpacity={0.8} onPress={() => this.removeImg(uri)} style={{position: 'absolute', top: 0, right: 0}}>
+		// 			<Image style={{width: utils.toDips(44), height: utils.toDips(44)}} source={require('../../imgs/ui_213.png')}/>
+		// 		</TouchableOpacity>
+		// 	</View>
+		// );
 	}
 
 	onLeaveTypePress() {
