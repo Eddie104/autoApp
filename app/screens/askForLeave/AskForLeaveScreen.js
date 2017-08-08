@@ -108,12 +108,12 @@ export default class AskForLeaveScreen extends PureComponent {
 						</View>
 					</TouchableOpacity>
 					<View style={styles.line} />
-					<TouchableOpacity activeOpacity={0.8} onPress={this._onLeaveTypePress} style={[styles.itemContainer, {height: utils.toDips(200), alignItems: 'flex-start'}]}>
+					<TouchableOpacity activeOpacity={0.8} onPress={this._onLeaveTypePress} style={[styles.itemContainer, {height: utils.toDips(300), alignItems: 'flex-start',flexDirection: 'column'}]}>
 						<Text style={[styles.itemKey, {marginTop: utils.toDips(25)}]}>
 							请假事由
 						</Text>
 						<TextInput 
-							maxLength={200}
+							maxLength={300}
 							autoCapitalize={"none"}
 							style={styles.textInput}
 							// 关闭拼写自动修正
@@ -287,9 +287,10 @@ const styles = StyleSheet.create({
 	textInput: {
 		fontSize: utils.getFontSize(22),
 		color: "#364153",
+		width: utils.screenWidth() - utils.toDips(22),
 		height: utils.toDips(200),
-		marginTop: utils.toDips(25 - 22 / 3),
-		marginLeft: utils.toDips(22),
+		marginTop: utils.toDips(25),
+		// marginLeft: utils.toDips(22),
 		flex: 1,
 		textAlign: 'left',
 		textAlignVertical: 'top',
