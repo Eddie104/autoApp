@@ -60,7 +60,6 @@ export default class PopupMenu extends PureComponent {
 				key={index}
 				activeOpacity={0.8}
 				onPress={() => {
-					utils.toast('index = ' + index);
 					const { funcs } = this.props;
 					const func = funcs[index];
 					func && func();
