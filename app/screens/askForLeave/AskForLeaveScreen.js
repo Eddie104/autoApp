@@ -288,11 +288,12 @@ const styles = StyleSheet.create({
 		fontSize: utils.getFontSize(22),
 		color: "#364153",
 		height: utils.toDips(200),
-		marginTop: utils.toDips(16),
+		marginTop: utils.toDips(25 - 22 / 3),
 		marginLeft: utils.toDips(22),
 		flex: 1,
 		textAlign: 'left',
-		textAlignVertical: 'top'
+		textAlignVertical: 'top',
+		includeFontPadding: false
 	},
 	imgcontainer: {
 		backgroundColor: 'white'
