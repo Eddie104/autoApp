@@ -18,6 +18,9 @@ import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
 import ImageListRow from './ImageListRow';
 
+/**
+ * 展示相册里图片的场景
+ */
 export default class ImageListScene extends PureComponent {
 	
 	componentDidMount() {
@@ -31,7 +34,6 @@ export default class ImageListScene extends PureComponent {
 
 		this.state = {
 			numSelected: global.imagesSelected.length,
-			title: '所有图片',
 			isRefreshing: false,
 			dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
 		};
@@ -56,10 +58,10 @@ export default class ImageListScene extends PureComponent {
 	}
 
 	render() {
-		const { numSelected, title, isRefreshing, dataSource } = this.state;
+		const { numSelected, isRefreshing, dataSource } = this.state;
 		return (
 			<View style={styles.container}>
-				<TopBar title={'所有图片'} showMoreBtn={false} />
+				<TopBar title={'相册'} showMoreBtn={false} />
 				{
 					// 图片列表
 				}
@@ -169,16 +171,6 @@ export default class ImageListScene extends PureComponent {
 		}
 		this.setState({
 			numSelected: global.imagesSelected.length
-		});
-	}
-
-	onImageFilterPanelFolded(title) {
-		this.setState({
-			title
-		}, () => {
-			this._listViewDataArr = [];
-			this._isFetchedAllImages = false;
-			this.fetchImage(true, title);
 		});
 	}
 }

@@ -15,7 +15,10 @@ import {
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
 import LeaveTypeModal from './LeaveTypeModal';
+import ImageFuncPanel from './ImageFuncPanel';
 import ImageListScene from './ImageListScene';
+import CameraScreen from './CameraScreen';
+import ActionSheet from '@yfuks/react-native-action-sheet';
 
 /**
  * 请假场景
@@ -46,6 +49,21 @@ export default class AskForLeaveScreen extends PureComponent {
 
 		this._onLeaveTypeSelected = this.onLeaveTypeSelected.bind(this);
 		this._onReasonChanged = this.onReasonChanged.bind(this);
+
+		this._onAddImage = this.onAddImage.bind(this);
+	}
+
+	componentWillMount() {
+		this._navigatorListener = global.nav.navigationContext.addListener('didfocus', (event) => {
+			if (event.target._currentRoute.Component === AskForLeaveScreen) {
+				this._imgFuncPanel.update();
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this._navigatorListener && this._navigatorListener.remove();
+		this._navigatorListener = null;
 	}
 
 	render() {
@@ -110,31 +128,35 @@ export default class AskForLeaveScreen extends PureComponent {
 							returnKeyType="done"
 						/>
 					</TouchableOpacity>
+					<View style={styles.line} />
 					{
 						// 图片
 					}
-					<Text style={{}} onPress={() => {
-						global.nav.push({
-							Component: ImageListScene
-						});
-					}}>
-						图片
-					</Text>
+					<View style={styles.imgcontainer}>
+						<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: utils.toDips(25)}}>
+							<Text style={[styles.itemKey, {marginLeft: utils.toDips(20)}]}>
+								图片
+							</Text>
+							<Image style={{width: utils.toDips(56), height: utils.toDips(49), marginRight: utils.toDips(20)}} source={require('../../imgs/camera.png')} />
+						</View>
+						<ImageFuncPanel ref={c => this._imgFuncPanel = c} onAddImage={this._onAddImage} />
+					</View>
 				</ScrollView>
+				{
+					// 提交
+				}
+				<TouchableOpacity
+					style={styles.submitBtn}
+					activeOpacity={0.8}
+					onPress={() => {}}
+				>
+					<Text style={styles.submitText}>
+						提交试试
+					</Text>
+				</TouchableOpacity>
 				<LeaveTypeModal visible={isShowingLeaveTypeModal} curType={curType} onSelected={this._onLeaveTypeSelected} />
 			</View>
 		);
-	}
-
-	rednerImage() {
-		// return (
-		// 	<View key={i} style={{width: utils.toDips(144), height: utils.toDips(144), justifyContent: 'center', alignItems: 'center'}}>
-		// 		<Image style={{width: utils.toDips(100), height: utils.toDips(100)}} source={{uri}}/>
-		// 		<TouchableOpacity activeOpacity={0.8} onPress={() => this.removeImg(uri)} style={{position: 'absolute', top: 0, right: 0}}>
-		// 			<Image style={{width: utils.toDips(44), height: utils.toDips(44)}} source={require('../../imgs/ui_213.png')}/>
-		// 		</TouchableOpacity>
-		// 	</View>
-		// );
 	}
 
 	onLeaveTypePress() {
@@ -144,29 +166,26 @@ export default class AskForLeaveScreen extends PureComponent {
 	}
 
 	async onLeaveDateStarPress() {
-		try {
-			const { action, year, month, day } = await DatePickerAndroid.open({
-				date: new Date(),
-				// mode有三种：
-				// calendar: Show a date picker in calendar mode.
-				// spinner: Show a date picker in spinner mode.
-				// default: Show a default native date picker(spinner/calendar) based on android versions.
-				mode: 'default'
+		await this.pickDate((year, month, day) => {
+			this.setState({
+				startDateYear: year,
+				startDateMonth: month,
+				startDateDate: day
 			});
-			if (action !== DatePickerAndroid.dismissedAction) {
-				// 这里开始可以处理用户选好的年月日三个参数：year, month (0-11), day
-				this.setState({
-					startDateYear: year,
-					startDateMonth: month,
-					startDateDate: day
-				});
-			}
-		} catch ({code, message}) {
-			console.warn('Cannot open date picker', message);
-		}
+		});
 	}
 
 	async onLeaveDateEndPress() {
+		await this.pickDate((year, month, day) => {
+			this.setState({
+				endDateYear: year,
+				endDateMonth: month,
+				endDateDate: day
+			});
+		});
+	}
+
+	async pickDate(cb) {
 		try {
 			const { action, year, month, day } = await DatePickerAndroid.open({
 				date: new Date(),
@@ -178,11 +197,7 @@ export default class AskForLeaveScreen extends PureComponent {
 			});
 			if (action !== DatePickerAndroid.dismissedAction) {
 				// 这里开始可以处理用户选好的年月日三个参数：year, month (0-11), day
-				this.setState({
-					endDateYear: year,
-					endDateMonth: month,
-					endDateDate: day
-				});
+				cb(year, month, day);
 			}
 		} catch ({code, message}) {
 			console.warn('Cannot open date picker', message);
@@ -199,6 +214,39 @@ export default class AskForLeaveScreen extends PureComponent {
 	onReasonChanged(reason) {
 		this.setState({
 			reason
+		});
+	}
+
+	onAddImage() {
+		ActionSheet.showActionSheetWithOptions({
+			options: ['相册', '拍照'],
+			cancelButtonIndex: 3,
+			tintColor: 'blue'
+		}, (buttonIndex) => {
+			// console.warn('button clicked :', buttonIndex);
+			if (buttonIndex === 0) {
+				this.onPickPhoto();
+			} else if (buttonIndex === 1) {
+				this.onTakePhoto();
+			}
+		});
+	}
+
+	/**
+	 * 拍照
+	 */
+	onTakePhoto() {
+		global.nav.push({
+			Component: CameraScreen
+		});
+	}
+
+	/**
+	 * 从相册里取照片
+	 */
+	onPickPhoto() {
+		global.nav.push({
+			Component: ImageListScene
 		});
 	}
 }
@@ -245,5 +293,24 @@ const styles = StyleSheet.create({
 		flex: 1,
 		textAlign: 'left',
 		textAlignVertical: 'top'
+	},
+	imgcontainer: {
+		backgroundColor: 'white'
+	},
+	submitBtn: {
+		width: utils.toDips(650),
+		height: utils.toDips(90),
+		backgroundColor: '#3e8ed7',
+		borderRadius: utils.toDips(10),
+		marginTop: utils.toDips(25),
+		marginBottom: utils.toDips(25),
+		alignSelf: 'center',
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	submitText: {
+		color: 'white',
+		fontSize: utils.getFontSize(28),
+		backgroundColor: 'transparent'
 	}
 });

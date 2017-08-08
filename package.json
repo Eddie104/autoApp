@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@remobile/react-native-toast": "^1.0.6",
+    "@yfuks/react-native-action-sheet": "0.0.3",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.3",
     "react-native-baidu-map": "^0.6.0",

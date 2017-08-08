@@ -8,11 +8,10 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import com.actionsheet.ActionSheetPackage;
 import com.remobile.toast.RCTToastPackage;
-
 import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
 import com.rnfs.RNFSPackage;
-
 import org.hongjie.MyPackage;
 import org.lovebing.reactnative.baidumap.BaiduMapPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
@@ -39,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
           new RCTCameraPackage(),
           new RNFSPackage(),
           new SQLitePluginPackage(),
+          new ActionSheetPackage(),
           new MyPackage()
       );
     }
