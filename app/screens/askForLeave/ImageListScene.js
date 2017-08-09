@@ -91,8 +91,8 @@ export default class ImageListScene extends PureComponent {
 						onPress={() => global.nav.pop()}
 						style={{
 							width: utils.toDips(168),
-							height: utils.toDips(48),
-							backgroundColor: '#44d1a8',
+							height: utils.toDips(68),
+							backgroundColor: '#364153',
 							borderRadius: utils.toDips(6),
 							alignItems: 'center',
 							justifyContent: 'center',

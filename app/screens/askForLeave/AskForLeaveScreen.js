@@ -162,7 +162,7 @@ export default class AskForLeaveScreen extends PureComponent {
 							placeholder={"请输入请假事由（必填）"}
 							placeholderTextColor={'#cbcbcb'}
 							underlineColorAndroid={'transparent'}
-							returnKeyType="done"
+							returnKeyType="default"
 						/>
 					</TouchableOpacity>
 					<View style={styles.line} />

@@ -47,7 +47,7 @@ class Bagde extends PureComponent {
 						width: utils.toDips(44),
 						height: utils.toDips(44),
 						borderRadius: utils.toDips(22),
-						backgroundColor: '#00ddb3',
+						backgroundColor: '#364153',
 						alignItems: 'center',
 						justifyContent: 'center',
 						...style

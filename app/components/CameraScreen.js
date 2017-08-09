@@ -66,7 +66,7 @@ export default class CameraScreen extends PureComponent {
 
 	 onTakePicture() {
 		const { onTakePicture } = this.props;
-		this.camera.capture({metadata: options}).then((data) => {
+		this.camera.capture({metadata: {}}).then((data) => {
 			onTakePicture(data);
 			this.onBack();
 		}).catch(err => {
