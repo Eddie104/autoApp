@@ -8,16 +8,19 @@
  * react-native-toast 地址：https://github.com/remobile/react-native-toast
  * react-native-baidu-map  地址：https://github.com/lovebing/react-native-baidu-map
  * react-native-smart-splash-screen 地址：
+ * react-native-picker 地址：https://github.com/beefe/react-native-picker
+ * react-native-action-sheet 地址：https://github.com/yfuks/react-native-action-sheet
+ * react-native-sqlite-storage 地址：https://github.com/andpor/react-native-sqlite-storage
  */
 
-	// ios版的百度地图有个坑。会说RCTViewManager.h和RCTConvert+CoreLocation.h找不到
-	// 按下下面的修改，就行了
-	/*
-	//#import "RCTViewManager.h"
-	#import <React/RCTViewManager.h>
-	//#import "RCTConvert+CoreLocation.h"
-	#import <React/RCTConvert+CoreLocation.h>
-	*/
+// ios版的百度地图有个坑。会说RCTViewManager.h和RCTConvert+CoreLocation.h找不到
+// 按下下面的修改，就行了
+/*
+//#import "RCTViewManager.h"
+#import <React/RCTViewManager.h>
+//#import "RCTConvert+CoreLocation.h"
+#import <React/RCTConvert+CoreLocation.h>
+*/
 
 import React, { Component } from 'react';
 import {
