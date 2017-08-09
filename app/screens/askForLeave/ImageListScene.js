@@ -55,13 +55,14 @@ export default class ImageListScene extends PureComponent {
 		this._onLoadMore = this.loadMore.bind(this);
 		this._renderRow = this.renderRow.bind(this);
 		this._onRefresh = this.onRefresh.bind(this);
+		this._onBack = this.onBack.bind(this);
 	}
 
 	render() {
 		const { numSelected, isRefreshing, dataSource } = this.state;
 		return (
 			<View style={styles.container}>
-				<TopBar title={'相册'} showMoreBtn={false} />
+				<TopBar title={'相册'} showMoreBtn={false} beforeBack={this._onBack} />
 				{
 					// 图片列表
 				}
@@ -172,6 +173,10 @@ export default class ImageListScene extends PureComponent {
 		this.setState({
 			numSelected: global.imagesSelected.length
 		});
+	}
+
+	onBack() {
+		global.imagesSelected.length = 0;
 	}
 }
 

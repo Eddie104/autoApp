@@ -23,12 +23,14 @@ export default class TopBar extends PureComponent {
 		title: PropTypes.string.isRequired,
 		showBackBtn: PropTypes.bool,
 		showMoreBtn: PropTypes.bool,
+		beforeBack: PropTypes.func,
 		moreFunc: PropTypes.func
 	};
 
 	static defaultProps = {
 		showBackBtn: true,
 		showMoreBtn: true,
+		beforeBack: null,
 		moreFunc: null
 	};
 	
@@ -88,6 +90,10 @@ export default class TopBar extends PureComponent {
 	}
 
 	onBack() {
+		const { beforeBack } = this.props;
+		if (typeof(beforeBack) === 'function') {
+			beforeBack();
+		}
 		global.nav.pop();
 	}
 
