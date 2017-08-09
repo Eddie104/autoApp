@@ -7,7 +7,8 @@ import {
 	Text,
 	Image,
 	Modal,
-	TouchableOpacity
+	TouchableOpacity,
+	TouchableWithoutFeedback
 } from 'react-native';
 
 import * as utils from '../utils';
@@ -104,7 +105,10 @@ export default class RadioModal extends PureComponent {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1
+		flex: 1,
+		width: utils.screenWidth(),
+		height: utils.screenHeight(),
+		backgroundColor: 'red',
 	},
 	modalContainer: {
 		flex: 1,

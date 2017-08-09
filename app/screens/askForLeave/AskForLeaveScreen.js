@@ -245,10 +245,16 @@ export default class AskForLeaveScreen extends PureComponent {
 	}
 
 	onLeaveTypeSelected(curType) {
-		this.setState({
-			curType,
-			isShowingLeaveTypeModal: false
-		});
+		if (curType) {
+			this.setState({
+				curType,
+				isShowingLeaveTypeModal: false
+			});
+		} else {
+			this.setState({
+				isShowingLeaveTypeModal: false
+			});
+		}
 	}
 
 	onReasonChanged(reason) {

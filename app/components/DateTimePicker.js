@@ -24,7 +24,7 @@ export default function getPicker(onPickerConfirm, minDate, maxDate) {
 	for (let i = 0; i < 24; i++) {
 		hours.push(`${i}时`);
 	}
-	for (let i =1; i < 61; i++) {
+	for (let i = 0; i < 60; i++) {
 		minutes.push(`${i}分`);
 	}
 	const pickerData = [years, months, days, hours, minutes];

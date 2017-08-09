@@ -86,13 +86,13 @@ export default class ImageListScene extends PureComponent {
 					enableEmptySections={true}
 					keyboardDismissMode={'on-drag'}
 				/>
-				<View style={{width: utils.toDips(750), height: utils.toDips(90), justifyContent: 'center', alignItems: 'flex-end'}}>
+				<View style={{width: utils.toDips(750), height: utils.toDips(120), justifyContent: 'center', alignItems: 'flex-end'}}>
 					<TouchableOpacity
 						activeOpacity={0.8}
 						onPress={() => global.nav.pop()}
 						style={{
 							width: utils.toDips(168),
-							height: utils.toDips(68),
+							height: utils.toDips(90),
 							backgroundColor: '#364153',
 							borderRadius: utils.toDips(6),
 							alignItems: 'center',
@@ -100,7 +100,7 @@ export default class ImageListScene extends PureComponent {
 							marginRight: utils.toDips(30)
 						}}
 					>
-						<Text style={{color: 'white', fontSize: utils.getFontSize(26)}}>{numSelected}/9 完成</Text>
+						<Text style={{color: 'white', fontSize: utils.getFontSize(28)}}>{numSelected}/9 完成</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
