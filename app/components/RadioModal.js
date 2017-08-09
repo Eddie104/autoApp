@@ -61,13 +61,19 @@ export default class RadioModal extends PureComponent {
 				visible={visible}
 				onRequestClose={() => {console.warn("Modal has been closed.")}}
 			>
-				<View style={styles.modalContainer}>
-					<View style={styles.modalInnerContainer}>
-						{
-							valArr.map((type, index) => {return this.renderItem(type, index);})
-						}
+				<TouchableWithoutFeedback
+					onPress={() => {
+						this.closeModal()
+					}}
+				>
+					<View style={styles.modalContainer}>
+						<View style={styles.modalInnerContainer}>
+							{
+								valArr.map((type, index) => {return this.renderItem(type, index);})
+							}
+						</View>
 					</View>
-				</View>
+				</TouchableWithoutFeedback>
 			</Modal>
 		);
 	}
