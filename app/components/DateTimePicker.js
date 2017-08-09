@@ -40,6 +40,7 @@ export default function getPicker(onPickerConfirm, minDate, maxDate) {
 		pickerTitleText: '时间选择',
 		pickerConfirmBtnText: '确定',
 		pickerCancelBtnText: '取消',
+		pickerFontSize: 20,
 		wheelFlex: [2, 1, 1, 2, 1, 1],
 		onPickerConfirm,
 		onPickerSelect: pickedValue => {
