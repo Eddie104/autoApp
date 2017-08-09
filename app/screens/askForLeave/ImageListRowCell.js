@@ -42,8 +42,25 @@ class Bagde extends PureComponent {
 		const { number } = this.state;
 		if (number > 0) {
 			return (
-				<View style={{width: utils.toDips(44), height: utils.toDips(44), borderRadius: utils.toDips(22), backgroundColor: '#00ddb3', alignItems: 'center', justifyContent: 'center', ...style}}>
-					<Text style={{color: 'white', fontSize: utils.getFontSize(24)}}>{number}</Text>
+				<View
+					style={{
+						width: utils.toDips(44),
+						height: utils.toDips(44),
+						borderRadius: utils.toDips(22),
+						backgroundColor: '#00ddb3',
+						alignItems: 'center',
+						justifyContent: 'center',
+						...style
+					}}
+				>
+					<Text
+						style={{
+							color: 'white',
+							fontSize: utils.getFontSize(24)
+						}}
+					>
+						{ number }
+					</Text>
 				</View>
 			);
 		}
@@ -109,15 +126,6 @@ export default class ImageListRowCell extends PureComponent {
 		}
 		const { updateImageCellBadge } = this.props;
 		updateImageCellBadge();
-
-		// test
-		// qiniu.updateImg(5, uri, 'test.png', (imgData) => {
-		// 	if (imgData.status === 1) {
-		// 		utils.toast('上传成功');
-		// 	} else {
-		// 		utils.toast('上传失败:' + imgData.info);
-		// 	}
-		// });
 	}
 
 	updateBadge() {

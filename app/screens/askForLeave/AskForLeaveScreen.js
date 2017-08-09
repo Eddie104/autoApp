@@ -132,11 +132,24 @@ export default class AskForLeaveScreen extends PureComponent {
 						</View>
 					</TouchableOpacity>
 					<View style={styles.line} />
-					<TouchableOpacity activeOpacity={0.8} onPress={this._onLeaveTypePress} style={[styles.itemContainer, {height: utils.toDips(300), alignItems: 'flex-start',flexDirection: 'column'}]}>
+					<TouchableOpacity
+						activeOpacity={0.8}
+						onPress={this._onLeaveTypePress}
+						style={
+							[
+								styles.itemContainer,
+								{
+									height: utils.toDips(300),
+									alignItems: 'flex-start',
+									flexDirection: 'column'
+								}
+							]
+						}
+					>
 						<Text style={[styles.itemKey, {marginTop: utils.toDips(25)}]}>
 							请假事由
 						</Text>
-						<TextInput 
+						<TextInput
 							maxLength={300}
 							autoCapitalize={"none"}
 							style={styles.textInput}
@@ -161,7 +174,14 @@ export default class AskForLeaveScreen extends PureComponent {
 							<Text style={[styles.itemKey, {marginLeft: utils.toDips(20)}]}>
 								图片
 							</Text>
-							<Image style={{width: utils.toDips(56), height: utils.toDips(49), marginRight: utils.toDips(20)}} source={require('../../imgs/camera.png')} />
+							<Image
+								style={{
+									width: utils.toDips(56),
+									height: utils.toDips(49),
+									marginRight: utils.toDips(20)
+								}}
+								source={require('../../imgs/camera.png')}
+							/>
 						</View>
 						<ImageFuncPanel ref={c => this._imgFuncPanel = c} onAddImage={this._onAddImage} />
 					</View>
@@ -178,7 +198,12 @@ export default class AskForLeaveScreen extends PureComponent {
 						提交试试
 					</Text>
 				</TouchableOpacity>
-				<RadioModal visible={isShowingLeaveTypeModal} valArr={LEAVE_TYPE_ARR} curVal={curType} onSelected={this._onLeaveTypeSelected} />
+				<RadioModal
+					visible={isShowingLeaveTypeModal}
+					valArr={LEAVE_TYPE_ARR}
+					curVal={curType}
+					onSelected={this._onLeaveTypeSelected}
+				/>
 			</View>
 		);
 	}
@@ -238,7 +263,6 @@ export default class AskForLeaveScreen extends PureComponent {
 			cancelButtonIndex: 3,
 			tintColor: 'blue'
 		}, (buttonIndex) => {
-			// console.warn('button clicked :', buttonIndex);
 			if (buttonIndex === 0) {
 				this.onPickPhoto();
 			} else if (buttonIndex === 1) {
@@ -312,7 +336,6 @@ const styles = StyleSheet.create({
 		width: utils.screenWidth() - utils.toDips(22),
 		height: utils.toDips(200),
 		marginTop: utils.toDips(25),
-		// marginLeft: utils.toDips(22),
 		flex: 1,
 		textAlign: 'left',
 		textAlignVertical: 'top',
