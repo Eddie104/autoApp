@@ -12,6 +12,9 @@ const ColorPropType = require('ColorPropType');
 
 import * as utils from '../utils';
 
+/**
+ * 转圈的小菊花
+ */
 export default class Spinner extends PureComponent {
 
 	static propTypes = {

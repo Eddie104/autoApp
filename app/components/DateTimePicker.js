@@ -2,8 +2,10 @@
 
 import Picker from 'react-native-picker';
 
+/**
+ * 时间选择器
+ */
 export default function getPicker(onPickerConfirm, minDate, maxDate) {
-	// console.warn(typeof(onPickerConfirm));
 	onPickerConfirm = typeof(onPickerConfirm) === 'function' ? onPickerConfirm : (() => {});
 	minDate = minDate || new Date(1980, 0, 1);
 	maxDate = maxDate || new Date(2030, 11, 31);
@@ -28,7 +30,7 @@ export default function getPicker(onPickerConfirm, minDate, maxDate) {
 		date.getFullYear(),
 		date.getMonth() + 1,
 		date.getDate(),
-		date.getHours() > 11 ? '上午' : '下午',
+		date.getHours() <= 11 ? '上午' : '下午',
 		date.getHours() === 12 ? 12 : date.getHours() % 12,
 		date.getMinutes()
 	];

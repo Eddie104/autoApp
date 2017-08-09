@@ -12,20 +12,23 @@ import {
 
 import * as utils from '../utils';
 
+/**
+ * 单选框
+ */
 export default class RadioModal extends PureComponent {
 
 	static propTypes = {
 		visible: PropTypes.bool,
-		typeArr: PropTypes.array,
-		curType: PropTypes.string,
+		valArr: PropTypes.array,
+		curVal: PropTypes.string,
 		onSelected: PropTypes.func
 	};
 
 	static defaultProps = {
 		visible: false,
-		typeArr: ['事假', '病假', '年假', '调休', '婚假', '产假', '陪产假', '路途假', '其他'],
-		curType: '事假',
-		onSelected: () => {}
+		valArr: ['事假', '病假', '年假', '调休', '婚假', '产假', '陪产假', '路途假', '其他'],
+		curVal: '事假',
+		onSelected: val => {}
 	};
 	
 	constructor(props) {
@@ -48,7 +51,7 @@ export default class RadioModal extends PureComponent {
 
 	render() {
 		const { visible } = this.state;
-		const { typeArr } = this.props;
+		const { valArr } = this.props;
 		return (
 			<Modal
 				// 可选值：slide、fade、none
@@ -60,7 +63,7 @@ export default class RadioModal extends PureComponent {
 				<View style={styles.modalContainer}>
 					<View style={styles.modalInnerContainer}>
 						{
-							typeArr.map((type, index) => {return this.renderItem(type, index);})
+							valArr.map((type, index) => {return this.renderItem(type, index);})
 						}
 					</View>
 				</View>
@@ -69,7 +72,7 @@ export default class RadioModal extends PureComponent {
 	}
 
 	renderItem(type, index) {
-		const { typeArr, curType } = this.props;
+		const { valArr, curVal } = this.props;
 		return (
 			<TouchableOpacity
 				activeOpacity={0.8}
@@ -80,10 +83,10 @@ export default class RadioModal extends PureComponent {
 			>
 				<View style={styles.itemContainer}>
 					<Text style={styles.itemKey}>{ type }</Text>
-					<Image style={styles.selectedImg} source={type === curType ? require('../imgs/selected_quan.png') : require('../imgs/unselected_quan.png')} />
+					<Image style={styles.selectedImg} source={type === curVal ? require('../imgs/selected_quan.png') : require('../imgs/unselected_quan.png')} />
 				</View>
 				{
-					index < typeArr.length - 1 && <View style={styles.line} />
+					index < valArr.length - 1 && <View style={styles.line} />
 				}
 			</TouchableOpacity>
 		);

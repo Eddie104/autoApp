@@ -73,6 +73,7 @@ export default class AskForLeaveScreen extends PureComponent {
 	componentWillUnmount() {
 		this._navigatorListener && this._navigatorListener.remove();
 		this._navigatorListener = null;
+		this._timePicker.hide();
 	}
 
 	render() {
@@ -113,7 +114,7 @@ export default class AskForLeaveScreen extends PureComponent {
 						</Text>
 						<View style={styles.itemValContainer}>
 							<Text style={styles.itemKey}>
-								{ startDateYear }-{ utils.number2Str(startDateMonth, 2) }-{ utils.number2Str(startDateDate, 2) } { utils.number2Str(startDateHour) }:{ utils.number2Str(startDateMinutes) }
+								{ startDateYear }-{ utils.number2Str(startDateMonth, 2) }-{ utils.number2Str(startDateDate, 2) } { utils.number2Str(startDateHour, 2) }:{ utils.number2Str(startDateMinutes, 2) }
 							</Text>
 							<Image style={styles.arrow} source={require('../../imgs/arrow.png')} />
 						</View>
@@ -125,7 +126,7 @@ export default class AskForLeaveScreen extends PureComponent {
 						</Text>
 						<View style={styles.itemValContainer}>
 							<Text style={styles.itemKey}>
-								{ endDateYear }-{ utils.number2Str(endDateMonth, 2) }-{ utils.number2Str(endDateDate, 2) } { utils.number2Str(endDateHour) }:{ utils.number2Str(endDateMinutes) }
+								{ endDateYear }-{ utils.number2Str(endDateMonth, 2) }-{ utils.number2Str(endDateDate, 2) } { utils.number2Str(endDateHour, 2) }:{ utils.number2Str(endDateMinutes, 2) }
 							</Text>
 							<Image style={styles.arrow} source={require('../../imgs/arrow.png')} />
 						</View>
@@ -177,7 +178,7 @@ export default class AskForLeaveScreen extends PureComponent {
 						提交试试
 					</Text>
 				</TouchableOpacity>
-				<RadioModal visible={isShowingLeaveTypeModal} typeArr={LEAVE_TYPE_ARR} curType={curType} onSelected={this._onLeaveTypeSelected} />
+				<RadioModal visible={isShowingLeaveTypeModal} valArr={LEAVE_TYPE_ARR} curVal={curType} onSelected={this._onLeaveTypeSelected} />
 			</View>
 		);
 	}
