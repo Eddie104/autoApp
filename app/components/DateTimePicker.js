@@ -16,6 +16,8 @@ export default function getPicker(onPickerConfirm, minDate, maxDate) {
 	}
 	for (let i = 1; i < 13; i++) {
 		months.push(i);
+	}
+	for (let i = 0; i < 24; i++) {
 		hours.push(i);
 	}
 	for (let i = 1; i < 32; i++) {
@@ -24,14 +26,13 @@ export default function getPicker(onPickerConfirm, minDate, maxDate) {
 	for (let i =1; i < 61; i++) {
 		minutes.push(i);
 	}
-	const pickerData = [years, months, days, ['上午', '下午'], hours, minutes];
+	const pickerData = [years, months, days, hours, minutes];
 	const date = new Date();
 	const selectedValue = [
 		date.getFullYear(),
 		date.getMonth() + 1,
 		date.getDate(),
-		date.getHours() <= 11 ? '上午' : '下午',
-		date.getHours() === 12 ? 12 : date.getHours() % 12,
+		date.getHours(),
 		date.getMinutes()
 	];
 	Picker.init({
@@ -41,7 +42,7 @@ export default function getPicker(onPickerConfirm, minDate, maxDate) {
 		pickerConfirmBtnText: '确定',
 		pickerCancelBtnText: '取消',
 		pickerFontSize: 20,
-		wheelFlex: [2, 1, 1, 2, 1, 1],
+		wheelFlex: [2, 1, 1, 1, 1],
 		onPickerConfirm,
 		onPickerSelect: pickedValue => {
 			const targetValue = [...pickedValue];

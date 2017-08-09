@@ -230,16 +230,16 @@ export default class AskForLeaveScreen extends PureComponent {
 				startDateYear: pickedValue[0],
 				startDateMonth: pickedValue[1],
 				startDateDate: pickedValue[2],
-				startDateHour: pickedValue[3] === '上午' ? pickedValue[4] : parseInt(pickedValue[4]) + 12,
-				startDateMinutes: pickedValue[5]
+				startDateHour: pickedValue[3],
+				startDateMinutes: pickedValue[4]
 			});
 		} else {
 			this.setState({
 				endDateYear: pickedValue[0],
 				endDateMonth: pickedValue[1],
 				endDateDate: pickedValue[2],
-				endDateHour: pickedValue[3] === '上午' ? pickedValue[4] : parseInt(pickedValue[4]) + 12,
-				endDateMinutes: pickedValue[5]
+				endDateHour: pickedValue[3],
+				endDateMinutes: pickedValue[4]
 			});
 		}
 	}
