@@ -14,11 +14,15 @@ import {
 
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
-import LeaveTypeModal from './LeaveTypeModal';
+import CameraScreen from '../../components/CameraScreen';
+import RadioModal from '../../components/RadioModal';
 import ImageFuncPanel from './ImageFuncPanel';
 import ImageListScene from './ImageListScene';
-import CameraScreen from './CameraScreen';
 import ActionSheet from '@yfuks/react-native-action-sheet';
+import DateTimePicker from '../../components/DateTimePicker';
+
+// 请假的事由
+const LEAVE_TYPE_ARR = ['事假', '病假', '年假', '调休', '婚假', '产假', '陪产假', '路途假', '其他'];
 
 /**
  * 请假场景
@@ -32,25 +36,30 @@ export default class AskForLeaveScreen extends PureComponent {
 		this.state = {
 			// 是否显示请假类型的弹窗
 			isShowingLeaveTypeModal: false,
-			curType: '事假',
+			curType: LEAVE_TYPE_ARR[0],
 			startDateYear: now.getFullYear(),
-			startDateMonth: now.getMonth(),
+			startDateMonth: now.getMonth() + 1,
 			startDateDate: now.getDate(),
+			startDateHour: now.getHours(),
+			startDateMinutes: now.getMinutes(),
 			endDateYear: now.getFullYear(),
-			endDateMonth: now.getMonth(),
+			endDateMonth: now.getMonth() + 1,
 			endDateDate: now.getDate(),
+			endDateHour: now.getHours(),
+			endDateMinutes: now.getMinutes(),
 			// 请假的事由
 			reason: ''
 		};
 
 		this._onLeaveTypePress = this.onLeaveTypePress.bind(this);
-		this._onLeaveDateStarPress = this.onLeaveDateStarPress.bind(this);
+		this._onLeaveDateStartPress = this.onLeaveDateStartPress.bind(this);
 		this._onLeaveDateEndPress = this.onLeaveDateEndPress.bind(this);
 
 		this._onLeaveTypeSelected = this.onLeaveTypeSelected.bind(this);
 		this._onReasonChanged = this.onReasonChanged.bind(this);
 
 		this._onAddImage = this.onAddImage.bind(this);
+		this._timePicker = DateTimePicker(this.onTimePicked.bind(this), new Date());
 	}
 
 	componentWillMount() {
@@ -67,7 +76,21 @@ export default class AskForLeaveScreen extends PureComponent {
 	}
 
 	render() {
-		const { isShowingLeaveTypeModal, curType, startDateYear, startDateMonth, startDateDate, endDateYear, endDateMonth, endDateDate, reason } = this.state;
+		const { 
+			isShowingLeaveTypeModal,
+			curType,
+			startDateYear,
+			startDateMonth,
+			startDateDate,
+			startDateHour,
+			startDateMinutes,
+			endDateYear,
+			endDateMonth,
+			endDateDate,
+			endDateHour,
+			endDateMinutes,
+			reason
+		} = this.state;
 		return (
 			<View style={styles.container}>
 				<TopBar title={'请假'} showMoreBtn={false} />
@@ -84,13 +107,13 @@ export default class AskForLeaveScreen extends PureComponent {
 						</View>
 					</TouchableOpacity>
 					<View style={styles.line} />
-					<TouchableOpacity activeOpacity={0.8} onPress={this._onLeaveDateStarPress} style={styles.itemContainer}>
+					<TouchableOpacity activeOpacity={0.8} onPress={this._onLeaveDateStartPress} style={styles.itemContainer}>
 						<Text style={styles.itemKey}>
 							开始时间
 						</Text>
 						<View style={styles.itemValContainer}>
 							<Text style={styles.itemKey}>
-								{ startDateYear }-{ utils.number2Str(startDateMonth + 1, 2) }-{ utils.number2Str(startDateDate, 2) }
+								{ startDateYear }-{ utils.number2Str(startDateMonth, 2) }-{ utils.number2Str(startDateDate, 2) } { utils.number2Str(startDateHour) }:{ utils.number2Str(startDateMinutes) }
 							</Text>
 							<Image style={styles.arrow} source={require('../../imgs/arrow.png')} />
 						</View>
@@ -102,7 +125,7 @@ export default class AskForLeaveScreen extends PureComponent {
 						</Text>
 						<View style={styles.itemValContainer}>
 							<Text style={styles.itemKey}>
-								{ endDateYear }-{ utils.number2Str(endDateMonth + 1, 2) }-{ utils.number2Str(endDateDate, 2) }
+								{ endDateYear }-{ utils.number2Str(endDateMonth, 2) }-{ utils.number2Str(endDateDate, 2) } { utils.number2Str(endDateHour) }:{ utils.number2Str(endDateMinutes) }
 							</Text>
 							<Image style={styles.arrow} source={require('../../imgs/arrow.png')} />
 						</View>
@@ -154,7 +177,7 @@ export default class AskForLeaveScreen extends PureComponent {
 						提交试试
 					</Text>
 				</TouchableOpacity>
-				<LeaveTypeModal visible={isShowingLeaveTypeModal} curType={curType} onSelected={this._onLeaveTypeSelected} />
+				<RadioModal visible={isShowingLeaveTypeModal} typeArr={LEAVE_TYPE_ARR} curType={curType} onSelected={this._onLeaveTypeSelected} />
 			</View>
 		);
 	}
@@ -165,42 +188,33 @@ export default class AskForLeaveScreen extends PureComponent {
 		});
 	}
 
-	async onLeaveDateStarPress() {
-		await this.pickDate((year, month, day) => {
-			this.setState({
-				startDateYear: year,
-				startDateMonth: month,
-				startDateDate: day
-			});
-		});
+	onLeaveDateStartPress() {
+		this._isStartTime = true;
+		this._timePicker.show();
 	}
 
-	async onLeaveDateEndPress() {
-		await this.pickDate((year, month, day) => {
-			this.setState({
-				endDateYear: year,
-				endDateMonth: month,
-				endDateDate: day
-			});
-		});
+	onLeaveDateEndPress() {
+		this._isStartTime = false;
+		this._timePicker.show();
 	}
 
-	async pickDate(cb) {
-		try {
-			const { action, year, month, day } = await DatePickerAndroid.open({
-				date: new Date(),
-				// mode有三种：
-				// calendar: Show a date picker in calendar mode.
-				// spinner: Show a date picker in spinner mode.
-				// default: Show a default native date picker(spinner/calendar) based on android versions.
-				mode: 'default'
+	onTimePicked(pickedValue) {
+		if (this._isStartTime) {
+			this.setState({
+				startDateYear: pickedValue[0],
+				startDateMonth: pickedValue[1],
+				startDateDate: pickedValue[2],
+				startDateHour: pickedValue[3] === '上午' ? pickedValue[4] : parseInt(pickedValue[4]) + 12,
+				startDateMinutes: pickedValue[5]
 			});
-			if (action !== DatePickerAndroid.dismissedAction) {
-				// 这里开始可以处理用户选好的年月日三个参数：year, month (0-11), day
-				cb(year, month, day);
-			}
-		} catch ({code, message}) {
-			console.warn('Cannot open date picker', message);
+		} else {
+			this.setState({
+				endDateYear: pickedValue[0],
+				endDateMonth: pickedValue[1],
+				endDateDate: pickedValue[2],
+				endDateHour: pickedValue[3] === '上午' ? pickedValue[4] : parseInt(pickedValue[4]) + 12,
+				endDateMinutes: pickedValue[5]
+			});
 		}
 	}
 
@@ -237,7 +251,14 @@ export default class AskForLeaveScreen extends PureComponent {
 	 */
 	onTakePhoto() {
 		global.nav.push({
-			Component: CameraScreen
+			Component: CameraScreen,
+			onTakePicture: data => {
+				global.imagesSelected.push({
+					width: utils.toDips(720),
+					height: utils.toDips(1280),
+					uri: data.path
+				});
+			}
 		});
 	}
 

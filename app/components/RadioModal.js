@@ -10,12 +10,9 @@ import {
 	TouchableOpacity
 } from 'react-native';
 
-import * as utils from '../../utils';
+import * as utils from '../utils';
 
-/**
- * 请假类型选择弹窗
- */
-export default class LeaveTypeModal extends PureComponent {
+export default class RadioModal extends PureComponent {
 
 	static propTypes = {
 		visible: PropTypes.bool,
@@ -83,7 +80,7 @@ export default class LeaveTypeModal extends PureComponent {
 			>
 				<View style={styles.itemContainer}>
 					<Text style={styles.itemKey}>{ type }</Text>
-					<Image style={styles.selectedImg} source={type === curType ? require('../../imgs/selected_quan.png') : require('../../imgs/unselected_quan.png')} />
+					<Image style={styles.selectedImg} source={type === curType ? require('../imgs/selected_quan.png') : require('../imgs/unselected_quan.png')} />
 				</View>
 				{
 					index < typeArr.length - 1 && <View style={styles.line} />

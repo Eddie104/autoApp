@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -10,12 +10,20 @@ import {
 
 import Camera from 'react-native-camera';
 
-import * as utils from '../../utils';
+import * as utils from '../utils';
 
 /**
- * 拍照
+ * 拍照场景
  */
 export default class CameraScreen extends PureComponent {
+
+	static propTypes = {
+		onTakePicture: PropTypes.func
+	};
+
+	static defaultProps = {
+		onTakePicture: () => {}
+	};
 	
 	constructor(props) {
 		super(props);
@@ -58,13 +66,9 @@ export default class CameraScreen extends PureComponent {
 	}
 
 	 onTakePicture() {
-		const options = {};
+		const { onTakePicture } = this.props;
 		this.camera.capture({metadata: options}).then((data) => {
-			global.imagesSelected.push({
-				width: utils.toDips(720),
-				height: utils.toDips(1280),
-				uri: data.path
-			});
+			onTakePicture(data);
 			this.onBack();
 		}).catch(err => {
 			console.warn(err);

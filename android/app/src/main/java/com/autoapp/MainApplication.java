@@ -9,6 +9,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
 import com.actionsheet.ActionSheetPackage;
+import com.beefe.picker.PickerViewPackage;
 import com.remobile.toast.RCTToastPackage;
 import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
 import com.rnfs.RNFSPackage;
@@ -39,6 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
           new RNFSPackage(),
           new SQLitePluginPackage(),
           new ActionSheetPackage(),
+          new PickerViewPackage(),
           new MyPackage()
       );
     }

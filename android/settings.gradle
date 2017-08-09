@@ -22,3 +22,6 @@ project(':react-native-sqlite-storage').projectDir = new File(rootProject.projec
 
 include ':react-native-action-sheet'
 project(':react-native-action-sheet').projectDir = new File(settingsDir, '../node_modules/@yfuks/react-native-action-sheet/android')
+
+include ':react-native-picker'
+project(':react-native-picker').projectDir = new File(settingsDir, '../node_modules/react-native-picker/android')
