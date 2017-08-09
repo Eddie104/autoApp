@@ -227,19 +227,19 @@ export default class AskForLeaveScreen extends PureComponent {
 	onTimePicked(pickedValue) {
 		if (this._isStartTime) {
 			this.setState({
-				startDateYear: pickedValue[0],
-				startDateMonth: pickedValue[1],
-				startDateDate: pickedValue[2],
-				startDateHour: pickedValue[3],
-				startDateMinutes: pickedValue[4]
+				startDateYear: utils.removeLast(pickedValue[0]),
+				startDateMonth: utils.removeLast(pickedValue[1]),
+				startDateDate: utils.removeLast(pickedValue[2]),
+				startDateHour: utils.removeLast(pickedValue[3]),
+				startDateMinutes: utils.removeLast(pickedValue[4])
 			});
 		} else {
 			this.setState({
-				endDateYear: pickedValue[0],
-				endDateMonth: pickedValue[1],
-				endDateDate: pickedValue[2],
-				endDateHour: pickedValue[3],
-				endDateMinutes: pickedValue[4]
+				endDateYear: utils.removeLast(pickedValue[0]),
+				endDateMonth: utils.removeLast(pickedValue[1]),
+				endDateDate: utils.removeLast(pickedValue[2]),
+				endDateHour: utils.removeLast(pickedValue[3]),
+				endDateMinutes: utils.removeLast(pickedValue[4])
 			});
 		}
 	}

@@ -187,16 +187,21 @@ export default class StoreSearchScreen extends PureComponent {
 	 * 类别选择器做出了选择
 	 */
 	onCategorySelected(index, data) {
-		const { categorySelectorValue } = this.state;
-		categorySelectorValue[index] = data;
-		this.setState({
-			categorySelectorValue
-		}, () => {
-			// 关掉类别选择器
-			this.showCategorySelector(this._curCategoryIndex);	
-		});
-		// 再去sql数据
-		// this._storeList.fetchData(true);
+		if (index === -1) {
+			// 啥都没有选，直接关闭了选择器
+			this.showCategorySelector(this._curCategoryIndex);
+		} else {
+			const { categorySelectorValue } = this.state;
+			categorySelectorValue[index] = data;
+			this.setState({
+				categorySelectorValue
+			}, () => {
+				// 关掉类别选择器
+				this.showCategorySelector(this._curCategoryIndex);
+			});
+			// 再去sql数据
+			// this._storeList.fetchData(true);
+		}
 	}
 }
 
@@ -219,7 +224,7 @@ const styles = StyleSheet.create({
 		borderRadius: utils.toDips(10)
 	},
 	textInput: {
-		fontSize: utils.getFontSize(24),
+		fontSize: utils.getFontSize(20),
 		color: "#364153",
 		height: utils.toDips(76),
 		marginLeft: utils.toDips(22),

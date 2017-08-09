@@ -303,3 +303,11 @@ export function number2Str(num, length) {
 	}
 	return num;
 }
+
+/**
+ * 移除string最后的几位
+ */
+export function removeLast(str, num) {
+	num = num || 1;
+	return str.substr(0, str.length - num);
+}

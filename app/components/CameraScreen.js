@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 
 import Camera from 'react-native-camera';
-
 import * as utils from '../utils';
 
 /**
