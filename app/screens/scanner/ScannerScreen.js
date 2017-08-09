@@ -45,6 +45,10 @@ export default class ScannerScreen extends PureComponent {
 			// 身份证，要识别正反面
 			this._idcardData = {};
 			utils.toast('请先识别正面身份证', 'center');
+		} else if(props.action === 'driver.scan') {
+			utils.toast('请先识别正面驾驶证', 'center');
+		} else if(props.action === 'driving.scan') {
+			utils.toast('请先识别正面行驶证', 'center');
 		}
 	}
 
