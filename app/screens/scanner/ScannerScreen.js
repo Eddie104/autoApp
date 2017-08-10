@@ -67,17 +67,17 @@ export default class ScannerScreen extends PureComponent {
 					<View style={{flexDirection: 'row', width: utils.screenWidth(), justifyContent: 'space-around'}}>
 						<TouchableOpacity
 							activeOpacity={0.8}
-							onPress={this._onTakePicture}
-							style={styles.captureContainer}
-						>
-							<Text style={styles.capture}>{ isPositive ? '[识别正面]' : '[识别反面]' }</Text>
-						</TouchableOpacity>
-						<TouchableOpacity
-							activeOpacity={0.8}
 							onPress={this._onBack}
 							style={styles.captureContainer}
 						>
 							<Text style={styles.capture}>[返回]</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							activeOpacity={0.8}
+							onPress={this._onTakePicture}
+							style={styles.captureContainer}
+						>
+							<Text style={styles.capture}>{ isPositive ? '[识别正面]' : '[识别反面]' }</Text>
 						</TouchableOpacity>
 					</View>
 				</Camera>
