@@ -123,11 +123,15 @@ export default class ImageListScene extends PureComponent {
 	}
 
 	async fetchImage(updateImageCellBadge, groupName) {
+		if (this.state.isRefreshing) return;
 		if (!this._isFetchedAllImages) {
 			this.setState({
 				isRefreshing: true
 			});
-			const params = {...this._fetchImageParams, after: this._after || null, groupName};
+			const params = {...this._fetchImageParams, after: this._after, groupName};
+			if (utils.isUndefined(this._after)) {
+				delete params.after;
+			}
 			const imageObj = await CameraRoll.getPhotos(params);
 			this._isFetchedAllImages = !imageObj.page_info.has_next_page;
 			this._after = !this._isFetchedAllImages ? imageObj.page_info.end_cursor : null;

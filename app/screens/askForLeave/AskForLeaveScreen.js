@@ -282,8 +282,8 @@ export default class AskForLeaveScreen extends PureComponent {
 
 	onAddImage() {
 		ActionSheet.showActionSheetWithOptions({
-			options: ['相册', '拍照'],
-			cancelButtonIndex: 3,
+			options: utils.isIOS() ? ['相册', '拍照', '取消'] : ['相册', '拍照'],
+			cancelButtonIndex: 2,
 			tintColor: 'blue'
 		}, (buttonIndex) => {
 			if (buttonIndex === 0) {

@@ -81,5 +81,6 @@ export default function getPicker(onPickerConfirm, minDate, maxDate) {
 			}
 		}
 	});
+	if (utils.isIOS()) Picker.hide();
 	return Picker;
 }
