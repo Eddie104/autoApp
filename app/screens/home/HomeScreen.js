@@ -22,6 +22,7 @@ import HomeDataDao from '../../dao/HomeDataDao';
 import UserDataDao from '../../dao/UserDataDao';
 
 import ScannerScreen from '../scanner/ScannerScreen';
+import IdcardResultScreen from '../scanner/IdcardResultScreen';
 import StoreSearchScreen from '../store/StoreSearchScreen';
 import TestScene from '../test/TestScene';
 import AskForLeaveScreen from '../askForLeave/AskForLeaveScreen';
@@ -122,15 +123,15 @@ export default class HomeScreen extends PureComponent {
 						}
 						{
 							// 身份证识别
-							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '身份证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: StoreSearchScreen, action: 'idcard.scan'});})
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '门店搜索', siJiVal, siJiTotal, () => {global.nav.push({Component: StoreSearchScreen, action: 'idcard.scan'});})
 						}
 						{
 							// 身份证识别
-							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '驾驶证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: TestScene, action: 'driver.scan'});})
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '测试', siJiVal, siJiTotal, () => {global.nav.push({Component: IdcardResultScreen, action: 'driver.scan'});})
 						}
 						{
 							// 身份证识别
-							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '行驶证识别', siJiVal, siJiTotal, () => {global.nav.push({Component: AskForLeaveScreen, action: 'driving.scan'});})
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '请假', siJiVal, siJiTotal, () => {global.nav.push({Component: AskForLeaveScreen, action: 'driving.scan'});})
 						}
 					</View>
 					{

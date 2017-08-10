@@ -37,6 +37,7 @@ export default class DrivingResultScreen extends ScannerResultScreen {
 		const { name, cardno, vehicleType, address, useCharacte, model, vin, enginePN, registerDate, issueDate } = props.data;
 		this.state = {
 			imgBase64: '',
+			backImgBase64: '',
 			name,
 			cardno,
 			vehicleType,

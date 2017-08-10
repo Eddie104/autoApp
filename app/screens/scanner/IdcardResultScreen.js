@@ -60,28 +60,8 @@ export default class IdcardResultScreen extends ScannerResultScreen {
 		this._onValidPeriodChanged = this.onValidPeriodChanged.bind(this);
 	}
 
-	componentDidMount() {
-		const { imgPath, backImgPath } = this.props;
-		// substring(7) -> to remove the file://
-		RNFS.readFile(utils.isIOS() ? imgPath : imgPath.substring(7), 'base64').then(imgBase64 => {
-			RNFS.readFile(utils.isIOS() ? backImgPath : backImgPath.substring(7), 'base64').then(backImgBase64 => {
-				this.setState({
-					imgBase64,
-					backImgBase64
-				});
-			});
-		});
-	}
-
 	getTitle() {
 		return '识别身份证结果';
-	}
-
-	renderBackImg() {
-		const { backImgBase64 } = this.state;
-		return (
-			<Image style={{width: utils.toDips(750), height: utils.toDips(1280 * 750 / 720)}} source={{ uri: `data:image/jpeg;base64,${backImgBase64}` }} />
-		);
 	}
 
 	renderKeyItemRow() {

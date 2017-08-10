@@ -7,41 +7,71 @@ import {
 	Text,
 	Image,
 	TouchableOpacity,
+	TextInput
 } from 'react-native';
 
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
+import DateTimePicker from '../../components/DateTimePicker';
 // import ConstantsUtils  from '../util/ConstantsUtils';
+
+
+import Picker from 'react-native-picker';
 
 export default class TestScene extends PureComponent {
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			date: '',
+			t: ''
+		}
+
+		this._picker = null;
 	}
 
 	componentDidMount() {
+		// console.warn(PopPicker);
 	}
 
 	render() {
+		const { t } = this.state;
 		return (
 			<View style={styles.container}>
 				<TopBar title={ '测试场景' } showMoreBtn={false} />
-				<Image
-					style={styles.itemImg}
-					source={{
-						uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501823102363&di=21ef1962900fec94c2805d8e12d5bf18&imgtype=0&src=http%3A%2F%2Flove.heima.com%2Fupload%2F161013%2F59715-16101323134R10.jpg'
+				<Text style={{}} onPress={() => this.showTimePicker()}>
+					时间选择器
+				</Text>
+				<TextInput
+					maxLength={300}
+					autoCapitalize={"none"}
+					style={{}}
+					// 关闭拼写自动修正
+					autoCorrect={false}
+					keyboardType={"default"}
+					multiline={true}
+					value={t}
+					onChangeText={(t) => {
+						this.setState({
+							t
+						});
 					}}
-				>
-					<TouchableOpacity
-						activeOpacity={0.8}
-						style={styles.captureContainer}
-					>
-						<Text style={styles.capture}>{ '[下载原图]'  }</Text>
-					</TouchableOpacity>
-				</Image>
+					placeholder={"请输入请假事由（必填）"}
+					placeholderTextColor={'#cbcbcb'}
+					underlineColorAndroid={'transparent'}
+					returnKeyType="default"
+				/>
 			</View>
 		);
 	}
+
+	showTimePicker() {
+		if(!this._picker){
+			this._picker = DateTimePicker();
+		}
+        this._picker.toggle();
+    }
 }
 
 const styles = StyleSheet.create({

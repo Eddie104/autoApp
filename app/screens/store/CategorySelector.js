@@ -5,7 +5,8 @@ import {
 	StyleSheet,
 	View,
 	ScrollView,
-	Animated
+	Animated,
+	TouchableWithoutFeedback
 } from 'react-native';
 
 import * as utils from '../../utils';
@@ -55,15 +56,22 @@ export default class CategorySelector extends PureComponent {
 		const { top, left, categoryDataArr, categorySelectorValue } = this.props;
 		const { opacity } = this.state;
 		return (
-			<View style={[styles.container, { top, left }]}>
-				{
-					// 有透明度的背景
-				}
-				<Animated.View style={[styles.container, { backgroundColor: 'black', opacity }]} />				
-				<CategoryList ref={c => {this._categoryList0 = c;}} dataArr={categoryDataArr[0]} selectedData={categorySelectorValue[0]} onPress={this._onPress0} />
-				<CategoryList ref={c => {this._categoryList1 = c;}} dataArr={categoryDataArr[1]} selectedData={categorySelectorValue[1]} onPress={this._onPress1} />
-				<CategoryList ref={c => {this._categoryList2 = c;}} dataArr={categoryDataArr[2]} selectedData={categorySelectorValue[2]} onPress={this._onPress2} />
-			</View>
+			<TouchableWithoutFeedback
+				onPress={() => {
+					const { onSelected } = this.props;
+					onSelected && onSelected(-1);
+				}}
+			>
+				<View style={[styles.container, { top, left }]}>
+					{
+						// 有透明度的背景
+					}
+					<Animated.View style={[styles.container, { backgroundColor: 'black', opacity }]} />				
+					<CategoryList ref={c => {this._categoryList0 = c;}} dataArr={categoryDataArr[0]} selectedData={categorySelectorValue[0]} onPress={this._onPress0} />
+					<CategoryList ref={c => {this._categoryList1 = c;}} dataArr={categoryDataArr[1]} selectedData={categorySelectorValue[1]} onPress={this._onPress1} />
+					<CategoryList ref={c => {this._categoryList2 = c;}} dataArr={categoryDataArr[2]} selectedData={categorySelectorValue[2]} onPress={this._onPress2} />
+				</View>
+			</TouchableWithoutFeedback>
 		);
 	}
 

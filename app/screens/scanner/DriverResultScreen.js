@@ -37,6 +37,7 @@ export default class DriverResultScreen extends ScannerResultScreen {
 		const { name, cardno, sex, address, nation, birthday, validPeriod, drivingType, registerDate, issueDate } = props.data;
 		this.state = {
 			imgBase64: '',
+			backImgBase64: '',
 			name,
 			cardno,
 			sex,
