@@ -60,6 +60,9 @@ export default class AskForLeaveScreen extends PureComponent {
 
 		this._onAddImage = this.onAddImage.bind(this);
 		this._timePicker = DateTimePicker(this.onTimePicked.bind(this), new Date());
+
+		// 为了修复android上多行textInput的bug
+		this._latestSubmitEditing = 0;
 	}
 
 	componentWillMount() {
@@ -157,12 +160,26 @@ export default class AskForLeaveScreen extends PureComponent {
 							autoCorrect={false}
 							keyboardType={"default"}
 							multiline={true}
+							numberOfLines={10}
 							value={reason}
 							onChangeText={this._onReasonChanged}
 							placeholder={"请输入请假事由（必填）"}
 							placeholderTextColor={'#cbcbcb'}
 							underlineColorAndroid={'transparent'}
 							returnKeyType="default"
+							blurOnSubmit={false}
+							onSubmitEditing={e => {
+								// 为了修复android上多行textInput中换行键不能换行的bug
+								if (!utils.isIOS()) {
+									const latestSubmitEditing = this._latestSubmitEditing;
+									this._latestSubmitEditing = e.timeStamp;
+									if (latestSubmitEditing && e.timeStamp - latestSubmitEditing < 300) return;
+									const text = this.state.reason;
+									if (!text.endsWith("\n")) {
+										this.setState({ reason: text + '\n' });
+									}
+								}
+							}}
 						/>
 					</TouchableOpacity>
 					<View style={styles.line} />

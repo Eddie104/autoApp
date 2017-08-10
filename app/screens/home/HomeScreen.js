@@ -22,6 +22,7 @@ import HomeDataDao from '../../dao/HomeDataDao';
 import UserDataDao from '../../dao/UserDataDao';
 
 import ScannerScreen from '../scanner/ScannerScreen';
+import IdcardResultScreen from '../scanner/IdcardResultScreen';
 import StoreSearchScreen from '../store/StoreSearchScreen';
 import TestScene from '../test/TestScene';
 import AskForLeaveScreen from '../askForLeave/AskForLeaveScreen';
@@ -125,7 +126,7 @@ export default class HomeScreen extends PureComponent {
 						}
 						{
 							// 身份证识别
-							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '测试', siJiVal, siJiTotal, () => {global.nav.push({Component: ScannerScreen, action: 'driver.scan'});})
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '测试', siJiVal, siJiTotal, () => {global.nav.push({Component: IdcardResultScreen, action: 'driver.scan'});})
 						}
 						{
 							// 身份证识别
