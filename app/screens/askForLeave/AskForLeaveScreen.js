@@ -48,7 +48,9 @@ export default class AskForLeaveScreen extends PureComponent {
 			endDateHour: now.getHours(),
 			endDateMinutes: now.getMinutes(),
 			// 请假的事由
-			reason: ''
+			reason: '',
+			// 请假天数
+			leaveDays: ''
 		};
 
 		this._onLeaveTypePress = this.onLeaveTypePress.bind(this);
@@ -57,6 +59,7 @@ export default class AskForLeaveScreen extends PureComponent {
 
 		this._onLeaveTypeSelected = this.onLeaveTypeSelected.bind(this);
 		this._onReasonChanged = this.onReasonChanged.bind(this);
+		this._onLeaveDaysChanged = this.onLeaveDaysChanged.bind(this);
 
 		this._onAddImage = this.onAddImage.bind(this);
 		this._timePicker = DateTimePicker(this.onTimePicked.bind(this), new Date());
@@ -77,6 +80,7 @@ export default class AskForLeaveScreen extends PureComponent {
 		this._navigatorListener && this._navigatorListener.remove();
 		this._navigatorListener = null;
 		this._timePicker.hide();
+		global.imagesSelected.length = 0;
 	}
 
 	render() {
@@ -93,7 +97,8 @@ export default class AskForLeaveScreen extends PureComponent {
 			endDateDate,
 			endDateHour,
 			endDateMinutes,
-			reason
+			reason,
+			leaveDays
 		} = this.state;
 		return (
 			<View style={styles.container}>
@@ -134,6 +139,29 @@ export default class AskForLeaveScreen extends PureComponent {
 							<Image style={styles.arrow} source={require('../../imgs/arrow.png')} />
 						</View>
 					</TouchableOpacity>
+					<View style={styles.line} />
+					<View style={styles.itemContainer}>
+						<Text style={styles.itemKey}>
+							请假天数
+						</Text>
+						<View style={styles.itemValContainer}>
+							<TextInput
+								maxLength={30}
+								autoCapitalize={"none"}
+								style={styles.daysText}
+								// 关闭拼写自动修正
+								autoCorrect={false}
+								keyboardType={"default"}
+								multiline={false}
+								value={leaveDays}
+								onChangeText={this._onLeaveDaysChanged}
+								placeholder={"请输入请假天数"}
+								placeholderTextColor={'#cbcbcb'}
+								underlineColorAndroid={'transparent'}
+								returnKeyType="default"
+							/>
+						</View>
+					</View>
 					<View style={styles.line} />
 					<TouchableOpacity
 						activeOpacity={0.8}
@@ -242,23 +270,39 @@ export default class AskForLeaveScreen extends PureComponent {
 	}
 
 	onTimePicked(pickedValue) {
+		let { startDateYear, startDateMonth, startDateDate, startDateHour, startDateMinutes, endDateYear, endDateMonth, endDateDate, endDateHour, endDateMinutes } = this.state;
 		if (this._isStartTime) {
-			this.setState({
-				startDateYear: utils.removeLast(pickedValue[0]),
-				startDateMonth: utils.removeLast(pickedValue[1]),
-				startDateDate: utils.removeLast(pickedValue[2]),
-				startDateHour: utils.removeLast(pickedValue[3]),
-				startDateMinutes: utils.removeLast(pickedValue[4])
-			});
+			startDateYear = parseInt(utils.removeLast(pickedValue[0]));
+			startDateMonth = parseInt(utils.removeLast(pickedValue[1]));
+			startDateDate = parseInt(utils.removeLast(pickedValue[2]));
+			startDateHour = parseInt(utils.removeLast(pickedValue[3]));
+			startDateMinutes = parseInt(utils.removeLast(pickedValue[4]));
+			
 		} else {
-			this.setState({
-				endDateYear: utils.removeLast(pickedValue[0]),
-				endDateMonth: utils.removeLast(pickedValue[1]),
-				endDateDate: utils.removeLast(pickedValue[2]),
-				endDateHour: utils.removeLast(pickedValue[3]),
-				endDateMinutes: utils.removeLast(pickedValue[4])
-			});
+			endDateYear = parseInt(utils.removeLast(pickedValue[0]));
+			endDateMonth = parseInt(utils.removeLast(pickedValue[1]));
+			endDateDate = parseInt(utils.removeLast(pickedValue[2]));
+			endDateHour = parseInt(utils.removeLast(pickedValue[3]));
+			endDateMinutes = parseInt(utils.removeLast(pickedValue[4]));
 		}
+		const startDateTime = new Date(startDateYear, startDateMonth - 1, startDateDate, startDateHour, startDateMinutes).getTime();
+		const endDateTime = new Date(endDateYear, endDateMonth - 1, endDateDate, endDateHour, endDateMinutes).getTime();
+		// 相差的毫秒数
+		const diff = endDateTime - startDateTime;
+		const leaveDays = (diff / 1000 / 60 / 60 / 24).toString();
+		this.setState({
+			startDateYear,
+			startDateMonth,
+			startDateDate,
+			startDateHour,
+			startDateMinutes,
+			endDateYear,
+			endDateMonth,
+			endDateDate,
+			endDateHour,
+			endDateMinutes,
+			leaveDays
+		});
 	}
 
 	onLeaveTypeSelected(curType) {
@@ -278,6 +322,21 @@ export default class AskForLeaveScreen extends PureComponent {
 		this.setState({
 			reason
 		});
+	}
+
+	onLeaveDaysChanged(leaveDays) {
+		this.setState({
+			leaveDays
+		});
+		// if (isNaN(parseInt(leaveDays))) {
+		// 	this.setState({
+		// 		leaveDays: '0'
+		// 	});
+		// } else {
+		// 	this.setState({
+		// 		leaveDays
+		// 	});
+		// }
 	}
 
 	onAddImage() {
@@ -382,5 +441,14 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontSize: utils.getFontSize(28),
 		backgroundColor: 'transparent'
+	},
+	daysText: {
+		fontSize: utils.getFontSize(22),
+		color: "#364153",
+		// width: utils.toDips(87),
+		flex: 1,
+		textAlign: 'left',
+		textAlignVertical: 'center',
+		includeFontPadding: false
 	}
 });
