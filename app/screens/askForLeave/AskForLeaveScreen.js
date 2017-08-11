@@ -289,7 +289,7 @@ export default class AskForLeaveScreen extends PureComponent {
 		const endDateTime = new Date(endDateYear, endDateMonth - 1, endDateDate, endDateHour, endDateMinutes).getTime();
 		// 相差的毫秒数
 		const diff = endDateTime - startDateTime;
-		const leaveDays = (diff / 1000 / 60 / 60 / 24).toString();
+		const leaveDays = Math.floor(diff / 1000 / 60 / 60 / 24).toString();
 		this.setState({
 			startDateYear,
 			startDateMonth,

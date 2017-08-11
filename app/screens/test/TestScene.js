@@ -14,9 +14,10 @@ import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
 import DateTimePicker from '../../components/DateTimePicker';
 // import ConstantsUtils  from '../util/ConstantsUtils';
+import QuestionDateComponent from './QuestionDateComponent';
 
 
-import Picker from 'react-native-picker';
+// import Picker from 'react-native-picker';
 
 export default class TestScene extends PureComponent {
 
@@ -24,8 +25,7 @@ export default class TestScene extends PureComponent {
 		super(props);
 
 		this.state = {
-			date: '',
-			t: ''
+			
 		}
 
 		this._picker = null;
@@ -36,32 +36,13 @@ export default class TestScene extends PureComponent {
 	}
 
 	render() {
-		const { t } = this.state;
+		
 		return (
 			<View style={styles.container}>
 				<TopBar title={ '测试场景' } showMoreBtn={false} />
-				<Text style={{}} onPress={() => this.showTimePicker()}>
-					时间选择器
-				</Text>
-				<TextInput
-					maxLength={300}
-					autoCapitalize={"none"}
-					style={{}}
-					// 关闭拼写自动修正
-					autoCorrect={false}
-					keyboardType={"default"}
-					multiline={true}
-					value={t}
-					onChangeText={(t) => {
-						this.setState({
-							t
-						});
-					}}
-					placeholder={"请输入请假事由（必填）"}
-					placeholderTextColor={'#cbcbcb'}
-					underlineColorAndroid={'transparent'}
-					returnKeyType="default"
-				/>
+				<QuestionDateComponent modelProperty={{name: 'keykeykey'}} itemVal={'valvalval'} />
+				<QuestionDateComponent modelProperty={{name: 'keykeykeykeykeykey'}} itemVal={'valvalval'} />
+				<QuestionDateComponent modelProperty={{name: 'keykeykey'}} itemVal={'valvalval'} />
 			</View>
 		);
 	}

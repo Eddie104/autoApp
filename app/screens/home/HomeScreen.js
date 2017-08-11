@@ -127,7 +127,7 @@ export default class HomeScreen extends PureComponent {
 						}
 						{
 							// 身份证识别
-							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '测试', siJiVal, siJiTotal, () => {global.nav.push({Component: IdcardResultScreen, action: 'driver.scan'});})
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '测试', siJiVal, siJiTotal, () => {global.nav.push({Component: TestScene, action: 'driver.scan'});})
 						}
 						{
 							// 身份证识别
