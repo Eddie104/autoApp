@@ -117,8 +117,6 @@ export function unique(arr) {
 
 /**
  * 检查是不是手机号
- * @param  {[type]}  phone [description]
- * @return {Boolean}       [description]
  */
 export function isPhone(phone) {
 	return RegExp(/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[0-9])[0-9]{8}$/).test(phone);
@@ -126,6 +124,26 @@ export function isPhone(phone) {
 
 export function isEmail(mail) {
 	return RegExp(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/).test(mail);
+}
+
+/**
+ * 检查身份证号的合法性
+ */
+export function isCardno(cardno) {
+	return RegExp(/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/).test(cardno);
+}
+
+/**
+ * 检查日期的合法性
+ */
+export function checkDate(year, month, date) {
+	year = parseInt(year);
+	month = parseInt(month);
+	date = parseInt(date);
+	if (year < 1970) {
+		return false;
+	}
+	return true;
 }
 
 const timeStrings = {
@@ -276,4 +294,20 @@ export function obj2Str(obj) {
 		str += `key=>${key},val=${obj[key]}\n`;
 	}
 	return str;
+}
+
+export function number2Str(num, length) {
+	num = num.toString();
+	while (num.length < length) {
+		num = '0' + num;
+	}
+	return num;
+}
+
+/**
+ * 移除string最后的几位
+ */
+export function removeLast(str, num) {
+	num = num || 1;
+	return str.substr(0, str.length - num);
 }

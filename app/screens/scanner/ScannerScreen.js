@@ -1,72 +1,192 @@
 'use strict';
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import {
 	StyleSheet,
 	View,
-	Text
+	Text,
+	TouchableOpacity
 } from 'react-native';
 
 import Camera from 'react-native-camera';
-import * as net from '../../net';
+import Spinner from '../../components/Spinner';
 import * as utils from '../../utils';
+import * as config from '../../config'; 
+import IdcardResultScreen from './IdcardResultScreen';
+import DriverResultScreen from './DriverResultScreen';
+import DrivingResultScreen from './DrivingResultScreen';
+
+const OcrModule = require('NativeModules').OcrModule;
 
 /**
  * 扫描证件的场景
  */
 export default class ScannerScreen extends PureComponent {
+
+	static propTypes = {
+		// 识别身份证 idcard.scan
+		// 识别驾照 driver.scan
+		// 识别行驶证 driving.scan
+		action: PropTypes.string.isRequired
+	};
 	
 	constructor(props) {
 		super(props);
+		this.state = {
+			isShowingSpinner: false,
+			// 是否识别正面
+			isPositive: true
+		};
+
+		this._onTakePicture = this.takePicture.bind(this);
+		this._onBack = this.onBack.bind(this);
+		this._tmpData = {};
+
+		if (props.action === 'idcard.scan') {
+			utils.toast('请先识别正面身份证', 'center');
+		} else if(props.action === 'driver.scan') {
+			utils.toast('请先识别正面驾驶证', 'center');
+		} else if(props.action === 'driving.scan') {
+			utils.toast('请先识别正面行驶证', 'center');
+		}
 	}
 
 	render() {
+		const { isShowingSpinner, isPositive } = this.state;
 		return (
 			<View style={styles.container}>
 				<Camera
 					ref={(cam) => {
-						this.camera = cam;
+						this._camera = cam;
 					}}
 					style={styles.preview}
 					aspect={Camera.constants.Aspect.fill}
 					captureQuality={Camera.constants.CaptureQuality['720p']}
-					captureTarget={Camera.constants.CaptureTarget.memory}
+					captureTarget={Camera.constants.CaptureTarget.temp}
 				>
-					<Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+					<View style={{flexDirection: 'row', width: utils.screenWidth(), justifyContent: 'space-around'}}>
+						<TouchableOpacity
+							activeOpacity={0.8}
+							onPress={this._onBack}
+							style={styles.captureContainer}
+						>
+							<Text style={styles.capture}>[返回]</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							activeOpacity={0.8}
+							onPress={this._onTakePicture}
+							style={styles.captureContainer}
+						>
+							<Text style={styles.capture}>{ isPositive ? '[识别正面]' : '[识别反面]' }</Text>
+						</TouchableOpacity>
+					</View>
 				</Camera>
+				{
+					isShowingSpinner && <Spinner backgroundColor={'rgba(0, 0, 0, 0.5)'} textBackgroundColor={'rgba(0, 0, 0, .7)'} text={'识别中...'} />
+				}
 			</View>
 		);
 	}
 
 	takePicture() {
-		const options = {};
-		//options.location = ...
-		this.camera.capture({metadata: options})
-			.then((image64) => {
-				// console.warn(utils.obj2Str(image64));
-				net.post('http://www.yunmaiocr.com/SrvHTMLAPI', {
-					// <action>idcard.scan</action>
-					// <client>username</client><!—API账号，不是SAAS账号 -->
-					// <system>系统描述：包括硬件型号和操作系统型号等</system><!--不建议为空-->
-					// <password>password</password><!—API密码，不是SAAS密码，必须md5加密-->
-					// <file>二进制文件，文件最大5M</file><!--要进行识别的文件-->
-					// <ext>文件扩展名</ext><!--只能为下面的之一：jpg/jpeg/bmp/tif/tiff-->
-					// <header>是否输出头像图片</header><!—1:是；0：否；不填默认为否-->
-					// <json>是否需要将结果转成json格式</json><!-- 当值为1时，返回的结果是json格式，如果不传该参数或为其它值，结果返回是xml格式 -->
-					action: 'idcard.scan',
-					username: 'add9ab6a-10ff-4ae9-932a-ec685a57e80d',
-					password: 'WIBreoZyRcfOjPPxxSLXKFwrDKfHQZ',
-					format: 1,
-					header: 0,
-					er: 1,
-					file: image64.data
-				}, (result) => {
-					console.warn(typeof result);
-					console.warn(result);
-				}, err => {
-					console.error(err);
-				});
-			}).catch(err => console.error(err));
+		const { isShowingSpinner, isPositive } = this.state;
+		if (!isShowingSpinner) {
+			this._camera.capture()
+				.then((data) => {
+					// 如果是非身份证的反面拍照完成了，那就直接跳转了
+					if (action !== 'idcard.scan' && !isPositive) {
+						// 直接跳转
+						if (action === 'driver.scan') {
+							global.nav.push({Component: DriverResultScreen, data: this._tmpData, imgPath: this._positiveImgPath, backImgPath: data.path});
+						} else if (action === 'driving.scan') {
+							global.nav.push({Component: DrivingResultScreen, data: this._tmpData, imgPath: this._positiveImgPath, backImgPath: data.path});
+						}
+					} else {
+						this.setState({
+							isShowingSpinner: true
+						}, () => {
+							const { action } = this.props;
+							OcrModule.tryToSend(config.YUN_MAI_ACCOUNT, config.YUN_MAI_PASSWORD, action, data.path, (result) => {
+								this.setState({
+									isShowingSpinner: false
+								}, () => {
+									const jsonData = JSON.parse(result.data);
+									if (jsonData.status === 'OK') {
+										if (isPositive) {
+											// 开始识别反面
+											this._positiveImgPath = data.path;
+											this.setState({
+												isPositive: false
+											});
+											if (props.action === 'idcard.scan') {
+												this._tmpData = jsonData.data.item;
+												utils.toast('请识别反面身份证', 'center');
+											} else if(props.action === 'driver.scan') {
+												this._tmpData = jsonData.data;
+												utils.toast('请识别反面驾驶证', 'center');
+											} else if(props.action === 'driving.scan') {
+												this._tmpData = jsonData.data.item;
+												utils.toast('请识别反面行驶证', 'center');
+											}
+										} else {
+											// 身份证背面的信息有：
+											// issue_authority: "签发单位",
+											// valid_period: "有效期"
+											this._tmpData.issue_authority = jsonData.data.item.issue_authority;
+											this._tmpData.valid_period = jsonData.data.item.valid_period;
+											global.nav.push({Component: IdcardResultScreen, data: this._tmpData, backImgPath: data.path, imgPath: this._positiveImgPath});
+										}
+									} else {
+										// 识别失败
+										// utils.toast('识别失败，请重新识别');
+										const statusStr = jsonData.status.toString();
+										if (statusStr == '-90') {
+											utils.toast('无此接口权限');
+										} else if (statusStr == '-91') {
+											utils.toast('余额不足');
+										} else if (statusStr == '-92') {
+											utils.toast('用户已冻结');
+										} else if (statusStr == '-98') {
+											utils.toast('时间超限');
+										} else if (statusStr == '-99') {
+											utils.toast('验证md5错误');
+										}  else if (statusStr == '-100') {
+											utils.toast('用户名或者密码错误');
+										} else if (statusStr == '-101') {
+											utils.toast('上传失败');
+										} else if (statusStr == '-102') {
+											utils.toast('文件上传太大');
+										} else if (statusStr == '-106') {
+											utils.toast('请求出现异常');
+										} else if (statusStr == '-110') {
+											utils.toast('识别失败，请重新识别');
+										} else if (statusStr == '-117') {
+											utils.toast('账号超过15天试用期或试用期内当天可识别次数已达上限');
+										} else if (statusStr == '-118') {
+											utils.toast('用户账户余额为0或可识别次数为0');
+										}
+									}
+								});
+							});
+						});
+					}
+				}).catch(err => console.error(err));
+		}
+	}
+
+	onBack() {
+		const { isShowingSpinner } = this.state;
+		if (!isShowingSpinner) {
+			global.nav.pop();
+		}
+	}
+
+	getTitle() {
+		const { action } = this.props;
+		if (action === 'idcard.scan') return '识别身份证';
+		if (action === 'driver.scan') return '识别驾照';
+		if (action === 'driving.scan') return '识别行驶证';
+		return action;
 	}
 }
 
@@ -80,12 +200,18 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		alignItems: 'center'
 	},
+	captureContainer: {
+		width: utils.toDips(325),
+		height: utils.toDips(90),
+		backgroundColor: '#3e8ed7',
+		borderRadius: utils.toDips(10),
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginBottom: utils.toDips(50)
+	},
 	capture: {
-		flex: 0,
-		backgroundColor: '#fff',
-		borderRadius: 5,
-		color: '#000',
-		padding: 10,
-		margin: 40
+		color: 'white',
+		fontSize: utils.getFontSize(28),
+		backgroundColor: 'transparent'
 	}
 });

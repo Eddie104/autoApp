@@ -12,6 +12,8 @@ import {
 
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
+import IndexScreen from '../index/IndexScreen';
+import UserDataDao from '../../dao/UserDataDao';
 
 export default class LoginScreen extends PureComponent {
 	
@@ -31,11 +33,11 @@ export default class LoginScreen extends PureComponent {
 		this._onForgetPassword = this.onForgetPassword.bind(this);
 		this._onLogin = this.onLogin.bind(this);
 	}
-
+	
 	render() {
 		return (
 			<View style={styles.container}>
-				<TopBar title={'登录'} />
+				<TopBar title={'登录'}  showBackBtn={false} showMoreBtn={false} />
 				{
 					// 账号输入框
 					this.renderInputContainer(true)
@@ -234,6 +236,36 @@ export default class LoginScreen extends PureComponent {
 	onLogin() {
 		const { account, password } = this.state;
 		// 判断account和password的合法性，然后执行登录逻辑
+		
+		if(this.state.account.length==0){
+			utils.toast('请输入账户名信息');
+			return;
+		}
+
+		if(this.state.password.length==0){
+			utils.toast('请输入账户密码信息');
+			return;
+		}
+		
+		this.userLoinProcess();
+	}
+	
+	userLoinProcess(){
+		UserDataDao.login(this.state.account,this.state.password).then((data)=> {
+		       	if(data.status!=1){
+		       		utils.toast(data.message);
+		       		return;
+		       	}
+
+				UserDataDao.saveLocalUser(data);
+	       		global.nav.resetTo({
+					Component: IndexScreen
+				});
+		    },
+		    (reason, data)=>{
+		       	utils.toast(JSON.stringify(reason));
+		    }
+		);
 	}
 }
 

@@ -21,6 +21,7 @@ export default class Property extends PureComponent {
 	}
 
 	render() {
+		
 		return (
 			<View style={styles.container}>
 				<SubTitle color={'#feb02a'} title={'资产管理'} />
@@ -49,8 +50,9 @@ export default class Property extends PureComponent {
 						size={utils.toDips(84)}
 						itemName={'车辆'}
 						onPress={() => {
+							var modelCode ='car';
 							global.nav.push({
-								Component: CarScreen
+								Component: CarScreen,modelCode
 							});
 						}}
 					/>
@@ -60,7 +62,13 @@ export default class Property extends PureComponent {
 						sourceHeight={utils.toDips(39)}
 						color={'#feb02a'}
 						size={utils.toDips(84)}
-						itemName={'指标'}
+						itemName={'车牌'}
+						onPress={() => {
+							var modelCode ='license_plate';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
 					<ImageItem
 						source={require('../../imgs/item_chuZhi.png')}
@@ -68,7 +76,13 @@ export default class Property extends PureComponent {
 						sourceHeight={utils.toDips(43)}
 						color={'#feb02a'}
 						size={utils.toDips(84)}
-						itemName={'处置'}
+						itemName={'车辆证照'}
+						onPress={() => {
+							var modelCode ='car_license';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
 				</View>
 			</View>

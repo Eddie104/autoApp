@@ -8,16 +8,20 @@
  * react-native-toast 地址：https://github.com/remobile/react-native-toast
  * react-native-baidu-map  地址：https://github.com/lovebing/react-native-baidu-map
  * react-native-smart-splash-screen 地址：
+ * react-native-picker 地址：https://github.com/beefe/react-native-picker
+ * react-native-action-sheet 地址：https://github.com/yfuks/react-native-action-sheet
+ * react-native-sqlite-storage 地址：https://github.com/andpor/react-native-sqlite-storage
  */
 
-	// ios版的百度地图有个坑。会说RCTViewManager.h和RCTConvert+CoreLocation.h找不到
-	// 按下下面的修改，就行了
-	/*
-	//#import "RCTViewManager.h"
-	#import <React/RCTViewManager.h>
-	//#import "RCTConvert+CoreLocation.h"
-	#import <React/RCTConvert+CoreLocation.h>
-	*/
+// ios版的百度地图有个坑。会说RCTViewManager.h和RCTConvert+CoreLocation.h找不到
+// 按下下面的修改，就行了
+/*
+//#import "RCTViewManager.h"
+#import <React/RCTViewManager.h>
+//#import "RCTConvert+CoreLocation.h"
+#import <React/RCTConvert+CoreLocation.h>
+*/
+
 import React, { Component } from 'react';
 import {
 	StyleSheet,
@@ -29,6 +33,7 @@ import {
 import SplashScreen from 'react-native-smart-splash-screen';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import * as utils  from './app/utils';
+import * as sqlite  from './app/sqlite';
 import IndexScreen from './app/screens/index/IndexScreen';
 
 export default class App extends Component{
@@ -61,6 +66,16 @@ export default class App extends Component{
 			duration: 850,
 			delay: 500,
 		});
+
+		// 更新一下门店的数据
+		sqlite.update().then(() => {
+			// console.warn('更新数据成功!!!')
+		}).catch(err => {
+			// console.warn(`更新数据失败!!! => ${utils.obj2Str(err)}`);
+		});
+
+		// 请假场景中选择的图片
+		global.imagesSelected = [];
 	}
 
 	render() {

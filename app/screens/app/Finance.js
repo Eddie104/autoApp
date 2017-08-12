@@ -10,6 +10,7 @@ import * as utils from '../../utils';
 import SubTitle from '../../components/SubTitle';
 import ImageItem from '../../components/ImageItem';
 import RefundScreen from '../refund/RefundScreen';
+import CarScreen from '../car/CarScreen';
 
 /**
  * 财务管理
@@ -48,6 +49,12 @@ export default class Finance extends PureComponent {
 						color={'#92a7ff'}
 						size={utils.toDips(84)}
 						itemName={'司机账户'}
+						onPress={() => {
+							var modelCode ='finance_master_finance';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
 					<ImageItem
 						source={require('../../imgs/item_shouKuan.png')}
@@ -55,7 +62,13 @@ export default class Finance extends PureComponent {
 						sourceHeight={utils.toDips(48)}
 						color={'#92a7ff'}
 						size={utils.toDips(84)}
-						itemName={'首款'}
+						itemName={'收款'}
+						onPress={() => {
+							var modelCode ='finance_master_payable';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
 					<ImageItem
 						source={require('../../imgs/item_tuiKuan.png')}

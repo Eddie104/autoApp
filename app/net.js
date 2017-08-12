@@ -41,7 +41,9 @@ export function post (url, data, successCallback, errorCallback = null) {
 		headers: {
 			'Accept': 'application/json',
 			// 'Content-Type': 'application/json'
-			'Content-Type': 'text/plain;charset=UTF-8'
+			// 'Content-Type': 'text/plain;charset=UTF-8'
+			// 'Content-Type': 'application/x-www-form-urlencoded'
+			'Content-Type': 'application/json;charset=UTF-8'
 			// multipart/form-data;
 			// 'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 			// 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -50,8 +52,7 @@ export function post (url, data, successCallback, errorCallback = null) {
 	}), TIME_OUT)
 		.then((response) => response.text())
 		.then((responseText) => {
-			// successCallback(JSON.parse(responseText));
-			successCallback(responseText);
+			successCallback(JSON.parse(responseText));
 		})
 		.catch(e => errorCallback && errorCallback(e));
 }

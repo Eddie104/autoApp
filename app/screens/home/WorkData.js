@@ -10,6 +10,9 @@ import {
 
 import * as utils from '../../utils';
 import SubTitle from '../../components/SubTitle';
+import HomeDataDao from '../../dao/HomeDataDao';
+import ConstantsUtils from '../../util/ConstantsUtils';
+import UserDataDao from '../../dao/UserDataDao'
 
 /**
  * 工作看板
@@ -18,40 +21,65 @@ export default class WorkData extends PureComponent {
 
 	constructor(props){
 		super(props);
+		this.state = {
+	        taskList:null,
+	    }
 	}
-
+	
+	componentDidMount() {
+	    this.getUserInfor();
+	}
+	
+	getUserInfor(){
+	    UserDataDao.getUser().then((res)=> {
+	    	if(res){
+	    		this.getHomeData(res.id);
+	    	}else{
+	    	}
+        }).catch((error)=> {
+        });
+    }
+	
+	getHomeData(userId){
+		HomeDataDao.getTaskData(userId).then((res)=> {			
+	    	if(res){
+	    		this.setState({
+					taskList:res
+				});
+	    	}
+       	}).catch((error)=> {       	
+        });
+	}
+	
 	render() {
+		var rows ;
+		if(this.state.taskList){
+			rows = this.state.taskList.list.map((row, indexKey) => {
+	    		return this.renderItem(indexKey,row.icon, row.title, row.number);
+	     	});
+     	}
+		
 		return (
 			<View style={styles.container}>
 				<SubTitle color={'#63c53c'} title={'工作看板'} />
 				<View
 					style={{
 						flexDirection: 'row',
-						flexWrap: 'wrap'
+						flexWrap: 'wrap',
+						alignItems:'flex-start'
 					}}
 				>
-					{
-						this.renderItem(require('../../imgs/nianJianDaoQi.png'), '年检到期', 36)
-					}
-					{
-						this.renderItem(require('../../imgs/heTongDaoQi.png'), '合同到期', 2)
-					}
-					{
-						this.renderItem(require('../../imgs/shangYeXian.png'), '商业险', 123)
-					}
-					{
-						this.renderItem(require('../../imgs/cheLiangTuoBao.png'), '车辆脱保')
-					}
+					{rows}
 				</View>
 			</View>
 		);
 	}
 
-	renderItem(imgSource, name, badge) {
+	renderItem(indexKey,imgSource, name, badge) {
 		badge = isNaN(badge) ? 0 : parseInt(badge);
 		return(
-			<View style={styles.itemContainer}>
-				<Image style={styles.itemImg} source={imgSource}/>
+			<View style={styles.itemContainer} key={indexKey}>
+				<Image style={styles.itemImg} source={{uri: ConstantsUtils.baseImgaeUrl + imgSource}}/>
 				<Text style={styles.itemName}>{ name }</Text>
 				{
 					badge > 0 && (
@@ -63,6 +91,7 @@ export default class WorkData extends PureComponent {
 								backgroundColor: '#f52c44',
 								borderRadius: utils.toDips(12),
 								alignItems: 'center',
+								height:utils.toDips(24),
 								justifyContent: 'center',
 								paddingLeft: utils.toDips(10),
 								paddingRight: utils.toDips(10)
@@ -89,7 +118,7 @@ const styles = StyleSheet.create({
 	itemContainer: {
 		alignItems: 'center',
 		width: utils.screenWidth() / 4,
-		marginTop: utils.toDips(44)
+		marginTop: utils.toDips(44),
 	},
 	itemImg: {
 		width: utils.toDips(78),

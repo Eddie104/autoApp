@@ -12,11 +12,21 @@ import {
 
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
+import MessageBox from '../../components/MessageBox';
 import FinanceData from './FinanceData';
 import WorkData from './WorkData';
 import LoginScreen from '../login/LoginScreen';
 import CarScreen from '../car/CarScreen';
+
+import HomeDataDao from '../../dao/HomeDataDao';
+import UserDataDao from '../../dao/UserDataDao';
+
 import ScannerScreen from '../scanner/ScannerScreen';
+import IdcardResultScreen from '../scanner/IdcardResultScreen';
+import StoreSearchScreen from '../store/StoreSearchScreen';
+import TestScene from '../test/TestScene';
+import AskForLeaveScreen from '../askForLeave/AskForLeaveScreen';
+import PopupMenu from '../../components/PopupMenu';
 
 /**
  * 首页面板
@@ -27,18 +37,52 @@ export default class HomeScreen extends PureComponent {
 		super(props);
 
 		this.state = {
-			cheLiangVal: 76,
-			cheLiangTotal: 85,
-			heTongVal: 76,
-			heTongTotal: 90,
-			siJiVal: 72,
-			siJiTotal: 80
+			cheLiangVal: 0,
+			cheLiangTotal: 0,
+			heTongVal: 0,
+			heTongTotal: 0,
+			siJiVal: 0,
+			siJiTotal: 0,
 		};
 
 		this._showLoginScreen = this.showLoginScreen.bind(this);
 		this._showCarScreen = this.showCarScreen.bind(this);
+		this._showContractScreen = this.showContractScreen.bind(this);
+		this._showDriverScreen = this.showDriverScreen.bind(this);
 	}
-
+	
+	componentDidMount() {
+		this.getUserInfor();
+	}
+	
+	getUserInfor(){
+		UserDataDao.getUser().then((res)=> {
+			if(!res){
+				this.showLoginScreen();
+			}else{
+				this.getMainData(res.id)
+			}
+		}).catch((error)=> {
+		});
+	}
+	
+	getMainData(userId){
+		HomeDataDao.getMainData(userId).then((res)=> {
+			if(res){
+				var dataList = res.list;
+				this.setState({
+					cheLiangVal:dataList[0].number1,
+					cheLiangTotal:dataList[0].number2,
+					heTongVal:dataList[1].number1,
+					heTongTotal:dataList[1].number2,
+					siJiVal:dataList[2].number1,
+					siJiTotal:dataList[2].number2,
+				});
+			}
+		}).catch((error)=> {
+		});
+	}
+	
 	render() {
 		const { cheLiangVal, cheLiangTotal, heTongVal, heTongTotal, siJiVal, siJiTotal } = this.state;
 		return (
@@ -59,27 +103,35 @@ export default class HomeScreen extends PureComponent {
 					>
 						{
 							// 车辆
-							this.renderTopItem(require('../../imgs/cheliang.png'), '车辆', cheLiangVal, cheLiangTotal, this._showCarScreen)
+							this.renderTopItem(require('../../imgs/cheliang.png'),'#62CB30', '车辆', cheLiangVal, cheLiangTotal, this._showCarScreen)
 						}
 						{
 							// 可爱的分割线
+							//<View style={styles.line} />
 						}
-						<View style={styles.line} />
 						{
 							// 合同
-							this.renderTopItem(require('../../imgs/hetong.png'), '合同', heTongVal, heTongTotal, () => {
-								global.nav.push({
-									Component: ScannerScreen
-								});
-							})
+							this.renderTopItem(require('../../imgs/hetong.png'), '#FFB706','合同', heTongVal, heTongTotal, this._showContractScreen)
 						}
 						{
 							// 可爱的分割线
+							//<View style={styles.line} />
 						}
-						<View style={styles.line} />
 						{
 							// 司机/客户
-							this.renderTopItem(require('../../imgs/siji.png'), '司机/客户', siJiVal, siJiTotal, () => {})
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '司机/客户', siJiVal, siJiTotal, this._showDriverScreen)
+						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '门店搜索', siJiVal, siJiTotal, () => {global.nav.push({Component: StoreSearchScreen, action: 'idcard.scan'});})
+						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '测试', siJiVal, siJiTotal, () => {global.nav.push({Component: IdcardResultScreen, action: 'driver.scan'});})
+						}
+						{
+							// 身份证识别
+							this.renderTopItem(require('../../imgs/siji.png'),'#3499DB', '请假', siJiVal, siJiTotal, () => {global.nav.push({Component: AskForLeaveScreen, action: 'driving.scan'});})
 						}
 					</View>
 					{
@@ -90,17 +142,28 @@ export default class HomeScreen extends PureComponent {
 						// 工作看板
 					}
 					<WorkData />
+					
+					<MessageBox show={true}/>
+					
 				</ScrollView>
+				<PopupMenu ref={c => this._menu = c} funcs={[() => {console.warn('1111');}, () => {console.warn('222');}]} />
 			</View>
 		);
 	}
-
-	renderTopItem(imgSource, name, val, total, onPress) {
+	
+	renderTopItem(imgSource,color, name, val, total, onPress) {
 		return(
 			<TouchableOpacity
 				activeOpacity={0.8}
 				onPress={onPress}
-				style={styles.topItemContainer}
+				style={{
+					backgroundColor: color,
+					flex: 1,
+					height: utils.toDips(210),
+					alignItems: 'center',
+					margin: 5,
+					justifyContent: 'center'
+				}}
 			>
 				<Image style={styles.topItemImg} source={imgSource} />
 				<Text style={styles.itemName}>{ name }</Text>
@@ -112,14 +175,31 @@ export default class HomeScreen extends PureComponent {
 	}
 
 	showLoginScreen() {
-		global.nav.push({
-			Component: LoginScreen
-		});
+		// global.nav.resetTo({
+		// 	Component: LoginScreen
+		// });
+
+		this._menu.unfold();
 	}
 
 	showCarScreen() {
+		const modelCode = 'car';
 		global.nav.push({
-			Component: CarScreen
+			Component: CarScreen,modelCode
+		});
+	}
+	
+	showContractScreen() {
+		const modelCode = 'contract_lease';
+		global.nav.push({
+			Component: CarScreen,modelCode
+		});
+	}
+	
+	showDriverScreen() {
+		const modelCode = 'car_master';
+		global.nav.push({
+			Component: CarScreen,modelCode
 		});
 	}
 }
@@ -131,25 +211,25 @@ const styles = StyleSheet.create({
 	},
 	topItemContainer: {
 		flex: 1,
-		height: utils.toDips(236),
+		height: utils.toDips(210),
 		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: 'white'
+		margin: 5,
+		justifyContent: 'center'
 	},
 	topItemImg: {
 		width: utils.toDips(66),
 		height: utils.toDips(54)
 	},
 	itemName: {
-		marginTop: utils.toDips(28),
-		color: '#364153',
-		fontSize: utils.getFontSize(22),
+		marginTop: utils.toDips(20),
+		color: 'white',
+		fontSize: utils.getFontSize(24),
 		backgroundColor: 'transparent'
 	},
 	itemValue: {
 		backgroundColor: 'transparent',
-		color: '#82868e',
-		fontSize: utils.getFontSize(19)
+		color: 'white',
+		fontSize: utils.getFontSize(16)
 	},
 	line: {
 		width: utils.toDips(1),

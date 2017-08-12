@@ -9,6 +9,7 @@ import {
 import * as utils from '../../utils';
 import SubTitle from '../../components/SubTitle';
 import ImageItem from '../../components/ImageItem';
+import CarScreen from '../car/CarScreen';
 
 /**
  * 司机/客户
@@ -47,6 +48,12 @@ export default class Customer extends PureComponent {
 						color={'#4c99f4'}
 						size={utils.toDips(84)}
 						itemName={'司机信息'}
+						onPress={() => {
+							var modelCode ='car_master';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
 					<ImageItem
 						source={require('../../imgs/item_siJiZhangHu.png')}
@@ -55,6 +62,12 @@ export default class Customer extends PureComponent {
 						color={'#4c99f4'}
 						size={utils.toDips(84)}
 						itemName={'司机证照'}
+						onPress={() => {
+							var modelCode ='license_management';
+							global.nav.push({
+								Component: CarScreen,modelCode
+							});
+						}}
 					/>
 				</View>
 			</View>
