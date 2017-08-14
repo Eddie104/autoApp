@@ -75,12 +75,6 @@ export default class AskForLeaveScreen extends PureComponent {
 				this._imgFuncPanel.update();
 			}
 		});
-
-		const uri = 'content://media/external/images/media/10836';
-		// RNFS.readFile(utils.isIOS() ? uri : uri.substring(10), 'base64').then(imgBase64 => {
-		RNFS.readFile(true ? uri : uri.substring(10), 'base64').then(imgBase64 => {
-			console.warn(imgBase64);
-		});
 	}
 
 	componentWillUnmount() {

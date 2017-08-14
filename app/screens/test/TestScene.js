@@ -15,9 +15,11 @@ import TopBar from '../../components/TopBar';
 import DateTimePicker from '../../components/DateTimePicker';
 // import ConstantsUtils  from '../util/ConstantsUtils';
 import QuestionDateComponent from './QuestionDateComponent';
+import RNFS from 'react-native-fs';
 
 
 // import Picker from 'react-native-picker';
+const FileModule = require('NativeModules').FileModule;
 
 export default class TestScene extends PureComponent {
 
@@ -25,7 +27,7 @@ export default class TestScene extends PureComponent {
 		super(props);
 
 		this.state = {
-			
+			imgBase64: null
 		}
 
 		this._picker = null;
@@ -36,13 +38,29 @@ export default class TestScene extends PureComponent {
 	}
 
 	render() {
-		
+		const { imgBase64 } = this.state;
 		return (
 			<View style={styles.container}>
 				<TopBar title={ '测试场景' } showMoreBtn={false} />
 				<QuestionDateComponent modelProperty={{name: 'keykeykey'}} itemVal={'valvalval'} />
 				<QuestionDateComponent modelProperty={{name: 'keykeykeykeykeykey'}} itemVal={'valvalval'} />
 				<QuestionDateComponent modelProperty={{name: 'keykeykey'}} itemVal={'valvalval'} />
+
+				<Text style={{}} onPress={() => {
+					const uri = 'content://media/external/images/media/105';
+					FileModule.uri2Path(uri, ({path}) => {
+						RNFS.readFile(path, 'base64').then(imgBase64 => {
+							this.setState({
+								imgBase64
+							});
+						});
+					});
+				}}>
+					测试
+				</Text>
+				{
+					imgBase64 && <Image style={{width: utils.toDips(750), height: utils.toDips(1280 * 750 / 720)}} source={{ uri: `data:image/jpeg;base64,${imgBase64}` }} />
+				}
 			</View>
 		);
 	}
