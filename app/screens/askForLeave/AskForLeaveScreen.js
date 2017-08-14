@@ -20,6 +20,7 @@ import ImageFuncPanel from './ImageFuncPanel';
 import ImageListScene from './ImageListScene';
 import ActionSheet from '@yfuks/react-native-action-sheet';
 import DateTimePicker from '../../components/DateTimePicker';
+import RNFS from 'react-native-fs';
 
 // 请假的事由
 const LEAVE_TYPE_ARR = ['事假', '病假', '年假', '调休', '婚假', '产假', '陪产假', '路途假', '其他'];
@@ -73,6 +74,12 @@ export default class AskForLeaveScreen extends PureComponent {
 			if (event.target._currentRoute.Component === AskForLeaveScreen) {
 				this._imgFuncPanel.update();
 			}
+		});
+
+		const uri = 'content://media/external/images/media/10836';
+		// RNFS.readFile(utils.isIOS() ? uri : uri.substring(10), 'base64').then(imgBase64 => {
+		RNFS.readFile(true ? uri : uri.substring(10), 'base64').then(imgBase64 => {
+			console.warn(imgBase64);
 		});
 	}
 
