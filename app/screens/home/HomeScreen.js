@@ -146,7 +146,7 @@ export default class HomeScreen extends PureComponent {
 					<MessageBox show={true}/>
 					
 				</ScrollView>
-				<PopupMenu ref={c => this._menu = c} funcs={[() => {console.warn('1111');}, () => {console.warn('222');}]} />
+				<PopupMenu ref={c => this._menu = c} />
 			</View>
 		);
 	}

@@ -7,6 +7,7 @@ import {
 	TouchableOpacity,
 	TouchableWithoutFeedback,
 	Text,
+	Image,
 	Animated
 } from 'react-native';
 
@@ -19,12 +20,14 @@ export default class PopupMenu extends PureComponent {
 
 	static propTypes = {
 		items: PropTypes.array,
-		funcs: PropTypes.array
+		funcs: PropTypes.array,
+		// itemImgSource: PropTypes.array
 	};
 
 	static defaultProps = {
-		items: ['菜单1', '菜单2'],
-		funcs: [() => {}, () => {}]
+		items: ['菜单1', '菜单2', '菜单3', '菜单4', '菜单5'],
+		funcs: [() => { console.log(111); }, () => { console.log(22); }, () => { console.log(333); }, () => { console.log(44); }, () => { console.log(555); }],
+		// itemImgSource: [require('../imgs/item_qianYue.png'), require('../imgs/item_qianYue.png'), require('../imgs/item_qianYue.png'), require('../imgs/item_qianYue.png'), require('../imgs/item_qianYue.png')]
 	};
 	
 	constructor(props) {
@@ -55,7 +58,8 @@ export default class PopupMenu extends PureComponent {
 	}
 
 	renderItem(item, index) {
-		return(
+		const { items } = this.props;
+		const itemView = (
 			<TouchableOpacity
 				key={index}
 				activeOpacity={0.8}
@@ -66,12 +70,26 @@ export default class PopupMenu extends PureComponent {
 					this.fold();
 				}}
 				style={styles.item}
-			>
-				<Text style={{}}>
-					{ item }		
-				</Text>	
+			>	
+				{
+					// <Image style={{width: utils.toDips(45), height: utils.toDips(46)}} source={itemImgSource[index]} />
+				}
+				<Text style={styles.title}>
+					{ item }
+				</Text>
 			</TouchableOpacity>
 		);
+		if (index < items.length - 1) {
+			// 底下加个横线
+			return (
+				<View key={index} style={{
+					paddingBottom: utils.toDips(2), borderColor: '#23262A', borderBottomWidth: 1
+				}}>
+					{ itemView }
+				</View>
+			);
+		}
+		return itemView;
 	}
 
 	/**
@@ -114,14 +132,25 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-end'
 	},
 	itemContainer: {
-		backgroundColor: 'white',
-		marginTop: utils.toDips(100),
+		backgroundColor: '#364153',
+		
+		marginTop: utils.toDips(125),
 		marginRight: utils.toDips(20)
 	},
 	item: {
-		width: utils.toDips(120),
-		height: utils.toDips(60),
+		width: utils.toDips(280),
+		height: utils.toDips(70),
 		alignItems: 'center',
-		justifyContent: 'center'
-	}
+		justifyContent: 'center',
+		flexDirection: 'row'
+	},
+	title: {
+		color: 'white',
+	},
+	line: {
+		width: utils.toDips(684),
+		height: utils.toDips(1),
+		backgroundColor: '#e9e9e9',
+		alignSelf: 'center'
+	},
 });
