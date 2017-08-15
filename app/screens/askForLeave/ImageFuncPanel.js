@@ -68,7 +68,6 @@ export default class ImageFuncPanel extends PureComponent {
 
 	renderImage(imgData, i) {
 		const { uri } = imgData;
-		console.warn(uri);
 		return (
 			<View key={i} style={styles.imgContaner}>
 				<Image style={{width: utils.toDips(220), height: utils.toDips(220)}} source={{uri}}/>

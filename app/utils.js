@@ -7,6 +7,10 @@ import {
 
 import { showShortCenter, showShortBottom } from '@remobile/react-native-toast';
 
+import RNFS from 'react-native-fs';
+
+const FileModule = require('NativeModules').FileModule;
+
 const { height, width } = require('Dimensions').get('window');
 
 // ui设计图的宽度是750
@@ -310,4 +314,19 @@ export function number2Str(num, length) {
 export function removeLast(str, num) {
 	num = num || 1;
 	return str.substr(0, str.length - num);
+}
+
+export function getImgBase64(uri, cb) {
+	// const uri = 'assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG';
+	if (isIOS()) {
+		FileModule.readImage(uri, (imgBase64) => {
+			cb(imgBase64);
+		})
+	} else {
+		FileModule.uri2Path(uri, ({path}) => {
+			RNFS.readFile(path, 'base64').then(imgBase64 => {
+				cb(imgBase64);
+			});
+		});
+	}
 }

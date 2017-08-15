@@ -47,12 +47,10 @@ export default class TestScene extends PureComponent {
 				<QuestionDateComponent modelProperty={{name: 'keykeykey'}} itemVal={'valvalval'} />
 
 				<Text style={{}} onPress={() => {
-					const uri = 'content://media/external/images/media/105';
-					FileModule.uri2Path(uri, ({path}) => {
-						RNFS.readFile(path, 'base64').then(imgBase64 => {
-							this.setState({
-								imgBase64
-							});
+					const uri = 'assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG';
+					utils.getImgBase64(uri, (imgBase64) => {
+						this.setState({
+							imgBase64 
 						});
 					});
 				}}>
