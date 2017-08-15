@@ -6,6 +6,7 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
+import org.hongjie.file.FileModule;
 import org.hongjie.yunMai.OcrModule;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class MyPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules=new ArrayList<>();
         modules.add(new OcrModule(reactContext));
+        modules.add(new FileModule(reactContext));
         return modules;
     }
 

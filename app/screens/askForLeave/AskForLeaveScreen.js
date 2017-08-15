@@ -20,6 +20,7 @@ import ImageFuncPanel from './ImageFuncPanel';
 import ImageListScene from './ImageListScene';
 import ActionSheet from '@yfuks/react-native-action-sheet';
 import DateTimePicker from '../../components/DateTimePicker';
+import RNFS from 'react-native-fs';
 
 // 请假的事由
 const LEAVE_TYPE_ARR = ['事假', '病假', '年假', '调休', '婚假', '产假', '陪产假', '路途假', '其他'];

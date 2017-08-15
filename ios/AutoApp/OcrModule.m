@@ -14,7 +14,7 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(tryToSend:(NSString *)username password:(NSString *)password action:(NSString *)action imgPath:(NSString *)imgPath Callback:(RCTResponseSenderBlock)callback) {
   UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
-  NSData *imageData=UIImageJPEGRepresentation(img,0.1f);
+  NSData *imageData = UIImageJPEGRepresentation(img, 0.1f);
   self.package = [[PackageAPI alloc]init];
   [_package AFNuploadPackage:imageData UserName:username Passwrod:password Action:action Success:^(NSString *retStr, BOOL isSuccess) {
     if (isSuccess) {

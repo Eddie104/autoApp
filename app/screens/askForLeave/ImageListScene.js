@@ -143,7 +143,7 @@ export default class ImageListScene extends PureComponent {
 					group_name:"Screenshots"
 					image:Object
 						height:1920
-						uri:"content://media/external/images/media/3842"
+						uri:"content://media/external/images/media/3842" "assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG"
 						width:1080
 					timestamp:1486621404.787
 					type:"image/png"

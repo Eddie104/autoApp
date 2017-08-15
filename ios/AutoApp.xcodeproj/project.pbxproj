@@ -46,6 +46,7 @@
 		CE7D9EA51F15F30D00FF0674 /* PackageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7D9EA41F15F30D00FF0674 /* PackageAPI.m */; };
 		CE8BDAFE1F3C3FF800A7849F /* libRCTBEEPickerManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8BDAE11F3C3FE000A7849F /* libRCTBEEPickerManager.a */; };
 		CE8BDB051F3C419300A7849F /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8BDB041F3C418700A7849F /* libRCTCameraRoll.a */; };
+		CEA4377D1F428DD800646063 /* FileModule.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA4377C1F428DD800646063 /* FileModule.m */; };
 		CEB917821F15D196008D25AE /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB917691F15D17B008D25AE /* libRCTCamera.a */; };
 		CEBC61781F06012F00BD9F37 /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBC61771F0600E500BD9F37 /* libRCTSplashScreen.a */; };
 		CEBC617C1F0601F500BD9F37 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEBC617A1F0601F500BD9F37 /* LaunchScreen.xib */; };
@@ -382,6 +383,8 @@
 		CE7D9EA41F15F30D00FF0674 /* PackageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PackageAPI.m; path = YMEngine/PackageAPI.m; sourceTree = "<group>"; };
 		CE8BDAD71F3C3FDF00A7849F /* RCTBEEPickerManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBEEPickerManager.xcodeproj; path = "../node_modules/react-native-picker/ios/RCTBEEPickerManager.xcodeproj"; sourceTree = "<group>"; };
 		CE8BDAFF1F3C418700A7849F /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../../DollMachine/node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
+		CEA4377B1F428DD800646063 /* FileModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileModule.h; path = AutoApp/FileModule.h; sourceTree = "<group>"; };
+		CEA4377C1F428DD800646063 /* FileModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileModule.m; path = AutoApp/FileModule.m; sourceTree = "<group>"; };
 		CEB9175F1F15D17B008D25AE /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		CEBC61721F0600E500BD9F37 /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSplashScreen.xcodeproj; path = "../node_modules/react-native-smart-splash-screen/ios/RCTSplashScreen/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		CEBC617A1F0601F500BD9F37 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -820,6 +823,8 @@
 				CE7D9E661F15EF0F00FF0674 /* YMEngine */,
 				CEE91C931F13A35E001F3D03 /* OcrModule.h */,
 				CEE91C941F13A35E001F3D03 /* OcrModule.m */,
+				CEA4377B1F428DD800646063 /* FileModule.h */,
+				CEA4377C1F428DD800646063 /* FileModule.m */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -1367,6 +1372,7 @@
 				CE7D9E931F15F12500FF0674 /* AFURLResponseSerialization.m in Sources */,
 				CE7D9E9F1F15F1E000FF0674 /* AFHTTPSessionManager.m in Sources */,
 				CE7D9EA51F15F30D00FF0674 /* PackageAPI.m in Sources */,
+				CEA4377D1F428DD800646063 /* FileModule.m in Sources */,
 				CE7D9E991F15F18800FF0674 /* AFNetworkReachabilityManager.m in Sources */,
 				CE7D9E871F15EF5900FF0674 /* CCHttpManager.m in Sources */,
 			);
