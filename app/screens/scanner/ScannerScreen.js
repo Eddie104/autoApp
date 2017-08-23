@@ -90,6 +90,7 @@ export default class ScannerScreen extends PureComponent {
 
 	takePicture() {
 		const { isShowingSpinner, isPositive } = this.state;
+		const { action } = this.props;
 		if (!isShowingSpinner) {
 			this._camera.capture()
 				.then((data) => {
@@ -105,7 +106,6 @@ export default class ScannerScreen extends PureComponent {
 						this.setState({
 							isShowingSpinner: true
 						}, () => {
-							const { action } = this.props;
 							OcrModule.tryToSend(config.YUN_MAI_ACCOUNT, config.YUN_MAI_PASSWORD, action, data.path, (result) => {
 								this.setState({
 									isShowingSpinner: false
@@ -118,13 +118,13 @@ export default class ScannerScreen extends PureComponent {
 											this.setState({
 												isPositive: false
 											});
-											if (props.action === 'idcard.scan') {
+											if (action === 'idcard.scan') {
 												this._tmpData = jsonData.data.item;
 												utils.toast('请识别反面身份证', 'center');
-											} else if(props.action === 'driver.scan') {
+											} else if(action === 'driver.scan') {
 												this._tmpData = jsonData.data;
 												utils.toast('请识别反面驾驶证', 'center');
-											} else if(props.action === 'driving.scan') {
+											} else if(action === 'driving.scan') {
 												this._tmpData = jsonData.data.item;
 												utils.toast('请识别反面行驶证', 'center');
 											}
@@ -138,7 +138,6 @@ export default class ScannerScreen extends PureComponent {
 										}
 									} else {
 										// 识别失败
-										// utils.toast('识别失败，请重新识别');
 										const statusStr = jsonData.status.toString();
 										if (statusStr == '-90') {
 											utils.toast('无此接口权限');
@@ -164,6 +163,8 @@ export default class ScannerScreen extends PureComponent {
 											utils.toast('账号超过15天试用期或试用期内当天可识别次数已达上限');
 										} else if (statusStr == '-118') {
 											utils.toast('用户账户余额为0或可识别次数为0');
+										} else {
+											utils.toast('错误: ' + statusStr);
 										}
 									}
 								});
