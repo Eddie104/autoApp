@@ -12,62 +12,48 @@ import {
 
 import * as utils from '../../utils';
 import TopBar from '../../components/TopBar';
-import DateTimePicker from '../../components/DateTimePicker';
-// import ConstantsUtils  from '../util/ConstantsUtils';
-import QuestionDateComponent from './QuestionDateComponent';
-import RNFS from 'react-native-fs';
-
-
-// import Picker from 'react-native-picker';
-const FileModule = require('NativeModules').FileModule;
+import Camera from 'react-native-camera';
 
 export default class TestScene extends PureComponent {
 
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			imgBase64Arr: []
-		}
-		this._imgBase64Arr = [];
+		this._onBack = this.onBack.bind(this);
 	}
 
 	render() {
-		const { imgBase64Arr } = this.state;
 		return (
 			<View style={styles.container}>
-				<TopBar title={ '测试场景' } showMoreBtn={false} />
-				<Text style={{}} onPress={() => {
-					const uriArr = [
-						'assets-library://asset/asset.JPG?id=B84E8479-475C-4727-A4A4-B77AA9980897&ext=JPG',
-						'assets-library://asset/asset.JPG?id=106E99A1-4F6A-45A2-B320-B0AD4A8E8473&ext=JPG'
-					];
-					this.test(uriArr, () => {
-						this.setState({
-							imgBase64Arr: this._imgBase64Arr
-						});
-					});
-				}}>
-					测试
-				</Text>
-				{
-					imgBase64Arr.map((imgBase64, index) => {
-						return <Image key={index} style={{width: utils.toDips(200), height: utils.toDips(200)}} source={{ uri: `data:image/jpeg;base64,${imgBase64}` }} />
-					})
-				}
+				<Camera
+					ref={(cam) => {
+						this._camera = cam;
+					}}
+					style={styles.preview}
+					aspect={Camera.constants.Aspect.fill}
+					captureQuality={Camera.constants.CaptureQuality['720p']}
+					captureTarget={Camera.constants.CaptureTarget.temp}
+					onBarCodeRead={e => {
+						utils.toast(e.data);
+					}}
+					barCodeTypes={['qr']}
+				>
+					<View style={{flexDirection: 'row', width: utils.screenWidth(), justifyContent: 'space-around'}}>
+						<TouchableOpacity
+							activeOpacity={0.8}
+							onPress={this._onBack}
+							style={styles.captureContainer}
+						>
+							<Text style={styles.capture}>[返回]</Text>
+						</TouchableOpacity>
+					</View>
+				</Camera>
 			</View>
 		);
 	}
 
-	test(uriArr, cb) {
-		if (uriArr.length > 0) {
-			utils.getImgBase64(uriArr.shift(), (imgBase64) => {
-				this._imgBase64Arr.push(imgBase64);
-				this.test(uriArr, cb);
-			});
-		} else {
-			cb();
-		}
+	onBack() {
+		global.nav.pop();
 	}
 }
 
@@ -75,20 +61,11 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1
 	},
-	
-	itemImg: {
-		width: utils.screenWidth(),
-		// topbar的高度是124
-		height: utils.screenHeight() - utils.toDips(124),
-		alignItems: 'center',
-		justifyContent: 'flex-end'
-	},
-	
-	/*preview: {
+	preview: {
 		flex: 1,
 		justifyContent: 'flex-end',
-		alignItems: 'center',
-	},*/
+		alignItems: 'center'
+	},
 	captureContainer: {
 		width: utils.toDips(325),
 		height: utils.toDips(90),
